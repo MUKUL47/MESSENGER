@@ -1,0 +1,5 @@
+/Server/node_modules/
+/Server/.env
+/Client/node_modules/
+/Client/messenger/node_modules/
+/qmc/messenger/node_modules/

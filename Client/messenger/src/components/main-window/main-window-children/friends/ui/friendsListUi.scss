@@ -1,0 +1,129 @@
+.parent-friendsUi{
+    .parent-border{
+        padding: 20px;
+        text-align: center;
+
+        .search-bar-{
+            border: 0.25px solid darkseagreen;
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+
+            .search-bar{
+                width: 100% !important;
+            }
+        }
+
+        .divider{
+            border-bottom: 1.5px solid;
+            width: 100%;
+        }
+
+        .friends-list{
+            overflow: auto;
+            max-height: 66vh;
+            min-height: 80px;
+            margin-top: 20px;
+
+            .fetching-content{
+
+            }
+
+            .friend-card{
+                cursor: pointer;
+                border: 0.25px solid darkseagreen;
+                position: relative;
+                display: flex;
+                padding: 10px;
+                background: #fff;
+                border-radius: 5px;
+                margin-bottom: 5px;
+
+                .friend-card-pic{
+                    #profileDisplayNname{
+                        width: 50px;
+                        text-align: center;
+                        border-radius: 50%;
+                        height: 50px;
+                        background: #000;
+                        cursor: pointer;
+                        color: #fff;
+                        margin-right: 10px;
+
+                        #p-profileName{
+                            font-weight: bold;
+                            /* padding-top: 10px; */
+                            font-size: 22px;
+                            -webkit-user-select: none;
+                            user-select: none;
+                            padding: 14px;
+                        }
+                    }                    
+                    // width: 30%;
+
+                    #profile_img{
+                        vertical-align: middle;
+                        border-radius: 100%;
+                        width: 50px;
+                        height: 50px;
+                        float: left;
+                        padding-right: 10px;
+                    }
+                }
+
+                .friend-card-name{
+                    padding: 13px 0;
+                    font-size: 20px;
+                    font-weight: 600;
+                    text-overflow: ellipsis;
+                    overflow: hidden;           
+                }
+
+                .friend-status{
+                    position: absolute;
+                    right: 10px;
+
+                    #status{
+                        width: 15px;
+                        border-radius: 100%;
+                        height: 15px;
+                        
+                    }
+                    
+                    .active{
+                        background: #54b422;
+                    }
+
+                    .offline{
+                        background: #808080;
+                    }
+                }
+            }
+
+            .friend-card:hover{
+                background: #befcff
+            }
+
+            .friend-card-selected{
+                background: #befcff
+            }
+        }
+    }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+::-webkit-scrollbar-thumb:hover {
+background: #555; 
+}
+// width: 40vh !important;
+
+@media only screen and (max-width: 600px) {
+    .full-list{
+        display: none;
+    }
+ }

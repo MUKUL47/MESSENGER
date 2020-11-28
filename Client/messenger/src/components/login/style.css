@@ -1,0 +1,38 @@
+/* .parent{
+    text-align: center;
+    padding-top: 15vh;
+}
+
+.bg-login{
+    height: 100%;
+    background: black;
+}
+
+.login{
+    margin-bottom: 4vh;
+}
+
+.register{
+    margin-top: 4vh;
+    color : #ffff;
+    cursor: pointer;
+}
+
+.register:hover {
+    text-decoration: underline;
+}
+
+.otp{
+    margin-bottom: 4vh;
+}
+
+.logo{
+    width: 20vh;
+    height: 20vh;
+    padding-bottom: 5vh;
+} */
+html, body { 
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}

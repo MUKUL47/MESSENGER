@@ -1,0 +1,117 @@
+.profile-header{
+    width: 20px;
+    padding: 16px 10px;
+    float: left;
+}
+.profile-layout{
+    display: flex;
+    // padding: 25px 10px;
+    float: right;
+
+    .profile-name{
+        font-size: 20px;
+        padding: 25px 10px;
+    }
+    
+    .profile-image{
+        #profileImage{
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            padding: 10px;
+        }
+    }
+}
+// .profile-layout{
+//     float: right;
+//     display: flex;
+//     align-items: center;
+//     height: 15vh;
+//     padding-right: 5vh;
+
+//     .profile-name{
+//         font-weight: 600;
+//         font-size: x-large;
+//     }
+    
+//     .profile-header{
+//         cursor: pointer;
+//         left: 20px;
+//         position: absolute;
+//     }
+
+//     .profile-image{
+//         margin-left: 10%;
+
+//         #profileImage{
+//             width: 50px;
+//             height: 50px;
+//             border-radius: 100%;
+//             cursor: pointer; 
+//             box-shadow: 9px 8px 6px -6px black;
+//         }
+
+//         #profileDisplayNname{
+//             width: 50px;
+//             text-align: center;
+//             border-radius: 50%;
+//             height: 50px;
+//             background: white;
+//             cursor: pointer;
+//             box-shadow: 9px 8px 6px -6px black;
+
+//             #p-profileName{
+//                 font-weight: bold;
+//                 padding-top: 10px;
+//                 font-size: 22px;
+//                 user-select: none;
+//             }
+//         }
+//     }
+// }
+
+.profile-extra-drawer{
+    background:#404045;//#ffff;//#a7bdbd;// #333838;
+    padding: 10px;
+    height: 100%;
+    font-weight: 400;
+    .profile-drawer-img{
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        bottom: 0;
+        border-radius: 20px;
+        color: #fff;
+    }
+    .rotate-180{
+        transform: rotate(180deg);
+    }
+    #divider{
+        background-color: #787e7e;
+    }
+    .arrow-icon{
+        padding-bottom: 10px;
+    }
+}
+
+#white-c{
+    color: #ffff !important;
+}
+
+.pad-10{
+}
+
+.f-l{
+    float: left;
+}
+
+.f-r{
+    float: right;
+}
+
+
+@media only screen and (max-width: 600px) {
+   .profile-header{
+       display: block;
+   }
+}

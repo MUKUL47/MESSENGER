@@ -1,0 +1,53 @@
+.input_1{
+    text-align: center;
+    width: 45vh;
+    height: 6vh;
+    border-radius: 5px;
+    border: none;
+    font-size: 21px;
+}
+
+.c_btn{
+    width: 45vh;
+    color: white !important;
+    background: maroon !important;
+    border: none !important;
+    height: 6vh !important;
+    border-radius: 5px !important;
+}
+
+.loader{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 983;
+    background: darkblue;
+    opacity: 0.4;
+}
+
+.loader-img{
+    width: 30px;
+    margin-top: 38%;
+}
+
+.btn_txt{
+    font-size: 3vh;
+}
+
+.notification_error{
+    background-color: #ff4150;
+}
+
+.notification_success{
+    background-color: green;
+    color : #fff
+}
+
+.pending-incomming-requests .MuiPaper-rounded{
+    background: darkslateblue !important;
+    width: 70% !important;
+    color: #fff !important;
+    top: -16vh !important;
+}

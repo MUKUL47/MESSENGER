@@ -1,0 +1,96 @@
+.login{
+    min-height: 100vh;
+    background: radial-gradient(circle, #22c1c3 0%, #5c59d6 91%, #5d5d5d 100%);
+
+    .login-layout{
+        margin: auto;
+        width: 50%;
+        height: 69vh;
+        background: #FFF;
+        border-radius: 25px 0px 0px 25px;
+        display: flex;
+        transform: translate(0%, 20%);
+        text-align: center;
+
+        .login-img{
+            border-radius: 25px 0px 0px 25px;
+            width: 40%;
+            height: 100%;
+            background-color: #d7dee6ff;
+
+            img{
+                transform: translate(0, 23.5vh);
+            }
+        }
+        .login-form{
+            width: 60%;
+            height: 100%;
+
+            .form{
+                transform: translate(0, 22vh);
+                text-align: center;
+                padding: 0 25px;
+
+                .input-text{
+                    width: 100%;
+                }
+
+                Button{
+                    width: 100%;
+                    height: 50px;
+                    margin-top: 10px;
+                    text-transform: none;
+                    font-size: 15px;
+                    color: #fff;
+                    font-weight: 600;
+                }
+
+                .continue-google{
+                    width: 100%;
+                    background-color: #2966c2 !important;
+                }
+
+                .google-img{
+                    position: relative;
+
+                    img{
+                        background: #fff;
+                        border-radius: 100%;
+                        width: 28px;    
+                        position: absolute;
+                        right: 7px;
+                        top: 12%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+@media only screen and (max-width: 700px) {
+    .login-layout{
+        width: 80% !important;
+        border-radius: 2.5% !important;
+
+        .login-img{
+            display: none;
+        }   
+
+        .login-form{
+            width: 80% !important;
+
+            .form{
+                padding: 0px !important;
+                transform: translate(0, 2vh) !important;
+            }
+
+            .mob-logo{
+                padding: 55px 0px;
+                display: block !important;
+            }
+        }
+    } 
+}

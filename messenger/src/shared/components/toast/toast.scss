@@ -1,0 +1,18 @@
+.toast-message{
+    background: #fff;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 10px 40px;    
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 75%;
+}
+.error-message{
+    color: #ff2851;
+    background-color: #ffd8d8;
+}
+.success-message{
+    background-color: #bfffcf;
+    color: #009124;
+}

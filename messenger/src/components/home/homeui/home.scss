@@ -3,14 +3,32 @@
     background-color: #213136;
 
     .navbar{
-        width: 95%;
+        width: 90%;
         margin: auto;
         padding: 10px;
     }
 
     .chatsection{
-        width: 95%;
+        width: 90%;
         margin: auto;
         padding: 0px 10px 10px 10px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .friends{
+        display: none;
+    }
+
+    .chat{
+        width: 100% !important;
+    }
+
+    .navbar{
+        width: 95% !important;
+    }
+
+    .chatsection{
+        width: 95% !important;
     }
 }

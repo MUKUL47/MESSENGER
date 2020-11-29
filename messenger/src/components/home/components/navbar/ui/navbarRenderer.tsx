@@ -35,21 +35,17 @@ export default function NavRenderer() {
                 onClick={e => showFriendDrawer()}
             />
         </div>
-        <div className="nav-btns navB border-r">            
+        <div className="nav-btns">            
             <div id='nav-text'>Profile</div>
-            {/* <PersonIcon className="nav-icon"/> */}
         </div>
-        <div className="nav-btns navB border-r">            
+        <div className="nav-btns">            
             <div id='nav-text'>Search</div>
-            {/* <SearchIcon className="nav-icon"/> */}
         </div>
-        <div className="nav-btns navB">
+        <div className="nav-btns">
             <div id='nav-text'>Requests</div>
-            {/* <EmojiPeopleIcon className="nav-icon"/> */}
         </div>
-        <div className="nav-btns navB">
+        <div className="nav-btns">
             <div id='nav-text'>Logout</div>
-            {/* <CloseIcon className="nav-icon"/> */}
         </div>
         <FriendDrawer {...toggle} closeDrawer={closeDrawer}/>
     </div>

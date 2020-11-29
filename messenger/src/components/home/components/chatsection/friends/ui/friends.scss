@@ -2,7 +2,7 @@
     // width: 25%;
     margin-right: 10px;
     border-radius: 5px;
-    background-color: #d5fffc;
+    background-color: #bee5ff;
     padding: 10px;
 
 
@@ -31,7 +31,13 @@
         overflow: auto;
         scroll-behavior: smooth;
 
+
+        .friend-fragment:hover{
+            background-color: #211;
+        }
+        
         .friend-fragment{  
+            cursor: pointer;
             color: #fff;  
             background: #2f4754;
             border-radius: 5px;

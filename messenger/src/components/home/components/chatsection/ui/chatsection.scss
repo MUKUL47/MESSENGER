@@ -1,5 +1,23 @@
 .chatsection-layout{
-    background-color: #fff;
     border-radius: 5px;
     height: calc(100vh - 94px);
+    display: flex;
+
+    .friends{
+        width: 25%;
+    }
+
+    .chat{
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .friends{
+        display: none;
+    }
+
+    .chat{
+        width: 100% !important;
+    }
 }

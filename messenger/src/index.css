@@ -19,3 +19,11 @@ code {
 Button{
   text-transform: none !important;
 }
+
+.pad-b-10{
+  padding-bottom: 10px;
+}
+
+.mar-b-10{
+  margin-bottom: 10px;
+}

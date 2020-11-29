@@ -6,8 +6,9 @@
     border-radius: 5px;
     text-align: center;
 
-    img{
+    #myprof-img{
         border-radius: 100%; 
+        cursor: pointer;
         box-shadow: 7px 9px 8px -6px #888888;
     }
 
@@ -23,7 +24,7 @@
         position: relative;
         // color: #fff;
 
-        div{
+        #nav-text{
             cursor: pointer;
             padding: 16px;
             // background: black;
@@ -45,8 +46,19 @@
     }
 }
 
+.FriendDrawer{
+    display: none;
+
+    .MuiDrawer-modal{
+        width: 40% !important;
+    }
+}
+
 @media only screen and (max-width: 700px) {
     .nav-icon{
-        width: 15px !important;
+        display: none !important;
+    }
+    .FriendDrawer{
+        display: block;
     }
 }

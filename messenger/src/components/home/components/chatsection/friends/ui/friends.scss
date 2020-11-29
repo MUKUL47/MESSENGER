@@ -1,0 +1,93 @@
+.friendsrender-layout{
+    // width: 25%;
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color: #d5fffc;
+    padding: 10px;
+
+
+    .search-friends{
+
+        position: relative;
+        .search-txt{
+            font-weight: 400;
+            padding-bottom: 10px;
+        }
+
+        .search-inp{
+            width: 100%;
+        }
+
+        .search-icon{
+            position: absolute;
+            top: 0;
+            right: -3px;
+        }
+    }
+
+    .search-results{
+        // padding: 10px 0;
+        height: calc(100vh - 211px);
+        overflow: auto;
+        scroll-behavior: smooth;
+
+        .friend-fragment{  
+            color: #fff;  
+            background: #2ea3a6;
+            border-radius: 5px;
+            display: flex;
+            padding: 10px 5px;
+
+            .profile-pic{
+                // padding: 10px 0;
+                #profile-pic{
+                    border-radius: 100%;
+                }                
+            }
+            
+            .profile-details{
+                width: 100%;
+                overflow: hidden;
+                width: 100%;
+                padding: 15px 15px 15px 10px;
+                position: relative;
+
+                #p-name{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                #frnd-status{
+                    position: absolute;    
+                    top: 0px;
+                    right: 2px;
+                    color: #fff;
+                    font-size: 10px;
+                    // padding: 6px;
+                    // border-radius: 100px;
+                    // background-color: rgb(24, 17, 17);
+                }
+            }
+        }
+    }
+}
+
+
+::-webkit-scrollbar {
+    display: none;
+    width: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius:5px;
+  }
+
+  @media only screen and (max-width: 700px) {
+      .friendsrender-layout{
+        margin-right: 0px;
+
+        .search-results{
+            height: calc(100vh - 117px);
+        }
+      }
+  }

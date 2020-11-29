@@ -22,6 +22,7 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import Drawer from '@material-ui/core/Drawer';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import PersonIcon from '@material-ui/icons/Person';
 import Snackbar from '@material-ui/core/Snackbar';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -36,6 +37,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import ReplayIcon from '@material-ui/icons/Replay';
 import Backdrop from '@material-ui/core/Backdrop';
 export {
+    PersonIcon,
     Snackbar,
     Backdrop,
     ReplayIcon,

@@ -13,14 +13,14 @@
     }
 
     .border-r{
-        border-right: 1px solid #b4b4b4;
+        // border-bottom: 1px solid #b4b4b4;
     }
 
     .nav-btns{
         // padding: 16px 10px;    
         font-size: 17px;
         font-weight: 500;
-        width: 33%;
+        width: 6%;
         position: relative;
         // color: #fff;
 
@@ -37,8 +37,11 @@
         }
     }
     .nav-btns:hover{
-        background-color: #aecad2;
+        // background-color: #aecad2;
         // border-radius: 5px;
+        background-color: #2f4754;
+        color: #fff;
+        border-radius: 5px;
     }
 
     .navB{

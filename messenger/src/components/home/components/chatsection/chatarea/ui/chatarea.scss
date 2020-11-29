@@ -1,5 +1,31 @@
 .chatarearender-layout{
-    height: 100%;
+    height: calc(100vh - 113px);
     border-radius: 5px;
     background-color: #d7dee6;
+    padding: 10px;
+
+    .chatting-area{
+        background-color: #c2ccff;
+        height: calc(100vh - 180px);
+        background-color: #2f4754;
+        border-radius: 5px;
+    }
+
+    .submit-message{
+        display: flex;
+        margin-top: 10px;
+
+        .send-icon{
+            background-color: #001f78;
+            padding: 16px;
+            border-radius: 100%;
+            color: #fff;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .message-inp{
+            width: 100%;
+        }
+    }
 }

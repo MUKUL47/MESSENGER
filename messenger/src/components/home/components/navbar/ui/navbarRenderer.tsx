@@ -37,20 +37,20 @@ export default function NavRenderer() {
         </div>
         <div className="nav-btns navB border-r">            
             <div id='nav-text'>Profile</div>
-            <PersonIcon className="nav-icon"/>
+            {/* <PersonIcon className="nav-icon"/> */}
         </div>
         <div className="nav-btns navB border-r">            
             <div id='nav-text'>Search</div>
-            <SearchIcon className="nav-icon"/>
+            {/* <SearchIcon className="nav-icon"/> */}
         </div>
         <div className="nav-btns navB">
             <div id='nav-text'>Requests</div>
-            <EmojiPeopleIcon className="nav-icon"/>
+            {/* <EmojiPeopleIcon className="nav-icon"/> */}
         </div>
-        {/* <div className="nav-btns navB">
+        <div className="nav-btns navB">
             <div id='nav-text'>Logout</div>
-            <CloseIcon className="nav-icon"/>
-        </div> */}
+            {/* <CloseIcon className="nav-icon"/> */}
+        </div>
         <FriendDrawer {...toggle} closeDrawer={closeDrawer}/>
     </div>
     )

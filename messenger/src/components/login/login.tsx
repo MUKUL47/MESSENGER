@@ -2,16 +2,18 @@ import React, { useEffect, useReducer } from 'react';
 import BackdropLoader from '../../shared/components/backdrop/backdrop';
 import Otp from '../../shared/components/otp/otp';
 import Api from '../../shared/server';
-import Utils, { toggleLoader, toastMessage } from '../../shared/utils';
+import Utils, { toggleLoader, toastMessage, setGlobalToggleFunc } from '../../shared/utils';
 import LoginUi from './renderer';
 import { useHistory } from "react-router-dom";
 import Routes from '../../shared/routes';
 export default function Login() {
     const history = useHistory();
-    const setToggleData = (toggle: any, data: any) => { return { ...toggle, ...data } }
-    const [toggle, setToggle] = useReducer(setToggleData, { redirect: true, otpReady: false, emailMobile: '', otp: '' })
+    const [toggle, setToggle] = useReducer(setGlobalToggleFunc, 
+        { redirect: true, otpReady: false, emailMobile: '', otp: '', isLoading : false })
     useEffect(() => {
+        document.title = 'Messenger';
         if (localStorage.length === 0) {
+            document.title = 'Messenger - Login';
             setToggle({ redirect: false })
         } else {
             //redirect
@@ -20,13 +22,15 @@ export default function Login() {
     }, []);
     const onEmailMobile = async (data: String) => {
         try {
-            toggleLoader.next(true);
+            setToggle({ isLoading : true })
+            // toggleLoader.next(true);
             await Api.generateOtp(data, false);
-            toggleLoader.next(false);
-            setToggle({ emailMobile: data, otpReady: true })
+            // toggleLoader.next(false);
+            setToggle({ emailMobile: data, otpReady: true, isLoading : false })
             toastMessage.next({ type: true, message: `OTP sent to ${toggle.emailMobile}.`, duration: 3000 })
         } catch (e) {
-            toggleLoader.next(false);
+            // toggleLoader.next(false);
+            setToggle({ isLoading : false })
             toastMessage.next({ type: false, message: Utils.parseError(e), duration: 2000 })
         }
     }
@@ -48,7 +52,7 @@ export default function Login() {
     const jsx =
         !toggle.redirect ?
             <>
-                <LoginUi onEmailMobile={onEmailMobile} />
+                <LoginUi onEmailMobile={onEmailMobile} {...toggle} />
                 {otp}
             </> :
             <BackdropLoader open={toggle.redirect} />

@@ -2,6 +2,7 @@ import validator from 'validator';
 import { Subject } from 'rxjs';
 export const toggleLoader = new Subject<boolean>();
 export const toastMessage = new Subject<{ type: boolean, message: String, duration?: Number, logout?: boolean }>();
+export const setGlobalToggleFunc = (toggle: any, data: any) => { return { ...toggle, ...data } }
 export default class Utils {
     public static validateEmailMobile(value: string): boolean {
         if (value.includes('@')) {

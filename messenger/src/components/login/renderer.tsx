@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import namasteImg from '../../assets/namaste.png'
 import googleImg from '../../assets/google.png'
 import './login.scss'
-import { TextField, Button } from '../../shared/material-modules';
+import { TextField, Button, CircularProgress } from '../../shared/material-modules';
 import Utils from '../../shared/utils';
 export default function LoginUi(props: any) {
-    const { onEmailMobile } = props;
+    const { onEmailMobile, isLoading } = props;
     const [emailMobile, setEmailMobile] = useState<String>('');
     return (
         <>
@@ -31,15 +31,20 @@ export default function LoginUi(props: any) {
                                 color="primary"
                                 className="submit"
                                 onClick={e => onEmailMobile(emailMobile)}
-                                disabled={!Utils.validateEmailMobile(emailMobile.trim())}
+                                disabled={!Utils.validateEmailMobile(emailMobile.trim()) || isLoading}
                             >
-                                Submit
+                                {
+                                    isLoading ?
+                                    <CircularProgress className="submit__loader"/>
+                                    : 'Submit' 
+                                }
                             </Button>
                             <div>
                                 <Button
                                     variant="contained"
                                     className="continue-google"
                                     onClick={e => onEmailMobile({ thirdParty: 'google' })}
+                                    disabled={isLoading}
                                 >
                                     Google
                                 </Button>

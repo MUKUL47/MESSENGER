@@ -6,7 +6,7 @@ import {
     Redirect,
 } from "react-router-dom";
 import Routes from '../shared/routes';
-import { toastMessage, toggleLoader } from '../shared/utils';
+import Utils, { toastMessage, toggleLoader, setGlobalToggleFunc } from '../shared/utils';
 import BackdropLoader from '../shared/components/backdrop/backdrop';
 import ToastMessage from '../shared/components/toast/toast';
 import Login from './login/login';
@@ -14,9 +14,6 @@ import Home from './home/home';
 import Profile from './profile/profile';
 
 export default function Main() {
-    const setGlobalToggleFunc = (toggle: any, data: any) => {
-        return { ...toggle, ...data }
-    }
     const [globalToggle, setGlobalToggle] = useReducer(setGlobalToggleFunc, { toast: { type: '', message: '' }, isLoading: false });
     useEffect(() => {
         const toastUnsub = toastMessage.subscribe((data: any) => {

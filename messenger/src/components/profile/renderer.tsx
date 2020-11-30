@@ -1,8 +1,9 @@
 import React from 'react';
 import './profile.scss'
 import namasteImg from '../../assets/namaste.png'
-import { TextField, Button } from '../../shared/material-modules';
-export default function ProfileRenderer() {
+import { TextField, Button, CircularProgress } from '../../shared/material-modules';
+export default function ProfileRenderer(props : any) {
+    const { loading } = props;
     return (
     <>
         <div className="profile-layout">
@@ -32,7 +33,15 @@ export default function ProfileRenderer() {
                         />
                     </div>
                     <div className="submit-profile">
-                        <Button variant="contained" color="primary">Submit</Button>
+                        <Button variant="contained" color="primary"
+                            disabled={loading}
+                        >
+                            {
+                                loading ?
+                                <CircularProgress className="submit-profile__loader"/> :
+                                'Submit'
+                            }
+                        </Button>
                     </div>
                 </div>
             </div>

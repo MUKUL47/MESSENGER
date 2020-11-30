@@ -54,6 +54,10 @@
 
         .submit-profile{
             padding: 15px 0;
+
+            .submit-profile__loader{
+                color: #39aeff;
+            }
         }
 
         Button{

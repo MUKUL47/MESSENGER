@@ -22,9 +22,9 @@ exports.initMysql = async (_) => {
       tables.MYSQL_TABLES.map((table) => globalConnection.query(table))
     )
     .subscribe(resp => {
-      console.log('created',resp)
-    },err => {
-      console.log('er mysql',err)
+      console.log('created', resp)
+    }, err => {
+      console.log('er mysql', err)
     });
 };
 
@@ -142,8 +142,7 @@ exports.globalSearchLike = (tableName, key, target, pattern, selectQuery) => {
     }
     globalConnection
       .query(
-        `SELECT ${
-          selectQuery ? selectQuery : "*"
+        `SELECT ${selectQuery ? selectQuery : "*"
         } FROM ${tableName} WHERE ${key} LIKE "${query}"`
       )
       .then((rows) => resolve(rows))
@@ -166,9 +165,8 @@ exports.initOrUpdateUser = (user, exist) => {
   return new Promise((resolve, reject) => {
     const query = `
         INSERT INTO users (id, updated_at, created_at, identity, keygen)
-        values ('${user.id}' ,'${user.updated_at}' ,'${user.created_at}', '${
-      user.identity
-    }', '${user.keygen}' )
+        values ('${user.id}' ,'${user.updated_at}' ,'${user.created_at}', '${user.identity
+      }', '${user.keygen}' )
         ON DUPLICATE KEY UPDATE 
         id          = '${user.id}',
         updated_at  = '${user.updated_at}',
@@ -362,17 +360,17 @@ exports.removeFriendRequest = (userId, toUserId) => {
 };
 
 exports.logout = (secret) => {
-  return new Promise((resolve, reject) => {});
+  return new Promise((resolve, reject) => { });
 };
 
 exports.updateProfile = (id, name, imageBlob) => {
   return new Promise(async (resolve, reject) => {
     const checkSameName = `SELECT COUNT(name) FROM profile WHERE name = '${name}'`;
     const count = await globalConnection.query(checkSameName);
-    if (count[0] && count[0]["COUNT(name)"] > 0) {
-      reject(1);
-      return;
-    }
+    // if (count[0] && count[0]["COUNT(name)"] > 0) {
+    //   reject(1);
+    //   return;
+    // }
     const query = `
         INSERT INTO profile (userId, name, image_blob)
         values ('${id}' ,'${name}' ,'${imageBlob}')

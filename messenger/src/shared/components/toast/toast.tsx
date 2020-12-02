@@ -4,6 +4,6 @@ import './toast.scss'
 export default function ToastMessage(props: any) {
     const { type, message } = props;
     return <Snackbar open={true}>
-        <div className={type ? 'toast-message success-message' : 'toast-message error-message'}>{message}</div>
+        <div className={type ? 'toast-message success-message' : 'toast-message error-message'} dangerouslySetInnerHTML={{ __html: `${message}` }}></div>
     </Snackbar>
 }

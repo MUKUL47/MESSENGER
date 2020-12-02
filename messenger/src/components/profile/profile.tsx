@@ -1,16 +1,55 @@
-import React, { useEffect, useReducer } from 'react';
-import { setGlobalToggleFunc } from '../../shared/utils';
+import React, { useContext, useEffect, useReducer } from 'react';
+import { useHistory } from 'react-router-dom';
+import Routes from '../../shared/routes';
+import Api from '../../shared/server';
+import Utils, { setGlobalToggleFunc, toastMessage } from '../../shared/utils';
+import { UserContext } from '../contexts/userContext';
 import ProfileRenderer from './renderer';
 export default function Profile() {
-    const [globalToggle, setGlobalToggle] = useReducer(setGlobalToggleFunc, { isLoading : true });
-    /**
-     * 1) check local storage -> empty -> redirect
-     * 2) check context -> empty? -> fetch profile (keep in loading state) -> store in context send profile in props
-     * 3) check context -> data? -> pass the data in props
-     */
-    useEffect(() => {
+    const history = useHistory();
+    const userContext: any = useContext(UserContext);
+    const userContextGet = userContext.get;
+    const stateData = { loading: true, name: '', blob: null, user: localStorage.getItem('id'), changed: false };
+    const [state, setState] = useReducer(setGlobalToggleFunc, stateData);
+    const updateProfile = async () => {
+        try {
+            setState({ loading: true })
+            await Api.updateProfile(state.name, state.blob);
+            setState({ loading: false, changed: false })
+            userContext.set({ name: state.name, blob: state.blob })
+            toastMessage.next({ type: true, message: 'Profile updated successfully' });
+            history.push(Routes.home)
+        } catch (e) {
+            setState({ loading: false })
+            toastMessage.next({ type: false, message: Utils.parseError(e), duration: 2000 })
+        }
+    }
+    const getProfile = async () => {
         document.title = 'Messenger - Profile';
-        setTimeout(() => setGlobalToggle({ isLoading : false }), 2000)
-    },[])
-    return (<ProfileRenderer loading={globalToggle.isLoading}/>)
+        if (localStorage.length === 0) {
+            history.push(Routes.login);
+        }
+        else if (!userContextGet.name) {
+            try {
+                setState({ loading: true })
+                const profileResponse: any = await Api.getProfile('_');
+                const profile = profileResponse.data && profileResponse.data[0] ? profileResponse.data[0] : null;
+                setState({ loading: false })
+                if (profile) {
+                    const blob = `${profile.image_blob}` == 'null' ? null : profile.image_blob;
+                    userContext.set({ user: profile.identity, name: profile.name, blob: blob })
+                    setState({ loading: false, name: profile.name, blob: blob, user: profile.identity })
+                } else {
+                    toastMessage.next({ type: false, message: 'Profile not set' })
+                }
+            } catch (e) {
+                setState({ loading: false })
+                toastMessage.next({ type: false, message: Utils.parseError(e), duration: 2000 })
+            }
+        } else {
+            setState({ loading: false, name: userContextGet.name, blob: userContextGet.blob, user: userContextGet.user })
+        }
+    }
+    useEffect(() => { getProfile(); console.log(userContextGet) }, [])
+    return (<ProfileRenderer {...state} updateProfile={updateProfile} setForm={setState} />)
 }

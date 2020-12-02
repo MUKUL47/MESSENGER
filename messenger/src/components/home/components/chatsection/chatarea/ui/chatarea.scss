@@ -1,5 +1,5 @@
 .chatarearender-layout{
-    height: calc(100vh - 113px);
+    height: calc(100vh - 117px);
     border-radius: 5px;
     background-color: #bee5ff;
     padding: 10px;
@@ -9,6 +9,58 @@
         height: calc(100vh - 180px);
         background-color: #2f4754;
         border-radius: 5px;
+        overflow: scroll;
+        color: #fff;
+
+        .chatarea{
+            padding: 0 30px;
+           
+             .chatarea-type__left{
+                text-align: left; 
+                width: 65%;
+            }
+
+            .chatarea-type__right{
+                margin-left: 35%;
+                text-align: left;
+            }
+
+            .chat-chunk{
+                background: black;
+                border-radius: 10px;
+                padding: 15px;
+                margin-bottom: 2px;
+                position: relative;
+            }
+
+            .c-tip{
+                color : #000;
+                position: absolute;
+                top: 0;
+
+            }
+
+            svg{
+                width: 20px;
+                height: 20px;
+            }
+            
+            .c-tip-left{
+                left: -8px;
+            }
+
+            .c-tip-right{
+                right: -8px;
+                
+                svg{
+                    transform: rotateY(180deg);
+                }
+            }
+
+            .chat-mg-t{
+                margin-top: 15px;
+            }
+        }
     }
 
     .submit-message{

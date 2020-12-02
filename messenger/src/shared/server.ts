@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toastMessage } from './utils';
 const url = {
-    base: 'http://192.168.0.8:9999',
+    base: `http://localhost:9999`,//'http://192.168.0.8:9999',
     base_: `http://localhost:9999`,
     register: '/register',
     otp: '/otp',
@@ -35,18 +35,18 @@ export default class Api {
     ];
 
     public static initApiInterceptor() {
+        console.log("intercepting --", 'config')
         axios.interceptors.request.use(
             (config: any) => {
-                console.log("intercepting --", config);
+                ;
                 if (!this.nonSecretUrls.includes(config.url)) {
-                    const lS = localStorage.getItem(
-                        Object.keys(localStorage).filter((v) => v !== "id")[0]
-                    );
+                    const lS = localStorage.getItem('secret');
                     if (!lS) {
-                        Promise.reject({
-                            type: "intercept",
-                            message: url.clientAccessDenied,
-                        });
+                        // Promise.reject({
+                        //     type: "intercept",
+                        //     message: url.clientAccessDenied,
+                        // });
+                        toastMessage.next({ message: 'Session timed out', type: false, duration: 5000, logout: true });
                         return;
                     }
                     config.headers = { ...config.headers, secret: lS, type: "web" };
@@ -62,6 +62,7 @@ export default class Api {
         );
 
         axios.interceptors.response.use((null as any), (error) => {
+            console.log(error.type)
             if (
                 error.response &&
                 error.response.status === 401 &&
@@ -119,7 +120,7 @@ export default class Api {
         });
     }
 
-    public static updateProfile(name: String, imageBlob: Blob) {
+    public static updateProfile(name?: String, imageBlob?: Blob) {
         return new Promise((resolve, reject) => {
             const finalUrl = url.base + url.profile.update;
             const body = { name: name, imageBlob: imageBlob };

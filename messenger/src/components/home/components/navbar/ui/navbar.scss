@@ -12,42 +12,26 @@
         box-shadow: 7px 9px 8px -6px #888888;
     }
 
-    .border-r{
-        // border-bottom: 1px solid #b4b4b4;
-    }
-
     .nav-btns{
-        // padding: 16px 10px;  
         width: 25%;
-        padding: 13px 0;
         position: relative;
-        // color: #fff;
         cursor: pointer;
         color: #555;
+        margin: auto;
+        padding: 15px 0px;
 
         #nav-text{  
             font-size: 17px;
             font-weight: 500;
-            // padding: 16px;
-            // background: black;
         }
-
-        // .nav-icon{
-        //     position: absolute;
-        //     top: 1.75px;
-        //     right: 5px;
-        // }
     }
     .nav-btns:hover{
-        // background-color: #aecad2;
-        // border-radius: 5px;
         background-color: #2f4754;
         color: #fff !important;
         border-radius: 5px;
     }
 
     .navB{
-        // padding-right: 5px;
         margin-right: 10px;
     }
 }
@@ -67,4 +51,7 @@
     .FriendDrawer{
         display: block;
     }
+    #nav-text{
+        font-size: 12px !important;
+    }  
 }

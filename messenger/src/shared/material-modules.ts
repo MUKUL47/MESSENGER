@@ -36,7 +36,9 @@ import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import CloseIcon from '@material-ui/icons/Close';
 import ReplayIcon from '@material-ui/icons/Replay';
 import Backdrop from '@material-ui/core/Backdrop';
+import { Modal } from '@material-ui/core';
 export {
+    Modal,
     PersonIcon,
     Snackbar,
     Backdrop,

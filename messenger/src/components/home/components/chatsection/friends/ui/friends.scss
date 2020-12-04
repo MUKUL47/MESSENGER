@@ -1,5 +1,4 @@
 .friendsrender-layout{
-    // width: 25%;
     margin-right: 10px;
     border-radius: 5px;
     background-color: #bee5ff;
@@ -26,7 +25,6 @@
     }
 
     .search-results{
-        // padding: 10px 0;
         height: calc(100vh - 211px);
         overflow: auto;
         scroll-behavior: smooth;
@@ -69,9 +67,6 @@
                     right: 2px;
                     color: #fff;
                     font-size: 10px;
-                    // padding: 6px;
-                    // border-radius: 100px;
-                    // background-color: rgb(24, 17, 17);
                 }
             }
         }
@@ -80,11 +75,10 @@
 
 
 ::-webkit-scrollbar {
-    // display: none;
     width: 5px;
   }
   ::-webkit-scrollbar-thumb {
-    background: #eee; 
+    background: #888; 
     border-radius:5px;
   }
 

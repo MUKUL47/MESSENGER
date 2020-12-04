@@ -10,6 +10,7 @@ export const setGlobalToggleFunc = (toggle: any, data: any) => {
     return { ...toggle, ...data }
 }
 export default class Utils {
+    public static MAX_MESSAGE_LEN = 1187;
     public static validateEmailMobile(value: string): boolean {
         if (value.includes('@')) {
             return validator.isEmail(value);

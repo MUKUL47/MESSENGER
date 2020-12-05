@@ -6,24 +6,34 @@ import {
     Switch,
     Route,
     useHistory,
+    BrowserRouter,
 } from "react-router-dom";
 import BackdropLoader from '../../../shared/components/backdrop/backdrop';
 import Routes from '../../../shared/routes';
-export default function HomeRenderer() {
+import Requests from '../components/requests/requests';
+import Search from '../components/search/search'
+export default function HomeRenderer(props: any) {
+    const { navBar } = props;
+    console.log('->', props)
     return (
         <div className="home-layout">
             <div className="navbar">
                 <Navbar />
             </div>
             <Switch>
-                <Route exact path={Routes.friend} component={() =>
+                <Route exact path={Routes.home} component={() =>
                     <div className="chatsection">
                         <ChatSection />
                     </div>
                 }></Route>
-                <Route component={() =>
-                    <div className="chatsection">
-                        <BackdropLoader open={true} />
+                <Route exact path={Routes.requests} component={() =>
+                    <div className="request-section">
+                        <Requests />
+                    </div>
+                }></Route>
+                <Route exact path={Routes.search} component={() =>
+                    <div className="search-section">
+                        <Search />
                     </div>
                 }></Route>
             </Switch>

@@ -13,6 +13,11 @@
         margin: auto;
         padding: 0px 10px 10px 10px;
     }
+    
+    .request-section, .search-section{
+        width: 90%;
+        margin: auto;
+    }
 }
 
 @media only screen and (max-width: 700px) {
@@ -24,11 +29,7 @@
         width: 100% !important;
     }
 
-    .navbar{
-        width: 95% !important;
-    }
-
-    .chatsection{
+    .navbar, .chatsection, .request-section, .search-section{
         width: 95% !important;
     }
 }

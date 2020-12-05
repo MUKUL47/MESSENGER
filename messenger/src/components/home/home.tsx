@@ -6,5 +6,5 @@ export default function Home() {
     useEffect(() => {
         console.log(userContext.get)
     }, [])
-    return (<HomeRenderer />)
+    return (<HomeRenderer {...userContext.get} />)
 }

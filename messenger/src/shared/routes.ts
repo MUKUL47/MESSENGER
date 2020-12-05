@@ -4,6 +4,7 @@ export default class Routes {
     public static login = '/login';
     public static profile = '/profile';
     public static thridPartyLogin = '/redirecting';
-    public static friend = '/home/:friend';
+    public static search = Routes.home + '/search';
+    public static requests = Routes.home + '/requests';
     public static default = '/';
 }

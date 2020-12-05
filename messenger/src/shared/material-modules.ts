@@ -19,6 +19,7 @@ import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Divider from '@material-ui/core/Divider';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import HomeIcon from '@material-ui/icons/Home';
 import Drawer from '@material-ui/core/Drawer';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -37,7 +38,14 @@ import CloseIcon from '@material-ui/icons/Close';
 import ReplayIcon from '@material-ui/icons/Replay';
 import Backdrop from '@material-ui/core/Backdrop';
 import { Modal } from '@material-ui/core';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 export {
+    ThumbDownIcon,
+    ThumbUpIcon,
+    MeetingRoomIcon,
+    HomeIcon,
     Modal,
     PersonIcon,
     Snackbar,

@@ -59,15 +59,15 @@ function Chats() {
 
         <div className="chatarea" id='chatarea'>
             {
-                Array(12130).fill(1).map((c: any, i) => {
+                Array(12).fill(1).map((c: any, i) => {
                     const dir = i % 2 === 0 ? 'left' : 'right';
                     const tipClass = `c-tip ${dir === 'left' ? 'c-tip-left' : 'c-tip-right'}`;
                     const chatClass = `chat-chunk ${dir === 'left' ? 'chatarea-type__left' : 'chatarea-type__right'}`;
                     const tip = newChunk != dir ? (<div className={tipClass}><Msgc /></div>) : null;
                     newChunk = dir;
                     return (
-                        <>
-                            <div className={`chatarea--when chatdate__${i}`} >
+                        <div key={i}>
+                            <div className={`chatarea--when chatdate__${i}`}>
                                 <p
                                 // className={`c-when ${scrollDate?.open && scrollDate.id == i ? 'c-when__hide' : ''}`}
                                 >
@@ -86,8 +86,10 @@ function Chats() {
                                             </> :
                                             convos} {tip}
                                     <div className="chat--time">23:59</div>
-                                </div> </div>
-                        </>
+                                </div>
+                            </div>
+                        </div>
+
                     )
                 })
             }

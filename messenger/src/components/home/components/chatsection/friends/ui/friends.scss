@@ -31,11 +31,14 @@
 
 
         .friend-fragment:hover{
-            background-color: #211;
+            transition: .5s ease-in, border-radius .5s;
+            background-color: #0b3145;
+            border-radius: 10px;
         }
         
         .friend-fragment{  
             cursor: pointer;
+            transition: .25s ease-in;
             color: #fff;  
             background: #2f4754;
             border-radius: 5px;

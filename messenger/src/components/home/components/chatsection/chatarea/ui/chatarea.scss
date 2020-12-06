@@ -10,7 +10,7 @@
         height: calc(100vh - 180px);
         background-color: #2f4754;
         border-radius: 5px;
-        overflow: scroll;
+        overflow-y: scroll;
         color: #fff;
         position: relative;
 
@@ -32,11 +32,6 @@
                 margin: auto;
                 text-align: center;
                 margin: 15px auto;
-                // 
-                // text-align: center;
-                // width: 10%;
-                // margin: auto;
-                //
                 .c-when{
                     width: 12%;
                     margin: auto;

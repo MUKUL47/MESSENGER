@@ -15,7 +15,6 @@
         cursor: pointer;
         box-shadow: 7px 9px 8px -6px #888888;
     }
-
     .nav-btns{
         width: 25%;
         position: relative;
@@ -26,13 +25,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: ease-out .5s;
 
         #nav-text{  
             font-size: 17px;
             font-weight: 500;
             padding-left: 10px;
         }
-        
         svg{
             width: 17.5px;
             height: 18px;
@@ -43,9 +42,13 @@
         
         #nav-text{
             font-weight: bold;
-        }  
+        } 
+    }
+    .nav-btn__selected:hover{
+        border-bottom: none;
     }
     .nav-btns:hover{
+        transition: ease-out .5s;
         background-color: #2f4754;
         color: #fff !important;
         border-radius: 5px;

@@ -8,7 +8,6 @@ export class ThirdPartyLogin extends React.Component {
         super(props)
     }
     componentDidMount() {
-        debugger
         const url = window.location.href.split('#')[1].split('&')
         const accessToken = url.filter(a => a.split('=')[0] == 'access_token')[0].split('=')[1]
         this.storeIdentity(accessToken)

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { toastMessage } from './utils';
-const url = {
+export const url = {
     base: `http://localhost:9999`,//'http://192.168.0.8:9999',
     base_: `http://localhost:9999`,
     register: '/register',
@@ -181,7 +181,7 @@ export default class Api {
         });
     }
 
-    public static getMyNetwork(type: String, start: String, count: Number | String) {
+    public static getMyNetwork(type: String, start: Number, count: Number | String) {
         return new Promise((resolve, reject) => {
             const finalUrl =
                 url.base + url.social.network + `/${type}/${start}/${count}`;

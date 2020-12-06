@@ -1,5 +1,6 @@
 import validator from 'validator';
 import { Subject } from 'rxjs';
+export const eventEmitter = new Subject<{ event: string, params: any }>();
 export const toggleLoader = new Subject<boolean>();
 export const toastMessage = new Subject<{ type: boolean, message: String, duration?: Number, logout?: boolean }>();
 export const setGlobalToggleFunc = (toggle: any, data: any) => {
@@ -9,6 +10,17 @@ export const setGlobalToggleFunc = (toggle: any, data: any) => {
     })
     return { ...toggle, ...data }
 }
+export const socketEvents = [
+    'offline',
+    'isOnline',
+    'currentActiveFriends',
+    'refreshedFriendList',
+    'onNotify',
+    'logout',
+    'sentMessage',
+    'gotConversations',
+    'gotMessage',
+    'typing'];
 export default class Utils {
     public static MAX_MESSAGE_LEN = 1187;
     public static validateEmailMobile(value: string): boolean {

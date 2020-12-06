@@ -149,6 +149,14 @@
             background-color: #c8e4ff;
         }
     }
+
+    .loading-req{
+        color : #fff;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        font-size: 24px;
+    }
 }
 
 @keyframes request-lay{

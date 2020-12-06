@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import './navbar.scss'
 import emptyProfile from '../../../../../assets/emptyProfile.webp';
 import { SearchIcon, EmojiPeopleIcon, MeetingRoomIcon, Drawer, PersonIcon, HomeIcon } from '../../../../../shared/material-modules';
@@ -6,7 +6,9 @@ import Friends from '../../chatsection/friends/friends';
 import { setGlobalToggleFunc } from '../../../../../shared/utils';
 import { Link, useHistory } from 'react-router-dom';
 import Routes from '../../../../../shared/routes';
+import { UserContext } from '../../../../contexts/userContext';
 export default function NavRenderer(props: any) {
+    const userContext: any = useContext(UserContext);
     const { onLogout } = props;
     const navigate = useHistory();
     const [toggle, setToggle] = useReducer(setGlobalToggleFunc, { friendsDrawer: false, navBar: 'home' });
@@ -23,58 +25,46 @@ export default function NavRenderer(props: any) {
     useEffect(() => {
         const path: string[] = window.location.pathname.split('/');
         setToggle({ navBar: path[path.length - 1] })
-        console.log('->',)
         window.addEventListener('resize', closeAutoDrawer);
-        return () => {
-            window.removeEventListener('resize', closeAutoDrawer)
-        }
+        return () => window.removeEventListener('resize', closeAutoDrawer)
     }, []);
     const onNavSelect = (type: string) => {
         setToggle({ navBar: type });
-        navigate.push(`${type === 'home' ? '' : Routes.home}/${type}`);
+        const url = `${type == 'home' || type == 'profile' ? `/${type}` : `${Routes.home}/${type}`}`;
+        if (url === window.location.pathname) return
+        navigate.push(url)
     }
     return (
         <div className="navrender-layout">
             <div className="navB">
                 <img
                     id='myprof-img'
-                    src={emptyProfile}
+                    src={userContext.get.blob ? userContext.get.blob : emptyProfile}
                     width="50px"
                     height="50px"
                     onClick={e => showFriendDrawer()}
                 />
             </div>
-            <Link
-                to={Routes.home}
+            <div
                 className={calcC(toggle.navBar, 'home')}
-                onClick={() => setToggle({ navBar: 'home' })}
+                onClick={() => onNavSelect('home')}
             >
                 <HomeIcon />
                 <div id='nav-text'>Home</div>
-            </Link>
-            <Link
-                to={`/profile`}
-                className={calcC(toggle.navBar, 'profile')}
+            </div>
+            <div className={calcC(toggle.navBar, 'profile')}
+                onClick={() => onNavSelect('profile')}
             >
                 <PersonIcon />
                 <div id='nav-text'>Profile</div>
-            </Link>
-            {/* <Link
-                to={Routes.home + `/search`}
-                className={calcC(toggle.navBar, 'search')}
-                onClick={() => setToggle({ navBar: 'search' })}
-            >
-                <SearchIcon />
-                <div id='nav-text'>Search</div>
-            </Link> */}
-            <Link
-                to={Routes.home + `/requests`}
+            </div>
+            <div
                 className={calcC(toggle.navBar, 'requests')}
-                onClick={() => setToggle({ navBar: 'requests' })}
+                onClick={() => onNavSelect('requests')}
             >
                 <EmojiPeopleIcon />
                 <div id='nav-text'>Search</div>
-            </Link>
+            </div>
             <div
                 onClick={onLogout}
                 className={calcC(toggle.navBar, 'logout')}

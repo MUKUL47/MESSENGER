@@ -22,8 +22,12 @@ export default function Login() {
             history.push(Routes.home)
         }
     }, []);
-    const onEmailMobile = async (data: String) => {
+    const onEmailMobile = async (data: any) => {
         try {
+            if (data.thirdParty === 'google') {
+                window.location.href = Api.googleOauth;
+                return;
+            }
             setToggle({ isLoading: true, otpReady: false })
             await Api.generateOtp(data, false);
             setToggle({ emailMobile: data, otpReady: true, isLoading: false })

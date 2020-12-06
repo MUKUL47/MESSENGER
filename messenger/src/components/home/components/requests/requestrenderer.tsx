@@ -1,39 +1,70 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import profileImg from '../../../../assets/namaste.png'
-import { Button, ThumbUpIcon, ThumbDownIcon, SendIcon, CancelIcon, QueryBuilderIcon, SearchIcon, TextField } from '../../../../shared/material-modules';
+import { Button, ThumbUpIcon, ThumbDownIcon, CircularProgress, SendIcon, CancelIcon, QueryBuilderIcon, SearchIcon, TextField } from '../../../../shared/material-modules';
+import { setGlobalToggleFunc } from '../../../../shared/utils';
 import './requests.scss'
-export default function RequestRenderer() {
+export default function RequestRenderer(props: any) {
+    const { requestData, isLoading, changeNav } = props;
     const [nav, setNav] = useState(1);
+    const [search, setSearch] = useState('');
+    const change = (n: number) => {
+        if (nav === n) return;
+        setSearch('')
+        setNav(n)
+        changeNav(n);
+    };
+    const searchChange = (evt: any) => {
+        if (evt.code === "Enter") {
+            changeNav(nav, evt.target.value);
+        }
+    }
     return (
         <>
             <div className="request-layout" >
                 <div className="request-layout-nav">
-                    <div id={nav === 1 ? 'nav__active' : ""} onClick={() => setNav(1)}>
+                    <div id={nav === 1 ? 'nav__active' : ""} onClick={() => change(1)}>
                         Sent Requests
-                        <SendIcon />
+                        {
+                            nav === 1 && isLoading ?
+                                <GetLoadingTemplate /> :
+                                <SendIcon />
+                        }
                     </div>
-                    <div id={nav === 2 ? 'nav__active' : ""} onClick={() => setNav(2)}>
+                    <div id={nav === 2 ? 'nav__active' : ""} onClick={() => change(2)}>
                         Search
-                        <SearchIcon />
+                        {
+                            nav === 2 && isLoading ?
+                                <GetLoadingTemplate /> :
+                                <SearchIcon />
+                        }
                     </div>
-                    <div id={nav === 3 ? 'nav__active' : ""} onClick={() => setNav(3)}>
+                    <div id={nav === 3 ? 'nav__active' : ""} onClick={() => change(3)}>
                         Pending Requests
-                        <QueryBuilderIcon />
+
+                        {
+                            nav === 3 && isLoading ?
+                                <GetLoadingTemplate /> :
+                                <QueryBuilderIcon />
+                        }
                     </div>
                 </div>
                 <div className="requests-lay">
                     {nav === 2 ?
                         <div className="search-bar">
                             <SearchIcon />
-                            <TextField placeholder="Search Users" />
+                            <TextField placeholder="Search Users"
+                                onChange={e => setSearch(e.target.value)}
+                                onKeyDown={e => searchChange(e)}
+                                value={search}
+                            />
                         </div>
                         : null}
                     {
-                        Array(10).fill(1).map(v => {
-                            return <div className="r-lay-request">
+                        (getRequestType(requestData, nav) || []).map((v: any, i: number) => {
+                            return <div className="r-lay-request" key={i}>
                                 <div className="r-lay--profile">
                                     <img src={profileImg} />
-                                    <div>John Doe</div>
+                                    <div>{v.name}</div>
                                 </div>
                                 <div>{new Date().toDateString()}</div>
                                 <div className="r-lay--actions">
@@ -48,9 +79,21 @@ export default function RequestRenderer() {
     )
 }
 
+function GetLoadingTemplate() {
+    const [dots, setDots] = useState(1);
+    useEffect(() => { setTimeout(() => setDots((dots + 1) % 4), 1000) }, [dots]);
+    return <>{Array(dots).fill(true).map(v => '.').join('')}</>
+}
+
+function getRequestType(data: any, type: number): any[] {
+    if (type === 1) return data['send']
+    if (type === 2) return data['search']
+    return data['pending']
+}
+
 function usersListActions(type: any) {
     switch (type) {
-        case 1: return <>
+        case 3: return <>
             <Button className="r-lay--action__accept">
                 <div>Accept</div>
                 <ThumbUpIcon />
@@ -60,7 +103,7 @@ function usersListActions(type: any) {
                 <ThumbDownIcon />
             </Button>
         </>
-        case 3: return <Button className="r-lay--action__reject">
+        case 1: return <Button className="r-lay--action__reject">
             <div>Revoke</div>
             <CancelIcon />
         </Button>
@@ -73,7 +116,5 @@ function usersListActions(type: any) {
                 </Button>
             </div>
         </>
-
-
     }
 }

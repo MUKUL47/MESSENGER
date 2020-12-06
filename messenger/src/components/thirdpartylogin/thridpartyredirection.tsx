@@ -16,9 +16,10 @@ export class ThirdPartyLogin extends React.Component {
     async storeIdentity(accessToken: any) {
         try {
             const response = await Api.thirdPartyAuthorization('google', accessToken)
-            localStorage.setItem(response.data.identity, response.data.message)
+            localStorage.setItem('id', response.data.identity);
+            localStorage.setItem('secret', response.data.message);
             if (response.status === 201) {
-                (this.props as any).history.push({ pathname: Routes.profile, state: { header: 'Complete your profile', identity: response.data.identity } })
+                (this.props as any).history.push({ pathname: Routes.profile })
                 return;
             }
             (this.props as any).history.push({ pathname: Routes.home })

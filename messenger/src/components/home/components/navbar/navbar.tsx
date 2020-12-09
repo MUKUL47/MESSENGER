@@ -10,6 +10,7 @@ export default function Navbar() {
     const pushHistory = useHistory();
     const logout = (): void => {
         localStorage.clear();
+        userContext.set({ name: null, blob: null })
         pushHistory.push(Routes.login)
     }
     const updateProfile = (): void => {

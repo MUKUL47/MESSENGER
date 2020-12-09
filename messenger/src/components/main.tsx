@@ -18,6 +18,7 @@ import Api from '../shared/server';
 import { ThirdPartyLogin } from './thirdpartylogin/thridpartyredirection';
 import { GlobalContext } from './contexts/globalComponentContext';
 import GlobalContextData from './contexts/globalComponentContext';
+import { UserContext } from './contexts/userContext';
 export default function Main() {
     console.log(window.location)
     Api.initApiInterceptor();
@@ -45,11 +46,13 @@ export default function Main() {
 
 function GlobalComponents() {
     const globalContext: any = useContext(GlobalContext);
+    const userContext: any = useContext(UserContext);
     useEffect(() => {
-        console.log('first useeffect')
+        console.log('first use effect')
         const toastUnsub = toastMessage.subscribe((data: any) => {
             if (data.logout) {
                 localStorage.clear();
+                userContext.set({ name: null, blob: null })
                 window.location.href = Routes.default;
             }
             globalContext.set({ toast: { type: data.type, message: data.message, rand: Math.random() } });

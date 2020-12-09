@@ -1,16 +1,15 @@
-import React, { createRef, Ref, useEffect, useRef } from 'react';
+import React, { createRef } from 'react';
 import './profile.scss'
-import namasteImg from '../../assets/namaste.png'
 import emptyProfile from '../../assets/emptyProfile.webp';
 import { TextField, Button, CircularProgress } from '../../shared/material-modules';
 export default function ProfileRenderer(props: any) {
-    const { loading, name, user, setForm, updateProfile, blob, changed } = props;
+    const { loading, name, user, setForm, updateProfile, blob, profileTouched } = props;
     const fileInp = (createRef() as any);
     const setProfileImage = (evt: any) => {
         var f = evt.target.files[0];
         if (f) {
             const r = new FileReader();
-            r.onload = (e: any) => setForm({ blob: e.target.result, changed: true })
+            r.onload = (e: any) => setForm({ blob: e.target.result, profileTouched: { ...profileTouched, blob: true } })
             r.readAsDataURL(f);
         }
     }
@@ -25,7 +24,7 @@ export default function ProfileRenderer(props: any) {
                             <img src={blob ? blob : emptyProfile} width="100px" height="100px" onClick={e => fileInp.current.click()} />
                             {
                                 blob ?
-                                    <div className="remove-img" onClick={e => setForm({ blob: null, changed: true })}>x</div>
+                                    <div className="remove-img" onClick={e => setForm({ blob: null, profileTouched: { ...profileTouched, blob: true } })}>x</div>
                                     : null
                             }
                         </div>
@@ -38,7 +37,7 @@ export default function ProfileRenderer(props: any) {
                                 className="input-text"
                                 disabled={loading}
                                 value={name || ''}
-                                onChange={e => setForm({ name: e.target.value, changed: true })}
+                                onChange={e => setForm({ name: e.target.value, profileTouched: { ...profileTouched, name: true } })}
                             />
                         </div>
                         <div className="profile-emailMobile form-inp">

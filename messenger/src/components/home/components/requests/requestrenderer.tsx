@@ -1,26 +1,26 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import profileImg from '../../../../assets/emptyProfile.webp'
-import { Button, ThumbUpIcon, ThumbDownIcon, CircularProgress, SendIcon, CancelIcon, QueryBuilderIcon, SearchIcon, TextField, CloseIcon } from '../../../../shared/material-modules';
+import { Button, ThumbUpIcon, ThumbDownIcon, CircularProgress, SendIcon, CancelIcon, QueryBuilderIcon, SearchIcon, TextField, CloseIcon, PersonIcon } from '../../../../shared/material-modules';
 import { setGlobalToggleFunc } from '../../../../shared/utils';
 import './requests.scss'
 export default function RequestRenderer(props: any) {
-    const { requestData, isLoading, changeNav, searchAns, revokeSentReq } = props;
+    const { requestData, isLoading, changeNav, searchAns, revokeSentReq, respondApproval } = props;
     const [nav, setNav] = useState<number>(1);
     const [search, setSearch] = useReducer(setGlobalToggleFunc, { val: '', onSearch: false })
     const [inQueue, setQueue] = useState<string[]>([]);
     const change = (n: number) => {
         if (nav === n) return;
-        // setSearch('')
         setNav(n)
         changeNav(n);
     };
     const searchChange = (evt: any) => {
-        if (evt.code === "Enter") {
+        if (evt.code === "Enter" && evt.target.value.trim().length > 0) {
             setSearch({ onSearch: true })
             changeNav(nav, evt.target.value);
         }
     }
     useEffect(() => {
+        console.log(requestData.requestInQueue.id)
         if (requestData.requestInQueue.op === 'add') {
             setQueue([...inQueue, requestData.requestInQueue.id])
         } else {
@@ -83,16 +83,20 @@ export default function RequestRenderer(props: any) {
                                     {noResultTemplate(nav)}
                                 </div> :
                                 data.map((v: any, i: number) => {
+                                    // if (v.response?.responseType || v.response?.responseType.response.substring(0, 2) !== 'A@') {
                                     return <div className="r-lay-request" key={i}>
                                         <div className="r-lay--profile">
-                                            <img src={`${v.image}` == 'null' ? profileImg : v.image} alt={v.name} />
+                                            <img src={`${v.image}` === 'null' || v.image == 'undefined' ? profileImg : v.image} alt={v.name} />
                                             <div>{v.name}</div>
                                         </div>
                                         <div>{new Date().toDateString()}</div>
                                         <div className="r-lay--actions">
-                                            {usersListActions(nav, v)}
+                                            {
+                                                usersListActions(nav, v)
+                                            }
                                         </div>
                                     </div>
+                                    // }
                                 })
                         }
                     </div>
@@ -103,17 +107,25 @@ export default function RequestRenderer(props: any) {
 
 
     function usersListActions(type: any, user: any) {
-        const inQ = inQueue.find((v: string) => v === user.id);
+        const inQ = inQueue.find((v: string) => v === user.id || user.userId);
         const isRevoke = user.responseType?.response.substring(0, 2) === 'P@';
+        const respondQ = type === 3 ? inQueue.find((v: string) => v === user.userId + "_0" || user.userId + "_1") : null;
+        const isA = respondQ?.split('_1').length === 2;
         switch (type) {
             case 3: return <>
-                <Button className="r-lay--action__accept">
-                    <div>Accept</div>
-                    <ThumbUpIcon />
+                <Button
+                    className="r-lay--action__accept"
+                    onClick={() => respondApproval(user.userId, 1, user.name)}
+                >
+                    <div id='search-req'>{respondQ && isA ? 'Accepting' : 'Accept'}</div>
+                    {respondQ && isA ? <GetLoadingTemplate /> : <ThumbUpIcon />}
                 </Button>
-                <Button className="r-lay--action__reject">
-                    <div>Reject</div>
-                    <ThumbDownIcon />
+                <Button
+                    className="r-lay--action__reject"
+                    onClick={() => respondApproval(user.userId, 0, user.name)}
+                >
+                    <div id='search-req'>{respondQ && !isA ? 'Rejecting' : 'Reject'}</div>
+                    {respondQ && !isA ? <GetLoadingTemplate /> : <ThumbDownIcon />}
                 </Button>
             </>
             case 1: return <Button className="r-lay--action__reject"

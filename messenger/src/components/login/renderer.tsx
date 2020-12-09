@@ -25,6 +25,11 @@ export default function LoginUi(props: any) {
                                 variant="outlined"
                                 className="input-text"
                                 onChange={e => setEmailMobile(e.target.value)}
+                                onKeyDown={(e: any) => {
+                                    if (e.code === "Enter") {
+                                        onEmailMobile(emailMobile)
+                                    }
+                                }}
                             />
                             <Button
                                 variant="contained"
@@ -35,8 +40,8 @@ export default function LoginUi(props: any) {
                             >
                                 {
                                     isLoading ?
-                                    <CircularProgress className="submit__loader"/>
-                                    : 'Submit' 
+                                        <CircularProgress className="submit__loader" />
+                                        : 'Submit'
                                 }
                             </Button>
                             <div>

@@ -1,7 +1,4 @@
-import { userInfo } from 'os';
-import React, { useContext, useEffect, useReducer, useState } from 'react';
-import { combineLatest } from 'rxjs';
-import ToastMessage from '../../../../shared/components/toast/toast';
+import React, { useEffect, useReducer } from 'react';
 import Api from '../../../../shared/server';
 import Utils, { setGlobalToggleFunc, toastMessage } from '../../../../shared/utils';
 import RequestRenderer from './requestrenderer';
@@ -25,7 +22,7 @@ export default function Requests() {
                 usersResp = usersResp?.data ? usersResp.data : [];
                 console.log(usersResp)
                 const withUserResp = totalUsers.map((user: any) => {
-                    return { ...user, responseType: usersResp.find((u: any) => u.toId === user.id) }
+                    return { ...user, responseType: usersResp.find((u: any) => u.toId === user.id || u.fromId === user.id) }
                 })
                 console.log(withUserResp)
                 setRequestData({ search: withUserResp, isLoading: false })
@@ -75,14 +72,14 @@ export default function Requests() {
         }
     }
     const onResponse = async (id: string, answer: string, name: string) => {//0 no 1 yes
-        setRequestData({ requestInQueue: { op: 'add', id: id } })
+        setRequestData({ requestInQueue: { op: 'add', id: id + "_" + answer } })
         try {
             const pendingReq: any = [...requestData.pending];
             const pendIdx: number = pendingReq.findIndex((user: any) => user.userId === id);
             await Api.respondRequest(id, answer);
             delete pendingReq[pendIdx];
-            setRequestData({ requestInQueue: { op: 'remove', id: id }, pending: pendingReq })
-            toastMessage.next({ type: true, message: `Request for ${name} ${answer ? 'approved' : 'rejected'}`, duration: 3000 });
+            setRequestData({ requestInQueue: { op: 'remove', id: id + "_" + answer }, pending: pendingReq })
+            toastMessage.next({ type: true, message: `Request ${answer ? 'approved' : 'rejected'} for <b>${name}</b>`, duration: 3000 });
         } catch (e) {
             setRequestData({ requestInQueue: { op: 'remove', id: id } })
             toastMessage.next({ type: false, message: Utils.parseError(e), duration: 3000 });
@@ -131,5 +128,6 @@ export default function Requests() {
         changeNav={onNavChange}
         searchAns={onSearch}
         revokeSentReq={onSendRevoke}
+        respondApproval={onResponse}
     />)
 }

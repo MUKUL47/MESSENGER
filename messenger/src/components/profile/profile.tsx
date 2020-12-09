@@ -9,15 +9,21 @@ export default function Profile() {
     const history = useHistory();
     const userContext: any = useContext(UserContext);
     const userContextGet = userContext.get;
-    const stateData = { loading: true, name: '', blob: null, user: localStorage.getItem('id'), changed: false };
+    const stateData = { loading: true, name: '', blob: null, user: localStorage.getItem('id'), profileTouched: {} };
     const [state, setState] = useReducer(setGlobalToggleFunc, stateData);
     const updateProfile = async () => {
         try {
-            setState({ loading: true })
-            await Api.updateProfile(state.name, state.blob);
-            setState({ loading: false, changed: false })
-            userContext.set({ name: state.name, blob: state.blob })
-            toastMessage.next({ type: true, message: 'Profile updated successfully' });
+            if (Object.keys(state.profileTouched).length > 0) {
+                setState({ loading: true })
+                let params = [state.name, state.blob];
+                if (!state.profileTouched.blob) {
+                    params.pop();
+                }
+                await Api.updateProfile(...params);
+                setState({ loading: false })
+                userContext.set({ name: state.name, blob: state.blob })
+                toastMessage.next({ type: true, message: 'Profile updated successfully' });
+            }
             history.push(Routes.home)
         } catch (e) {
             setState({ loading: false })

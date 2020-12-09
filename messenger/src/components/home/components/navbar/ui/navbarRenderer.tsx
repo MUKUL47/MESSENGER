@@ -39,7 +39,7 @@ export default function NavRenderer(props: any) {
             <div className="navB">
                 <img
                     id='myprof-img'
-                    src={userContext.get.blob ? userContext.get.blob : emptyProfile}
+                    src={userContext.get.blob && `${userContext.get.blob}` != 'undefined' ? userContext.get.blob : emptyProfile}
                     width="50px"
                     height="50px"
                     onClick={e => showFriendDrawer()}

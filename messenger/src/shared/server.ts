@@ -181,6 +181,16 @@ export default class Api {
         });
     }
 
+    public static getSocialStatuses(ids: String[]) {
+        return new Promise((resolve, reject) => {
+            const finalUrl = url.base + url.social.getStatus + "?id=" + ids.join(',');
+            axios
+                .get(finalUrl)
+                .then((response) => resolve(response))
+                .catch((err) => reject(err));
+        });
+    }
+
     public static getMyNetwork(type: String, start: Number, count: Number | String) {
         return new Promise((resolve, reject) => {
             const finalUrl =

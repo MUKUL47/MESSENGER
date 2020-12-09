@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import {
     BrowserRouter,
     Switch,
@@ -16,36 +16,18 @@ import Profile from './profile/profile';
 import UserContextData from './contexts/userContext';
 import Api from '../shared/server';
 import { ThirdPartyLogin } from './thirdpartylogin/thridpartyredirection';
+import { GlobalContext } from './contexts/globalComponentContext';
+import GlobalContextData from './contexts/globalComponentContext';
 export default function Main() {
     console.log(window.location)
     Api.initApiInterceptor();
-    const his = useHistory();
-    const [globalToggle, setGlobalToggle] = useReducer(setGlobalToggleFunc, { toast: { type: '', message: null, rand: -1 }, isLoading: false });
-    useEffect(() => {
-        console.log('first useeffect')
-        const toastUnsub = toastMessage.subscribe((data: any) => {
-            if (data.logout) {
-                localStorage.clear();
-                window.location.href = Routes.default;
-            }
-            setGlobalToggle({ toast: { type: data.type, message: data.message, rand: Math.random() } });
-        })
-        const toggleUnsub = toggleLoader.subscribe((bool: boolean) => { setGlobalToggle({ isLoading: bool }) });
-        return () => {
-            toastUnsub.unsubscribe();
-            toggleUnsub.unsubscribe();
-        }
-    }, [])
     const defaultRedirect = () => <Redirect to={Routes.login} />;
-    const globalDefaultComponents = (
-        <>
-            <BackdropLoader open={globalToggle.isLoading} />
-            <ToastMessage {...globalToggle.toast} />
-        </>)
     const routes =
         <>
             <UserContextData>
-                {globalDefaultComponents}
+                <GlobalContextData>
+                    <GlobalComponents />
+                </GlobalContextData>
                 <BrowserRouter>
                     <Switch>
                         <Route path={Routes.login} component={Login}></Route>
@@ -59,4 +41,27 @@ export default function Main() {
             </UserContextData>
         </>
     return (routes);
+}
+
+function GlobalComponents() {
+    const globalContext: any = useContext(GlobalContext);
+    useEffect(() => {
+        console.log('first useeffect')
+        const toastUnsub = toastMessage.subscribe((data: any) => {
+            if (data.logout) {
+                localStorage.clear();
+                window.location.href = Routes.default;
+            }
+            globalContext.set({ toast: { type: data.type, message: data.message, rand: Math.random() } });
+        })
+        const toggleUnsub = toggleLoader.subscribe((bool: boolean) => { globalContext.set({ isLoading: bool }) });
+        return () => {
+            toastUnsub.unsubscribe();
+            toggleUnsub.unsubscribe();
+        }
+    }, [])
+    return (<>
+        <BackdropLoader open={globalContext.get.isLoading} />
+        <ToastMessage {...globalContext.get.toast} />
+    </>)
 }

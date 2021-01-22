@@ -8,13 +8,14 @@ import errorProperties from './properties/error.properties'
 import { Mysql } from './database/mySql/mysql.db'
 import { MongoDB } from './database/mongoDb/mongo.db'
 import dotenv from 'dotenv'
+import RedisInstance from './database/redis/redis.db'
 export default class Server{
     private application : express.Application;
     private port : number | string;
     private accessTypes : string[] = ['messenger-web', 'messenger-mobile']
     constructor(){
         this.application = express();
-        this.port = process.env.PORT || 8080;
+        this.port = process.env.PORT || 8081;
         this.initalizeMiddlewares()
         dotenv.config()
     }
@@ -22,6 +23,7 @@ export default class Server{
     private async initializeDb() : Promise<string | void>{
         return new Promise(async (resolve, reject) => {
             try{
+                new RedisInstance();
                 await new Mysql().initializeMysql();
                 await new MongoDB().initializeModel();
                 resolve()
@@ -44,7 +46,7 @@ export default class Server{
             try{
                 await this.initializeDb()
                 const server : http.Server = this.application.listen(this.port, () => resolve('Running on port '+this.port))
-                server.on('error',() => reject(`Server failed to start on port ${this.port}`))
+                server.on('error',(e) => reject(`Server failed to start on port ${this.port} ${e}`))
             }catch(e){
                 reject(e)
             }

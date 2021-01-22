@@ -6,18 +6,16 @@ class MYSQL_TABLE {
         id              VARCHAR(20) PRIMARY KEY NOT NULL, 
         updated_at      VARCHAR(24), 
         created_at      VARCHAR(24), 
-        identity        VARCHAR(100), 
-        keygen          VARCHAR(15)
+        identity        VARCHAR(100)
     );`
 
     static verification  = `
     ${MYSQL_TABLE.CTINE}
     verification (
-        identity VARCHAR(100), 
+        identity VARCHAR(100) PRIMARY KEY NOT NULL, 
         otp VARCHAR(6),  
         created_at VARCHAR(24), 
-        expires_in INT(6), 
-        type VARCHAR(10)
+        otp_type VARCHAR(10)
     )`;
 
     static profile = `
@@ -25,7 +23,7 @@ class MYSQL_TABLE {
     profile (
         userId VARCHAR(20) PRIMARY KEY,
         name VARCHAR(20), 
-        image_blob BLOB(16777215),
+        image_url VARCHAR(100),
         FOREIGN KEY(userId) REFERENCES users(id)
     )
     `
@@ -33,11 +31,11 @@ class MYSQL_TABLE {
     static social = `
     ${MYSQL_TABLE.CTINE}
     social (
-        fromId VARCHAR(20),
-        toId VARCHAR(20),
-        response VARCHAR(22),
+        userId VARCHAR(20),
+        targetId VARCHAR(20),
+        type VARCHAR(22),
         updatedAt VARCHAR(24),
-        FOREIGN KEY(fromId) REFERENCES users(id) ON DELETE SET NULL
+        FOREIGN KEY(userId) REFERENCES users(id) ON DELETE SET NULL
     )
     `
 

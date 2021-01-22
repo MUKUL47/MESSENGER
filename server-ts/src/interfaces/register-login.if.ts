@@ -1,8 +1,6 @@
-import { Request } from "express";
-export interface IRegisterLogin extends Request{
-    identity ?:string;
-    password ?:string;
+export interface ILogin{
+    identity :string;
 }
-export interface IThirdPartAuth extends Request{
-    
+export interface IRegister extends ILogin{
+    otp ?:string;
 }

@@ -12,7 +12,7 @@ const messageChunk = new mongoose.Schema({
 })
 export class MongoDB{
     public initializeModel() : Promise<any>{
-        return mongoose.connect(process.env.MONGO_URL, {useNewUrlParser : true});
+        return mongoose.connect(process.env.MONGO_URL, {useNewUrlParser : true, useUnifiedTopology : true});
     }
 }
 export const MongoClient : any = mongoose.model('messageModel', messageChunk)

@@ -4,7 +4,10 @@
 
 ```
 -Express- as web server
--Firebase-firestore- as noSql cloud DB
+-MySql
+-MongoDb
+-Redis
+-firebase-storage
 ```
 
 ## Build steps

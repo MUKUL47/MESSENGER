@@ -2,6 +2,7 @@ import mysql, { MysqlError } from 'promise-mysql'
 import tables from './tables'
 import { IMysql } from '../../interfaces/models.if';
 import { response } from 'express';
+import logger from '../../utils/logger.util';
 export let connection : IMysql;
 export class Mysql{
     public initializeMysql() : Promise<void | string>{
@@ -13,6 +14,7 @@ export class Mysql{
                     password: process.env.DB_PASS,
                 }) as any;
                 await Promise.all(tables.map((table : string) => connection.query(table)));
+                logger.info('-Initialized mysql-')
                 resolve()
             }catch(e){
                 reject(e)
@@ -32,17 +34,19 @@ export class Mysql{
         })
     }
 
-    public static getCurrentUser_register(identity : string) : Promise<any>{
+    public static getCurrentUser_register(identity : string, isLogin ?: boolean) : Promise<any>{
         const customQ = 'select users.id as userId, verification.identity as verifyIdentity from users'
         const customQ1 = 'verification on users.identity=verification.identity where'
+        const registerQuery =`
+        ${customQ} left join 
+        ${customQ1} users.identity='${identity}'
+        union
+        ${customQ} right join 
+        ${customQ1} verification.identity='${identity}';
+        `
+        const loginQuery = `SELECT users.id as userId FROM users WHERE identity='${identity}'`
         return new Promise((resolve, reject) => {
-            connection.query(`
-            ${customQ} left join 
-            ${customQ1} users.identity='${identity}'
-            union
-            ${customQ} right join 
-            ${customQ1} verification.identity='${identity}';
-            `,(err : MysqlError, results : any[])=>{
+            connection.query(isLogin ? loginQuery : registerQuery , (err : MysqlError, results : any[])=>{
                 if(err){
                     reject(err.message)
                     return
@@ -81,6 +85,7 @@ export class Mysql{
                     await this.queryPromise(`DELETE FROM verification WHERE identity='${identity}'`);
                     resolve(true)
                 }
+                await this.queryPromise(`DELETE FROM verification WHERE identity='${identity}'`);
                 resolve(false)
             }catch(e){
                 reject(e)

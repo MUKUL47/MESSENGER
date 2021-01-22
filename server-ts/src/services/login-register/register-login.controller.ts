@@ -8,19 +8,23 @@ import { isValidIdentity, generateOtp, generateKey } from '../../utils/helpers.u
 import responseProperties from '../../properties/response.properties';
 import AuthService from '../../middlewares/auth.middleware';
 export default class RegisterLoginController extends Controller{
-    public async register(request : Request, resp : Response){
+    public async authenticate(request : Request, resp : Response){
         try{
+            const { isLogin } = request as any;
             const { identity, otp } = request.body as IRegister;
             if(!isValidIdentity(identity)){
                 return Controller.generateController(resp, errorCodesUtil.BAD_REQUEST, errorProperties.INVALID_IDENTIY(identity), request.originalUrl)
             }
-            const userVerify =  await Mysql.getCurrentUser_register(identity);
-            if(userVerify[0]?.userId){
+            const userVerify =  await Mysql.getCurrentUser_register(identity, isLogin);
+            if(!isLogin && userVerify[0]?.userId){
                 return Controller.generateController(resp, errorCodesUtil.BAD_REQUEST, errorProperties.USER_EXIST, request.originalUrl)
             }
-            else if(!otp){
+            else if(isLogin && !userVerify[0]?.userId){
+                return Controller.generateController(resp, errorCodesUtil.BAD_REQUEST, errorProperties.USER_NOT_FOUND, request.originalUrl)
+            }
+            if(!otp){
                 const otp : string = process.env.MODE === 'DEV' ? generateOtp() : '123456'
-                await Mysql.updateOrAddVerification(identity, otp, 'REGISTER')
+                await Mysql.updateOrAddVerification(identity, otp, isLogin ? 'LOGIN' : 'REGISTER')
                 Controller.generateController(resp, errorCodesUtil.SUCCESS, responseProperties.SENT_OTP(identity), request.originalUrl)
                 return
             }
@@ -29,7 +33,7 @@ export default class RegisterLoginController extends Controller{
                     if(ans){
                         await Mysql.createOrUpdate_user(generateKey(16), identity)
                         const token = AuthService.signIn(identity, true) as string;
-                        Controller.generateController(resp, errorCodesUtil.CREATED, token, request.originalUrl)
+                        Controller.generateController(resp, isLogin ? errorCodesUtil.SUCCESS : errorCodesUtil.CREATED, token, request.originalUrl)
                     }else{
                         Controller.generateController(resp, errorCodesUtil.FORBIDDEN, errorProperties.INVALID_OTP, request.originalUrl)
                     }
@@ -39,8 +43,11 @@ export default class RegisterLoginController extends Controller{
                 })
 
         }catch(e){
-            console.log('e ',e)
             resp.status(errorCodesUtil.UNKNOWN).send(new ErrorController(errorCodesUtil.UNKNOWN, e, request.originalUrl))
         }
+    }
+
+    public async logout(request : Request, resp : Response){
+        Controller.generateController(resp, errorCodesUtil.SUCCESS, responseProperties.LOGGED_OUT, request.originalUrl)
     }
 }

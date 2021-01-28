@@ -3,7 +3,7 @@ class MYSQL_TABLE {
     static users = `
     ${MYSQL_TABLE.CTINE}
     users (
-        id              VARCHAR(20) PRIMARY KEY NOT NULL, 
+        id              VARCHAR(64) PRIMARY KEY NOT NULL, 
         updated_at      VARCHAR(24), 
         created_at      VARCHAR(24), 
         identity        VARCHAR(100)
@@ -21,7 +21,7 @@ class MYSQL_TABLE {
     static profile = `
     ${MYSQL_TABLE.CTINE}
     profile (
-        userId VARCHAR(20) PRIMARY KEY,
+        userId VARCHAR(64) PRIMARY KEY,
         name VARCHAR(20), 
         image_url VARCHAR(100),
         FOREIGN KEY(userId) REFERENCES users(id)
@@ -31,8 +31,8 @@ class MYSQL_TABLE {
     static social = `
     ${MYSQL_TABLE.CTINE}
     social (
-        userId VARCHAR(20),
-        targetId VARCHAR(20),
+        userId VARCHAR(64),
+        targetId VARCHAR(64) PRIMARY KEY,
         type VARCHAR(22),
         updatedAt VARCHAR(24),
         FOREIGN KEY(userId) REFERENCES users(id) ON DELETE SET NULL

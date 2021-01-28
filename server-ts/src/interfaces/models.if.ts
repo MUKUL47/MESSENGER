@@ -9,3 +9,9 @@ export interface IController{
     timestamp : number | Date;
     route ?:string;
 }
+export interface ISuperUser{
+    userId : string;
+    createdAt : string;
+    updatedAt : string;
+    identity : string;
+}

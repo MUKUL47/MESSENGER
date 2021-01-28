@@ -34,6 +34,18 @@ export class Mysql{
         })
     }
 
+    public static getUser(id : string): Promise<any>{
+        return new Promise((resolve, reject) => {
+            connection.query(`SELECT users.id as userId, users.updated_at as updatedAt, users.created_at as createdAt, identity FROM users WHERE id='${id}'`, (err : MysqlError, results : any[]) => {
+                if(err){
+                    reject(err.message)
+                    return
+                }
+                resolve(results)
+            })
+        })
+    }
+
     public static getCurrentUser_register(identity : string, isLogin ?: boolean) : Promise<any>{
         const customQ = 'select users.id as userId, verification.identity as verifyIdentity from users'
         const customQ1 = 'verification on users.identity=verification.identity where'
@@ -107,6 +119,135 @@ export class Mysql{
                 }
                 resolve(results)
             })
+        })
+    }
+
+    public static updateProfile(id : string, displayName : string, profileImageUrl ?:string) :  Promise<any>{
+        return new Promise((resolve, reject) => {
+            const ts : number = new Date().valueOf();
+            connection.query(`INSERT INTO profile (userId, name, image_url) 
+                VALUES ('${id}', '${displayName}', '${profileImageUrl || null}') 
+            ON 
+                DUPLICATE KEY UPDATE name='${displayName}'`
+            ,(err : MysqlError, results : any[])=>{
+                if(err){
+                    reject(err.message)
+                    return
+                }
+                resolve(results)
+            })
+        })
+    }
+
+    public static getProfile(id : string | string[]) : Promise<any>{
+        return new Promise((resolve, reject) => {
+            const custom = typeof id === 'object' ? id.map(i => `userId='${i}'`).join(' OR ') : `userId='${id}'`
+            connection.query(`SELECT userId as userId, name as displayName FROM profile WHERE ${custom}`, 
+            (err : MysqlError, results : any[]) => {
+                if(err){
+                    reject(err.message)
+                    return
+                }
+                resolve(results)
+            })
+        })
+    }
+
+    public static findUsers(userId : string, name : string, start : number, count : number) : Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            const globalUserQ = `
+            SELECT 
+                users.id, 
+                users.identity, 
+                users.created_at as createdAt, 
+                profile.name as displayName
+            FROM users 
+            INNER JOIN
+                profile ON users.id = profile.userId AND 
+                profile.userId <> '${userId}' AND
+                profile.name LIKE '%${name}%'
+            `;
+            
+            connection.query(`${globalUserQ} ORDER BY profile.name DESC LIMIT ${count || 10} OFFSET ${start || 0}`, 
+            (err : MysqlError, results : any[]) => {
+                if(err){
+                    reject(err.message)
+                    return
+                }
+                resolve(results)
+            })
+        })
+    }
+
+    public static setAction(id : string, targetUserId : string, actionType : string, answer?:string) : Promise<any>{
+        return new Promise(async (resolve, reject) => {
+            try{
+                if(actionType === 'send'){
+                    const isInvalid  = await Mysql.queryPromise(`
+                    SELECT userId FROM social WHERE 
+                            userId='${id}' AND targetId='${targetUserId}' 
+                            OR 
+                            targetId='${id}' AND userId='${targetUserId}' 
+                            AND type='FRIEND' OR type='PENDING'
+                    `)
+                    if(isInvalid[0]?.userId){
+                        return reject('Invalid operation(SEND) for this user')
+                    }
+                    await Mysql.queryPromise(`INSERT INTO social (userId, targetId, type, updatedAt) VALUES 
+                    ('${id}', '${targetUserId}', 'PENDING', '${new Date().valueOf()}')`)
+                    resolve(true)
+                    return
+                }
+                if(actionType === 'remove' || actionType === 'respond' && answer !== 'accept'){
+                    await Mysql.queryPromise(`DELETE FROM social WHERE userId='${id}' AND targetId='${targetUserId}' OR targetId='${id}' AND userId='${targetUserId}'`)
+                    resolve(true)
+                    return
+                }
+                if(actionType === 'respond'){
+                    const isInvalid  = await Mysql.queryPromise(`SELECT userId FROM social WHERE userId='${targetUserId}' AND targetId='${id}' AND type='PENDING'`)
+                    if(isInvalid[0]?.userId){
+                        await Mysql.queryPromise(`INSERT INTO social (userId, targetId, type, updatedAt) 
+                        VALUES ('${targetUserId}', '${id}', 'FRIEND', '${new Date().valueOf()}')
+                        ON 
+                            DUPLICATE KEY UPDATE type='FRIEND', updatedAt='${new Date().valueOf()}'
+                        
+                        `)
+                        resolve(true)
+                    }
+                    return reject('Invalid operation(RESPOND=accept) for this user')
+                }
+                reject('Invalid action for this user')
+            }catch(e){
+                reject(e)
+            }
+        })
+    }
+
+    public static getMyNetwork(id : string, type : string, start : number, count : number) : Promise<any>{
+        return new Promise(async (resolve, reject) => {
+            try{
+                let correctRequest = false;
+                let q : string;
+                if(type === 'requests'){
+                    correctRequest = true
+                    q = `SELECT userId as requestorId, updatedAt FROM social WHERE targetId='${id}' AND type='PENDING'`
+                }
+                else if(type === 'sent'){
+                    correctRequest = true
+                    q = `SELECT targetId as senderId, updatedAt FROM social WHERE userId='${id}' AND type='PENDING'`
+                }
+                else if(type === 'friend'){
+                    correctRequest = true
+                    q = `SELECT userId, targetId, updatedAt FROM social WHERE targetId='${id}' OR userId='${id}' AND type='FRIEND'`
+                }
+                if(correctRequest){
+                    const network = await Mysql.queryPromise(`${q} ORDER BY updatedAt DESC LIMIT ${count || 10} OFFSET ${start || 0}`)
+                    return resolve(network)
+                }
+                return reject(`Invalid network type(${type})`)
+            }catch(e){
+                reject(e)
+            }
         })
     }
 }

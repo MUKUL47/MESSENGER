@@ -10,8 +10,11 @@ import { MongoDB } from './database/mongoDb/mongo.db'
 import dotenv from 'dotenv'
 import RedisInstance from './database/redis/redis.db'
 import logger from './utils/logger.util'
+import { Http2Server } from 'http2'
+import Message from './services/message/message.service'
 export default class Server{
     private application : express.Application;
+    private listener : http.Server
     private port : number | string;
     private accessTypes : string[] = ['messenger-web', 'messenger-mobile']
     constructor(){
@@ -42,7 +45,7 @@ export default class Server{
         this.application.use(bodyparser.urlencoded({ extended : true }))
         this.application.use(bodyparser.json())
         this.application.use(this.appendBarrier.bind(this))
-        this.application.use(new Service().getService())
+        this.application.use(new Service().getServices())
         logger.info('-Initialized middlewares-')
     }
 
@@ -50,14 +53,20 @@ export default class Server{
         return new Promise(async (resolve, reject) => {
             try{
                 await this.initializeDb()
-                const server : http.Server = this.application.listen(this.port, () => resolve('Running on port '+this.port))
+                this.listener = this.application.listen(this.port, () => resolve('Running on port '+this.port))
+                new Message(this.listener).initializeMessage()
                 logger.info(`-SERVER RUNNING ON PORT ${this.port}-`)
-                server.on('error',(e) => reject(`Server failed to start on port ${this.port} ${e}`))
+                this.listener.on('error',(e) => reject(`Server failed to start on port ${this.port} ${e}`))
             }catch(e){
+                logger.error(`Server start : ${e}`)
                 reject(e)
             }
         })
     } 
+
+    public getServerInstance() : http.Server {
+        return this.listener;
+    }
 
     private appendBarrier(request : Request, response : Response, next : NextFunction){
         if(!this.accessTypes.includes(request['headers']['type'] as string)){

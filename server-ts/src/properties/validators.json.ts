@@ -17,7 +17,8 @@ export default {
     }
 }
 const params = {
-    '/social/search' : { type : 'object', property : { name : { type : 'string' } }, required : ['name'] }
+    '/social/search' : { type : 'object', property : { name : { type : 'string' } }, required : ['name'] },
+    '/messages' : { type : 'object', property : { targetId : { type : 'string' } }, required : ['targetId'] }
 }
 export { params }
 export const objectFields = {

@@ -22,3 +22,13 @@ export class Controller{
         this.send(response, controller)
     }
 }
+
+export class SocketController{
+    protected sendEvent(eventType : string, message : any, failed ?:boolean){
+        return {
+            event : eventType,
+            message : message,
+            error : failed ? true : false
+        }
+    }
+}

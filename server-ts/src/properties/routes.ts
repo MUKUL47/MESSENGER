@@ -10,5 +10,6 @@ export default {
         search : '/social/search',
         action : '/social/action/:type/:targetUser',
         network : '/social/network/:type'
-    }
+    },
+    MESSAGE : '/messages' 
 }

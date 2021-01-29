@@ -49,11 +49,7 @@ export default class SocialController extends Controller{
             const network = await Mysql.getMyNetwork(superUser.userId, type, start, count)
             if(type === 'friend' && network.length > 0){
                 network.forEach(users => {
-                    if(users['userId'] === superUser.userId){
-                        users['friendId'] = users['targetId']
-                    }else{
-                        users['friendId'] = users['userId']
-                    }
+                    users['id'] = users['userId'] === superUser.userId ? users['targetId'] : users['userId']
                     delete users['targetId']
                     delete users['userId']
                 })

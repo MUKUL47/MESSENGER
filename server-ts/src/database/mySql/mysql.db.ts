@@ -230,11 +230,11 @@ export class Mysql{
                 let q : string;
                 if(type === 'requests'){
                     correctRequest = true
-                    q = `SELECT userId as requestorId, updatedAt FROM social WHERE targetId='${id}' AND type='PENDING'`
+                    q = `SELECT userId as id, updatedAt FROM social WHERE targetId='${id}' AND type='PENDING'`
                 }
                 else if(type === 'sent'){
                     correctRequest = true
-                    q = `SELECT targetId as senderId, updatedAt FROM social WHERE userId='${id}' AND type='PENDING'`
+                    q = `SELECT targetId as id, updatedAt FROM social WHERE userId='${id}' AND type='PENDING'`
                 }
                 else if(type === 'friend'){
                     correctRequest = true

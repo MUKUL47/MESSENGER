@@ -25,6 +25,11 @@ export default class Server{
         logger.info('-Initializing server-')
     }
 
+    public setPort(port : number){
+        this.port = port;
+        return this
+    }
+
     private async initializeDb() : Promise<string | void>{
         return new Promise(async (resolve, reject) => {
             try{

@@ -1,0 +1,1 @@
+[2021-01-31 01:11:06.709] [renderer1] [error] [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/home/mukul/mukul/messenger/server-ts/.vscode'

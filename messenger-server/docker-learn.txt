@@ -1,0 +1,25 @@
+https://phoenixnap.com/kb/list-of-docker-commands-cheat-sheet#htoc-docker-container-commands
+https://dev.to/kojikanao/15-docker-commands-for-beginners-4m4d
+https://docs.docker.com/engine/reference/commandline/rm/
+sudo snap install docker
+
+docker image ls                                     #list images
+docker build -t %imagename% .                       #build container on current directory(".")
+docker run -p 8080:8080 %container%                 #run container
+docker run -d -p 8080:8080 %container%              #run container in background
+docker run -d --rm -ti -p 8080:8080 %container%     #run container in background on exit remove the container
+docker ps -a                                        #view all running & expired(-a) containers
+docker stop %container_id%                          #stop running container
+docker image rm %image% -f                          #remove image
+docker rm -v %container_id%                         #Remove a container and its volumes
+
+docker-compose up                                   #start docker-compose.yml file
+docker-compose up --build                           #start docker-compose.yml file
+docker-compose down                                 #stop docker-compose.yml file
+docker-compose build 
+docker-compose down --volumes                       #
+docker-compose stop
+
+docker exec -it %container_id% bash                 #start host for that container
+
+netstat -plant                                      #view all used port

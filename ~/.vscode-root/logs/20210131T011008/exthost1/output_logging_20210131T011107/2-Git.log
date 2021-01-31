@@ -1,0 +1,1601 @@
+Looking for git in: git
+Using git 2.27.0 from git
+> git rev-parse --git-dir
+Open repository: /home/mukul/mukul/messenger
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git check-ignore -v -z --stdin
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/app.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/app.ts
+> git cat-file -s 3f5e1da1975cef8eb81264668d1893a05d8c2758
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git check-ignore -v -z --stdin
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git check-ignore -v -z --stdin
+> git show --textconv :server-ts/src/services/service.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/service.ts
+> git cat-file -s cfeef01c437277ccefddfcde07f0c918f6b26f86
+> git check-ignore -v -z --stdin
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git show --textconv :server-ts/src/services/login-register/login-register.router.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/login-register.router.ts
+> git cat-file -s 771a0956a991b3183f0a773944cff63c2023073f
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/src/database/redis/redis.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/redis/redis.db.ts
+> git cat-file -s 715f48b5af82fccd31035d2dd4be2c3726d66500
+> git check-ignore -v -z --stdin
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/src/database/redis/redis.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/redis/redis.db.ts
+> git cat-file -s 715f48b5af82fccd31035d2dd4be2c3726d66500
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git show --textconv :server-ts/src/services/service.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/service.ts
+> git cat-file -s cfeef01c437277ccefddfcde07f0c918f6b26f86
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/app.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/app.ts
+> git cat-file -s 3f5e1da1975cef8eb81264668d1893a05d8c2758
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/.env
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/.env
+> git cat-file -s 52a6c8475baee5957f69cb2e9e1bce03f8973946
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git check-ignore -v -z --stdin
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/app.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/app.ts
+> git cat-file -s 3f5e1da1975cef8eb81264668d1893a05d8c2758
+> git show --textconv :server-ts/src/database/redis/redis.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/redis/redis.db.ts
+> git cat-file -s 715f48b5af82fccd31035d2dd4be2c3726d66500
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/database/redis/redis.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/redis/redis.db.ts
+> git cat-file -s 715f48b5af82fccd31035d2dd4be2c3726d66500
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/.env
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/.env
+> git cat-file -s 52a6c8475baee5957f69cb2e9e1bce03f8973946
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/.env
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/.env
+> git cat-file -s 52a6c8475baee5957f69cb2e9e1bce03f8973946
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/src/database/mySql/mysql.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/mySql/mysql.db.ts
+> git cat-file -s 964103b5b8b45fbddfef8f6908996dd4406946b5
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git check-ignore -v -z --stdin
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/node_modules/promise-mysql/index.d.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/node_modules/promise-mysql/index.d.ts
+> git check-ignore -v -z --stdin
+> git show --textconv :server-ts/src/database/mySql/mysql.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/mySql/mysql.db.ts
+> git cat-file -s 964103b5b8b45fbddfef8f6908996dd4406946b5
+> git check-ignore -v -z --stdin
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/.env
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/.env
+> git cat-file -s 52a6c8475baee5957f69cb2e9e1bce03f8973946
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/database/mySql/mysql.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/mySql/mysql.db.ts
+> git cat-file -s 964103b5b8b45fbddfef8f6908996dd4406946b5
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/src/database/redis/redis.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/redis/redis.db.ts
+> git cat-file -s 715f48b5af82fccd31035d2dd4be2c3726d66500
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/.env
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/.env
+> git cat-file -s 52a6c8475baee5957f69cb2e9e1bce03f8973946
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/.env
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/.env
+> git cat-file -s 52a6c8475baee5957f69cb2e9e1bce03f8973946
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/.env
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/.env
+> git cat-file -s 52a6c8475baee5957f69cb2e9e1bce03f8973946
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/src/database/redis/redis.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/redis/redis.db.ts
+> git cat-file -s 715f48b5af82fccd31035d2dd4be2c3726d66500
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/.env
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/.env
+> git cat-file -s 52a6c8475baee5957f69cb2e9e1bce03f8973946
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/src/database/mySql/mysql.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/mySql/mysql.db.ts
+> git cat-file -s 964103b5b8b45fbddfef8f6908996dd4406946b5
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git show --textconv :server-ts/src/server.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/server.ts
+> git cat-file -s c7c4e7d0b420a871da28baf92979b4265f6ac24a
+> git show --textconv :server-ts/src/database/mySql/mysql.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/mySql/mysql.db.ts
+> git cat-file -s 964103b5b8b45fbddfef8f6908996dd4406946b5
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/.env
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/.env
+> git cat-file -s 52a6c8475baee5957f69cb2e9e1bce03f8973946
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git show --textconv :server-ts/src/services/login-register/register-login.controller.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/services/login-register/register-login.controller.ts
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git cat-file -s 000615f3068becf525a0d11e4741efaa37845b66
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/.env
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/.env
+> git cat-file -s 52a6c8475baee5957f69cb2e9e1bce03f8973946
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/.env
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/.env
+> git cat-file -s 52a6c8475baee5957f69cb2e9e1bce03f8973946
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/src/database/mySql/mysql.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/mySql/mysql.db.ts
+> git cat-file -s 964103b5b8b45fbddfef8f6908996dd4406946b5
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/src/database/mySql/mysql.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/mySql/mysql.db.ts
+> git cat-file -s 964103b5b8b45fbddfef8f6908996dd4406946b5
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/database/mySql/mysql.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/mySql/mysql.db.ts
+> git cat-file -s 964103b5b8b45fbddfef8f6908996dd4406946b5
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/src/database/mySql/mysql.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/mySql/mysql.db.ts
+> git cat-file -s 964103b5b8b45fbddfef8f6908996dd4406946b5
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/database/mySql/mysql.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/mySql/mysql.db.ts
+> git cat-file -s 964103b5b8b45fbddfef8f6908996dd4406946b5
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-learn.txt
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-learn.txt
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/Dockerfile
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/Dockerfile
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git show --textconv :server-ts/src/database/mySql/mysql.db.ts
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/src/database/mySql/mysql.db.ts
+> git cat-file -s 964103b5b8b45fbddfef8f6908996dd4406946b5
+> git show --textconv :server-ts/docker-compose.yml
+> git ls-files --stage -- /home/mukul/mukul/messenger/server-ts/docker-compose.yml
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse main
+> git rev-parse --symbolic-full-name main@{u}
+> git rev-list --left-right main...refs/remotes/origin/main
+> git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname)
+> git remote --verbose
+> git config --get commit.template

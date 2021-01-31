@@ -1,37 +1,29 @@
 import axios from 'axios';
 import { toastMessage } from './utils';
 export const url = {
-    base: `http://localhost:9999`,//'http://192.168.0.8:9999',
-    base_: `http://localhost:9999`,
-    register: '/register',
-    otp: '/otp',
-    login: '/login',
-    logout: '/logout',
-    thirdPartyAuth: '/thirdparty',
-    profile: {
-        myProfile: '/myprofile',
-        get: '/profile',
-        update: '/updateprofile'
+    base: `http://localhost:8081`,
+    LOGIN : '/login',
+    REGISTER : '/register',
+    LOGOUT : '/logout',
+    AUTH : '/auth',
+    PROFILE : '/profile',
+    AUTHORIZE : '/authorize',
+    GOOGLE : 'https://www.googleapis.com/gmail/v1/users/me/profile',
+    SOCIAL : {
+        search : '/social/search',
+        action : '/social/action/:type/:targetUser',
+        network : '/social/network/:type'
     },
-    social: {
-        get: '/social/search/',
-        network: '/social/network',// social/network/:type/:start/:count',
-        requests: '/social/requests',
-        send: '/social/send',
-        respond: '/social/respond',// /social/respond/someone123/1(yes)|0(no)
-        remove: '/social/remove',
-        revoke: '/social/revoke', // /social/delete/1(block)|0(delete)/123MU123
-        getStatus: '/social/status'
-    },
+    MESSAGE : '/messages',
     googleOauth: 'https://www.googleapis.com/gmail/v1/users/me/profile',
     thirdpartylogin: '/thirdpartylogin',
     clientAccessDenied: 'Login First'
 }
 export default class Api {
     public static nonSecretUrls = [
-        url.base + url.login,
-        url.base + url.thirdpartylogin,
-        url.base + url.thirdPartyAuth
+        url.base + url.LOGIN,
+        url.base + url.REGISTER,
+        url.base + url.AUTHORIZE
     ];
 
     public static initApiInterceptor() {

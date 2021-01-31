@@ -40,8 +40,9 @@ export default class RegisterLoginController extends Controller{
                         const hashedIdentity = crypto.SHA256(identity).toString();
                         await Mysql.createOrUpdate_user(hashedIdentity, identity)
                         const token = AuthService.signIn(identity, true) as string;
-                        RedisInstance.setKey(`REFRESH-${hashedIdentity}`, `${generateKey(24)}-${new Date().valueOf()}`)
-                        Controller.generateController(resp, isLogin ? errorCodesUtil.SUCCESS : errorCodesUtil.CREATED, token, request.originalUrl)
+                        const refreshToken : string = generateKey(24);
+                        RedisInstance.setKey(`REFRESH-${refreshToken}`, `${refreshToken}-${new Date().valueOf()}-${identity}`)
+                        Controller.generateController(resp, isLogin ? errorCodesUtil.SUCCESS : errorCodesUtil.CREATED, { token : token, refresh_token : refreshToken }, request.originalUrl)
                     }else{
                         Controller.generateController(resp, errorCodesUtil.FORBIDDEN, errorProperties.INVALID_OTP, request.originalUrl)
                     }
@@ -51,7 +52,6 @@ export default class RegisterLoginController extends Controller{
                 })
 
         }catch(e){
-            console.log(e)
             resp.status(errorCodesUtil.UNKNOWN).send(new ErrorController(errorCodesUtil.UNKNOWN, JSON.stringify(e), request.originalUrl))
         }
     }
@@ -67,9 +67,9 @@ export default class RegisterLoginController extends Controller{
             const userVerify =  await Mysql.getCurrentUser_register(identity, true);
             const authToken = AuthService.signIn(identity, true) as string;
             const refreshToken : string = generateKey(24);
-            RedisInstance.setKey(`REFRESH-${hashedIdentity}`, `${refreshToken}-${new Date().valueOf()}`)
+            RedisInstance.setKey(`REFRESH-${refreshToken}`, `${refreshToken}-${new Date().valueOf()}-${identity}`)
             if(userVerify[0]?.userId){
-                return Controller.generateController(resp, errorCodesUtil.SUCCESS , authToken, request.originalUrl)
+                return Controller.generateController(resp, errorCodesUtil.SUCCESS , { token : authToken, refresh_token : refreshToken }, request.originalUrl)
             }
             await Mysql.createOrUpdate_user(hashedIdentity, identity)
             Controller.generateController(resp, errorCodesUtil.CREATED, { token : authToken, refresh_token : refreshToken }, request.originalUrl)
@@ -110,16 +110,17 @@ export default class RegisterLoginController extends Controller{
     public async refreshToken(request : Request, response : Response){
         try{
             const invalidToken = () => Controller.generateController(response, errorCodesUtil.UNAUTHORIZED, responseProperties.INVALID_REFRESH, request.originalUrl)
-            const superUser = request['superUser'] as ISuperUser;
-            const { refresh } = request.query as { refresh : string }
-            if(!refresh) return invalidToken()
-            const token : string = `${await RedisInstance.getKey(`REFRESH-${refresh}`)}`
-            if(!token || token.split('-')[0] != refresh || !isRefreshValid(token)) return invalidToken()
-            const hashedIdentity = crypto.SHA256(superUser.identity).toString();
-            const authToken = AuthService.signIn(superUser.identity, true) as string;
-            const refreshToken : string = generateKey(24);
-            RedisInstance.setKey(`REFRESH-${hashedIdentity}`, `${refreshToken}-${new Date().valueOf()}`)
-            Controller.generateController(response, errorCodesUtil.SUCCESS,{ token : authToken, refresh_token : refreshToken }, request.originalUrl)
+            const { token } = request.query as { token : string }
+            if(!token) return invalidToken()
+            const refreshToken : string = await RedisInstance.getKey(`REFRESH-${token}`)
+            console.log('refreshToken ',refreshToken)
+            if(!refreshToken || refreshToken.split('-')[0] != token || !isRefreshValid(refreshToken.split('-')[1])) return invalidToken()
+            RedisInstance.remove([`REFRESH-${token}`])
+            const identity = refreshToken.split('-')[2];
+            const authToken = AuthService.signIn(identity, true) as string;
+            const newRefreshToken : string = generateKey(24);
+            RedisInstance.setKey(`REFRESH-${newRefreshToken}`, `${newRefreshToken}-${new Date().valueOf()}-${identity}`)
+            Controller.generateController(response, errorCodesUtil.SUCCESS,{ token : authToken, refresh_token : newRefreshToken }, request.originalUrl)
         }catch(e){
             logger.error(`refreshToken refreshToken : ${e}`)
             Controller.generateController(response, errorCodesUtil.UNKNOWN, errorProperties.UNKNOWN_ERROR, request.originalUrl)

@@ -33,7 +33,6 @@ export default class Server{
     private async initializeDb() : Promise<string | void>{
         return new Promise(async (resolve, reject) => {
             try{
-                console.log('-Initializing DBS-')
                 logger.info('-Initializing DBS-')
                 new RedisInstance();
                 await new Mysql().initializeMysql();
@@ -59,7 +58,7 @@ export default class Server{
         return new Promise(async (resolve, reject) => {
             try{
                 await this.initializeDb()
-                this.listener = this.application.listen(this.port, () => resolve('Running on port '+process.env.PORT))
+                this.listener = this.application.listen(process.env.PORT, () => resolve('Running on port '+process.env.PORT))
                 new Message(this.listener).initializeMessage()
                 logger.info(`-SERVER RUNNING ON PORT ${this.port}`)
                 this.listener.on('error',(e) => reject(`Server failed to start on port ${e}`))

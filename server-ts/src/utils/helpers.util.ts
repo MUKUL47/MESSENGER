@@ -15,7 +15,7 @@ export function generateKey(len?:number) : string{
     return Array(len || 12).fill(1).map(() => mix.charAt(getRand(0, mix.length))).join('')
 }
 export function isRefreshValid(token : string = '') : boolean{
-    return (new Date().valueOf() - Number(token.split('-')[1]))/1000 < Number(process.env.REFRESH_EXP || Infinity)
+    return (new Date().valueOf() - Number(token))/1000 < Number(process.env.REFRESH_EXP)
 }
 function getRand(max : number, min : number) : number{
     return Math.floor(Math.random() * (max - min) + min)

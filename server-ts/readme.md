@@ -1,4 +1,4 @@
-# Server implementation for ShopOnMap application.
+# Messenger-Server
 
 ## Stack
 

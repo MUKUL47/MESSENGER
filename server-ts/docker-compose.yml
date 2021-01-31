@@ -1,0 +1,47 @@
+version: '3'
+
+services :
+  app:
+    container_name: messenger-app
+    build: .
+    ports : 
+      - '8080:8080'
+    depends_on:
+      - db
+      - redis
+      - mongo
+    external_links:
+      - mongo
+      - db  
+      
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+        - messenger-sql:/var/lib/mysql
+    environment :
+      - MYSQL_PASSWORD=password
+      - MYSQL_HOST=%
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - '3307:3306'
+
+  redis:
+    image: redis:latest
+    command: ["redis-server", "--bind", "redis", "--port", "6379"]
+    volumes:
+      - messenger-redis:/var/lib/redis
+
+  
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - messenger-nosql:/home/messenger-mongo/data/db
+  
+volumes:
+  messenger-sql:
+  messenger-nosql:
+  messenger-redis:

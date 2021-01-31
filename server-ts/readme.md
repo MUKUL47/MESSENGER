@@ -10,10 +10,10 @@
 -firebase-storage
 ```
 
-## Build steps
+## 
+### Installation build steps
 
-### INSTALLATION
-
+#### MODE = DEV
 ```
 1) sudo apt-get update
 
@@ -23,6 +23,7 @@
 3.2) UPDATE user SET plugin='mysql_native_password' WHERE User='root';
 3.3) FLUSH PRIVILEGES;
 3.4) exit;
+3.5) sudo service mysql start
 
 4) wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
 4) sudo apt-get install gnupg
@@ -41,4 +42,17 @@
 5.6) redis-server
 
 6) npm install
+```
+
+#### MODE = PROD
+```
+    total 4 containers => server-ts_app, mongo, mysql, redis:latest
+    docker ps => check any running containers if yes => docker image rm %image_name% -f
+    docker-compose up --build
+    server will be running on 8080
+
+    after changing any services in docker-compose
+        docker-compose down
+        docker image rm %old_service_image% -f
+        docker-compose up --build
 ```

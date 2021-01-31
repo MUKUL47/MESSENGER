@@ -11,7 +11,7 @@ export class Mysql{
                 connection = await mysql.createConnection({
                     host: process.env.host,
                     user: process.env.user,
-                    password: process.env.DB_PASS,
+                    password: process.env.DB_PASS
                 }) as any;
                 await Promise.all(tables.map((table : string) => connection.query(table)));
                 logger.info('-Initialized mysql-')

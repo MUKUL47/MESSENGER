@@ -47,7 +47,8 @@ export default class RegisterLoginController extends Controller{
                 })
 
         }catch(e){
-            resp.status(errorCodesUtil.UNKNOWN).send(new ErrorController(errorCodesUtil.UNKNOWN, e, request.originalUrl))
+            console.log(e)
+            resp.status(errorCodesUtil.UNKNOWN).send(new ErrorController(errorCodesUtil.UNKNOWN, JSON.stringify(e), request.originalUrl))
         }
     }
 

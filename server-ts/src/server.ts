@@ -10,7 +10,7 @@ import { MongoDB } from './database/mongoDb/mongo.db'
 import dotenv from 'dotenv'
 import RedisInstance from './database/redis/redis.db'
 import logger from './utils/logger.util'
-import { Http2Server } from 'http2'
+import cluster from 'cluster'
 import Message from './services/message/message.service'
 export default class Server{
     private application : express.Application;
@@ -19,7 +19,7 @@ export default class Server{
     private accessTypes : string[] = ['messenger-web', 'messenger-mobile']
     constructor(){
         this.application = express();
-        this.port = process.env.PORT || 8081;
+        this.port = process.env.PORT;
         this.initalizeMiddlewares()
         dotenv.config()
         logger.info('-Initializing server-')
@@ -33,6 +33,7 @@ export default class Server{
     private async initializeDb() : Promise<string | void>{
         return new Promise(async (resolve, reject) => {
             try{
+                console.log('-Initializing DBS-')
                 logger.info('-Initializing DBS-')
                 new RedisInstance();
                 await new Mysql().initializeMysql();
@@ -58,10 +59,10 @@ export default class Server{
         return new Promise(async (resolve, reject) => {
             try{
                 await this.initializeDb()
-                this.listener = this.application.listen(this.port, () => resolve('Running on port '+this.port))
+                this.listener = this.application.listen(this.port, () => resolve('Running on port '+this.port+` THREAD ${cluster.worker.id}`))
                 new Message(this.listener).initializeMessage()
-                logger.info(`-SERVER RUNNING ON PORT ${this.port}-`)
-                this.listener.on('error',(e) => reject(`Server failed to start on port ${this.port} ${e}`))
+                logger.info(`-SERVER RUNNING ON PORT ${this.port}`)
+                this.listener.on('error',(e) => reject(`Server failed to start on port 555${this.port} ${e}`))
             }catch(e){
                 logger.error(`Server start : ${e}`)
                 reject(e)

@@ -4,13 +4,15 @@ import { IRegister } from '../../interfaces/register-login.if'
 import errorProperties from '../../properties/error.properties';
 import { Controller, ErrorController } from '../../utils/controllers.util';
 import errorCodesUtil from '../../utils/error-codes.util';
-import { isValidIdentity, generateOtp, generateKey } from '../../utils/helpers.util';
+import { isValidIdentity, generateOtp, generateKey, isRefreshValid } from '../../utils/helpers.util';
 import responseProperties from '../../properties/response.properties';
 import AuthService from '../../middlewares/auth.middleware';
 import logger from '../../utils/logger.util';
 import request from 'request'
 import routes from '../../properties/routes';
 import crypto from 'crypto-js'
+import RedisInstance from '../../database/redis/redis.db';
+import { ISuperUser } from '../../interfaces/models.if';
 export default class RegisterLoginController extends Controller{
     public async authenticate(request : Request, resp : Response){
         try{
@@ -35,8 +37,10 @@ export default class RegisterLoginController extends Controller{
             Mysql.verifyOtp(otp, identity). 
                 then(async (ans : boolean) => {
                     if(ans){
-                        await Mysql.createOrUpdate_user(crypto.SHA256(identity).toString(), identity)
+                        const hashedIdentity = crypto.SHA256(identity).toString();
+                        await Mysql.createOrUpdate_user(hashedIdentity, identity)
                         const token = AuthService.signIn(identity, true) as string;
+                        RedisInstance.setKey(`REFRESH-${hashedIdentity}`, `${generateKey(24)}-${new Date().valueOf()}`)
                         Controller.generateController(resp, isLogin ? errorCodesUtil.SUCCESS : errorCodesUtil.CREATED, token, request.originalUrl)
                     }else{
                         Controller.generateController(resp, errorCodesUtil.FORBIDDEN, errorProperties.INVALID_OTP, request.originalUrl)
@@ -59,14 +63,16 @@ export default class RegisterLoginController extends Controller{
                 return Controller.generateController(resp, errorCodesUtil.UNAUTHORIZED, errorProperties.UNAUTHORIZED, req.originalUrl)
             }
             const identity = await this.thirdPartLogin(loginType, token)
+            const hashedIdentity = crypto.SHA256(identity).toString();
             const userVerify =  await Mysql.getCurrentUser_register(identity, true);
+            const authToken = AuthService.signIn(identity, true) as string;
+            const refreshToken : string = generateKey(24);
+            RedisInstance.setKey(`REFRESH-${hashedIdentity}`, `${refreshToken}-${new Date().valueOf()}`)
             if(userVerify[0]?.userId){
-                const authToken = AuthService.signIn(identity, true) as string;
                 return Controller.generateController(resp, errorCodesUtil.SUCCESS , authToken, request.originalUrl)
             }
-            await Mysql.createOrUpdate_user(generateKey(16), identity)
-            const authToken = AuthService.signIn(identity, true) as string;
-            Controller.generateController(resp, errorCodesUtil.CREATED, authToken, request.originalUrl)
+            await Mysql.createOrUpdate_user(hashedIdentity, identity)
+            Controller.generateController(resp, errorCodesUtil.CREATED, { token : authToken, refresh_token : refreshToken }, request.originalUrl)
         }catch(e){
             logger.error(`RegisterLoginController authorize : ${e}`)
             Controller.generateController(resp, errorCodesUtil.UNAUTHORIZED, errorProperties.UNAUTHORIZED, req.originalUrl)
@@ -90,7 +96,33 @@ export default class RegisterLoginController extends Controller{
         })
     }
 
-    public async logout(request : Request, resp : Response){
-        Controller.generateController(resp, errorCodesUtil.SUCCESS, responseProperties.LOGGED_OUT, request.originalUrl)
+    public async logout(request : Request, resp : Response){  
+        try{
+            const superUser = request['superUser'] as ISuperUser;
+            RedisInstance.remove([`REFRESH-${crypto.SHA256(superUser.identity).toString()}`])
+            Controller.generateController(resp, errorCodesUtil.SUCCESS, responseProperties.LOGGED_OUT, request.originalUrl)
+        }catch(e){
+            logger.error(`RegisterLoginController logout : ${e}`)
+            Controller.generateController(resp, errorCodesUtil.SUCCESS, null, request.originalUrl)
+        }   
+    }
+
+    public async refreshToken(request : Request, response : Response){
+        try{
+            const invalidToken = () => Controller.generateController(response, errorCodesUtil.UNAUTHORIZED, responseProperties.INVALID_REFRESH, request.originalUrl)
+            const superUser = request['superUser'] as ISuperUser;
+            const { refresh } = request.query as { refresh : string }
+            if(!refresh) return invalidToken()
+            const token : string = `${await RedisInstance.getKey(`REFRESH-${refresh}`)}`
+            if(!token || token.split('-')[0] != refresh || !isRefreshValid(token)) return invalidToken()
+            const hashedIdentity = crypto.SHA256(superUser.identity).toString();
+            const authToken = AuthService.signIn(superUser.identity, true) as string;
+            const refreshToken : string = generateKey(24);
+            RedisInstance.setKey(`REFRESH-${hashedIdentity}`, `${refreshToken}-${new Date().valueOf()}`)
+            Controller.generateController(response, errorCodesUtil.SUCCESS,{ token : authToken, refresh_token : refreshToken }, request.originalUrl)
+        }catch(e){
+            logger.error(`refreshToken refreshToken : ${e}`)
+            Controller.generateController(response, errorCodesUtil.UNKNOWN, errorProperties.UNKNOWN_ERROR, request.originalUrl)
+        } 
     }
 }

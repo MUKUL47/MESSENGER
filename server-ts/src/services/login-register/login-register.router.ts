@@ -35,6 +35,11 @@ export default class LoginRegister{
             AuthService.authMiddleware,
             registerLoginController.authorize
         )
+
+        this.serviceApp.get(
+            routes.REFRESH,
+            registerLoginController.refreshToken
+        )
     }
     public getRouter(): express.Application{
         return this.serviceApp;

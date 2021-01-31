@@ -17,6 +17,8 @@ docker-compose up                                   #start docker-compose.yml fi
 docker-compose up --build                           #start docker-compose.yml file
 docker-compose down                                 #stop docker-compose.yml file
 docker-compose build 
+docker-compose down --volumes                       #
+docker-compose stop
 
 docker exec -it %container_id% bash                 #start host for that container
 

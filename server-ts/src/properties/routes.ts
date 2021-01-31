@@ -2,6 +2,7 @@ export default {
     LOGIN : '/login',
     REGISTER : '/register',
     LOGOUT : '/logout',
+    REFRESH : '/refresh',
     AUTH : '/auth',
     PROFILE : '/profile',
     AUTHORIZE : '/authorize',

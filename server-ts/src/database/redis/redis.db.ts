@@ -3,8 +3,7 @@ import logger from '../../utils/logger.util';
 export let redisClient : RedisClient;
 export default class RedisInstance{
     constructor(){
-        redisClient = redis.createClient({ host : 'redis',
-        port: Number(process.env.REDIS_PORT) })
+        redisClient = redis.createClient(process.env.MODE === 'PROD' ?{ host : 'redis', port: Number(process.env.REDIS_PORT) } : null)
         logger.info('-Initialized redisClient-')
     }
 

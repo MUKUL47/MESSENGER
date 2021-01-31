@@ -59,10 +59,10 @@ export default class Server{
         return new Promise(async (resolve, reject) => {
             try{
                 await this.initializeDb()
-                this.listener = this.application.listen(this.port, () => resolve('Running on port '+this.port+` THREAD ${cluster.worker.id}`))
+                this.listener = this.application.listen(this.port, () => resolve('Running on port '+process.env.PORT))
                 new Message(this.listener).initializeMessage()
                 logger.info(`-SERVER RUNNING ON PORT ${this.port}`)
-                this.listener.on('error',(e) => reject(`Server failed to start on port 555${this.port} ${e}`))
+                this.listener.on('error',(e) => reject(`Server failed to start on port ${e}`))
             }catch(e){
                 logger.error(`Server start : ${e}`)
                 reject(e)

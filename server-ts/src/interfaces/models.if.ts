@@ -6,7 +6,7 @@ export interface IMysql extends Bluebird<Connection>{
 }
 export interface IController{
     statusCode : number;
-    message : string;
+    message : string| object;
     timestamp : number | Date;
     route ?:string;
 }

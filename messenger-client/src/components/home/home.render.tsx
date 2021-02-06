@@ -7,9 +7,10 @@ import Routes from '../../utils/routes';
 import Chat from './home-components/chat-section/chat';
 import Navbar from './home-components/navbar/navbar';
 import Request from './home-components/requests/request';
+import './home.scss'
 export default function HomeRender() {
     return (
-        <>
+        <div className="home-section">
             <div className="navbar">
                 <Navbar />
             </div>
@@ -29,6 +30,6 @@ export default function HomeRender() {
                     }>
                 </Route>
             </Switch>
-        </>
+        </div>
     )
 }

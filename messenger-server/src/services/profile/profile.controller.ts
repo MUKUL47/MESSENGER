@@ -26,10 +26,10 @@ export default class ProfileController extends Controller{
         try{
             const superUser = req['superUser'] as ISuperUser;
             const profile = (await Mysql.getProfile(superUser.userId))
-            if(!profile){
-                return Controller.generateController(resp, errorCodesUtil.NOT_FOUND, responseProperties.PROFILE_NOT_FOUND, req.originalUrl)
-            }
-            Controller.generateController(resp, errorCodesUtil.SUCCESS, profile, req.originalUrl)
+            // if(!profile){
+            //     return Controller.generateController(resp, errorCodesUtil.NOT_FOUND, responseProperties.PROFILE_NOT_FOUND, req.originalUrl)
+            // }
+            Controller.generateController(resp, errorCodesUtil.SUCCESS, {...(profile[0] || {}), ...superUser} || {}, req.originalUrl)
         }catch(e){
             logger.error(`ProfileController getProfile : ${e}`)
             Controller.generateController(resp, errorCodesUtil.UNKNOWN, errorProperties.UNKNOWN_ERROR, req.originalUrl)

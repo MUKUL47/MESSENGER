@@ -1,0 +1,25 @@
+.nav-items{
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 5px 3px 6px -1px #888;
+
+    .nav--item:last-child(1){
+        border-right: 1px solid #888888c7;
+    }
+    .nav--item{
+        flex: .25 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        background-color: #d7eafa;
+        cursor: pointer;
+        font-size: 1.35rem;
+        transition: .2s;
+
+        &:hover{
+            transition: .2s;
+            background-color: #a7d7ff;
+        }
+    }
+}

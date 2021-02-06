@@ -29,7 +29,7 @@ export default class RegisterLoginController extends Controller{
                 return Controller.generateController(resp, errorCodesUtil.BAD_REQUEST, errorProperties.USER_NOT_FOUND, request.originalUrl)
             }
             if(!otp){
-                const otp : string = process.env.MODE === 'PROD' ? generateOtp() : '123456'
+                const otp : string = '123456'//process.env.MODE === 'PROD' ? generateOtp() : '123456'
                 await Mysql.updateOrAddVerification(identity, otp, isLogin ? 'LOGIN' : 'REGISTER')
                 Controller.generateController(resp, errorCodesUtil.SUCCESS, responseProperties.SENT_OTP(identity), request.originalUrl)
                 return
@@ -42,7 +42,7 @@ export default class RegisterLoginController extends Controller{
                         const token = AuthService.signIn(identity, true) as string;
                         const refreshToken : string = generateKey(24);
                         RedisInstance.setKey(`REFRESH-${refreshToken}`, `${refreshToken}-${new Date().valueOf()}-${identity}`)
-                        Controller.generateController(resp, isLogin ? errorCodesUtil.SUCCESS : errorCodesUtil.CREATED, { token : token, refresh_token : refreshToken }, request.originalUrl)
+                        Controller.generateController(resp, isLogin ? errorCodesUtil.SUCCESS : errorCodesUtil.CREATED, { token : token, refresh_token : refreshToken, id : hashedIdentity }, request.originalUrl)
                     }else{
                         Controller.generateController(resp, errorCodesUtil.FORBIDDEN, errorProperties.INVALID_OTP, request.originalUrl)
                     }

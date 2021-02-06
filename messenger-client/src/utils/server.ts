@@ -28,18 +28,21 @@ export default class API{
                 !pendingRequest._retry
             ) {
                 pendingRequest._retry = true;
-                return axios.get(sR.BASE + sR.REFRESH + `?token=${localStorage.getItem('refreshToken')}`). 
+                axios.get(sR.BASE + sR.REFRESH + `?token=${localStorage.getItem('refreshToken')}`). 
                 then(response => {
                     if(response.status === 200 && response.data?.message){
                         localStorage.setItem('refreshToken', response.data?.message?.refresh_token)
                         localStorage.setItem('token', response.data?.message?.token)
-                        return axios(pendingRequest)
+                        // return axios(pendingRequest)
+                        window.location.reload()
                     }else{
-                        toastMessage.next({ message: 'Session timed out', type: false, duration: 5000, logout: true });
+                        localStorage.clear()
+                        toastMessage.next({ message: 'Re-Login again', type: false, duration: 5000, logout: true });
                     }
                 }). 
                 catch(e => {
-                    toastMessage.next({ message: 'Session timed out', type: false, duration: 5000, logout: true });
+                    localStorage.clear()
+                    toastMessage.next({ message: 'Re-Login again', type: false, duration: 5000, logout: true });
                 })
             }
             return Promise.reject(error);
@@ -48,14 +51,14 @@ export default class API{
     public static login(identity : string, isOtp : boolean, otp ?:string) : Promise<any> {
         return new Promise((resolve, reject) => {
             const body = { identity : identity, otp :  isOtp ? otp : null}
-            axios.post(sR.BASE+sR.LOGIN, body).then((response: AxiosRequestConfig) => resolve(response)).catch(e => reject(API.catchError(e)))
+            axios.post(sR.BASE+sR.LOGIN, body).then((response: AxiosRequestConfig) => resolve(response)).catch(e => reject(Utils.parseError(e)))
         })
     }
 
     public static register(identity : string, isOtp : boolean, otp ?:string) : Promise<any> {
         return new Promise((resolve, reject) => {
             const body = { identity : identity, otp :  isOtp ? otp : null}
-            axios.post(sR.BASE+sR.REGISTER, body).then((response: AxiosRequestConfig) => resolve(response)).catch(e => reject(API.catchError(e)))
+            axios.post(sR.BASE+sR.REGISTER, body).then((response: AxiosRequestConfig) => resolve(response)).catch(e => reject(Utils.parseError(e)))
         })
     }
 
@@ -63,14 +66,16 @@ export default class API{
         return new Promise((resolve, reject) => {
             const url = sR.BASE+sR.PROFILE
             if(!id){
-                return axios.get(url).then((response: AxiosRequestConfig) => resolve(response)).catch(e => reject(API.catchError(e)))
+                return axios.get(url).then((response: AxiosRequestConfig) => resolve(response)).catch(e => reject(Utils.parseError(e)))
             }
-            axios.post(url, id).then((response: AxiosRequestConfig) => resolve(response)).catch(e => reject(API.catchError(e)))
+            axios.post(url, id).then((response: AxiosRequestConfig) => resolve(response)).catch(e => reject(Utils.parseError(e)))
         })
     }
 
-
-    private static catchError(e : any){
-        return Utils.parseError(e)
+    public static updateProfile(name : string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            axios.put(sR.BASE+sR.PROFILE, { displayName : name }).then((response: AxiosRequestConfig) => resolve(response)).catch(e => reject(Utils.parseError(e)))
+        })
     }
+
 }

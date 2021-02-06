@@ -1,7 +1,8 @@
 export interface IUserStore{
     name : string,
     id : string,
-    image : any
+    image : any,
+    identity : string
 }
 export interface IToastStore{
     type : 'success' | 'failed',

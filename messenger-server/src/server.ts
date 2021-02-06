@@ -16,7 +16,7 @@ export default class Server{
     private application : express.Application;
     private listener : http.Server
     private port : number | string;
-    private accessTypes : string[] = ['messenger-web', 'messenger-mobile']
+    private accessTypes : string[] = ['WEB-MESSENGER', 'MOBILE-MESSENGER']
     constructor(){
         this.application = express();
         this.port = process.env.PORT;

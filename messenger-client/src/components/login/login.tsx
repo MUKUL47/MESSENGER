@@ -32,21 +32,26 @@ export default function Login() {
             dispatch({ type : actions.TOAST_MESSAGE, data : { type : false, message : e } })
         }
     }
+    const setStorage = (token : string, refreshToken : string) : void => {
+        localStorage.setItem('token', token)
+        localStorage.setItem('refreshToken',refreshToken)
+    }
     const submitOtp = async (otp : string) => {
         try{
             setLoginContext({ isLoading : true, otpReady : false })
             const response : AxiosRequestConfig = await (loginContext.type === 'Login' ? API.login : API.register)(loginContext.identity, true, otp)
+            const data = response.data.message;
+            setStorage(data.token, data.refresh_token)
             if(response.data.statusCode === 201){
-                dispatch({ type : actions.STORE_USER, data : { user: loginContext.identity, name: '', image: null } })
+                const dispatchData = { identity: loginContext.identity, name: '', image: null, id : data.id }
+                dispatch({ type : actions.STORE_USER, data : dispatchData })
                 setLoginContext({ isLoading : false })
                 history.push({ pathname: '/profile', state: { header: 'Complete your profile', identity: loginContext.identity } })
                 return
             }
-            localStorage.setItem('token',response.data.message.token)
-            localStorage.setItem('refreshToken',response.data.message.refresh_token)
             const profileResponse : AxiosRequestConfig = await API.getProfile()
             const { userId, displayName } = profileResponse.data.message;
-            dispatch({ type : actions.STORE_USER, data : { user: loginContext.identity, name: displayName, image: null, id : userId } })
+            dispatch({ type : actions.STORE_USER, data : { identity: loginContext.identity, name: displayName, image: null, id : userId } })
             history.push({ pathname: '/home'})
         }catch(e){
             setLoginContext({ isLoading : false, otpReady : true })

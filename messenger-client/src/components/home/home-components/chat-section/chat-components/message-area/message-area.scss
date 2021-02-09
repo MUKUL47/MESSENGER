@@ -45,6 +45,11 @@
                 border : 1px solid rgba(0, 0, 0, 0.082);
                 border-radius: 5px;
                 background-color: #FFF;
+                box-shadow: 1px 1px 5px 0px #888;
+
+                &:hover{
+                    box-shadow: 1px 1px 5px 2px #888;
+                }
             }
         }
         .message-area-me{

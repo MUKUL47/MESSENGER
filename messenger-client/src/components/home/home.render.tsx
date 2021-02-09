@@ -15,23 +15,18 @@ export default function HomeRender() {
             <div className="navbar">
                 <Navbar />
             </div>
-            <BrowserRouter>
-                <Route exact path={Routes.home} component=
-                    {() =>
-                        <div className="chatsection" >
-                            <Request />
-                            {/* <Chat /> */}
-                        </div>
-                    }>
-                </Route>
-                <Route exact path={Routes.requests} component=
-                    {() =>
+                <Switch>
+                    <Route path={Routes.requests}>
                         <div className="request-section">
                             <Request />
                         </div>
-                    }>
-                </Route>
-            </BrowserRouter>
+                    </Route>
+                    <Route path={Routes.home}>
+                        <div className="chatsection" >
+                            <Chat />
+                        </div>
+                    </Route>
+                </Switch>
         </div>
     )
 }

@@ -31,12 +31,15 @@
             margin-bottom: 10px;
             display: flex;
             align-items: center;
+            grid-gap: 10px;
             gap: 10px;
             padding: 5px;
-            background-color: #51a7ffd9;
+            background-color: #001a77bd;
+            color: #FFF;
             border-radius: 3.5px;
             cursor: pointer;
             transition: .35s;
+            font-size: 1.234rem;
 
             img{
                 border-radius: 100%;
@@ -45,7 +48,7 @@
 
             &:hover{
                 transition: .35s;
-                background-color: #3b9dffd9;
+                background-color: #001a77ef;
                 box-shadow: 1px 1px 4px 3px #888;
             }
         }

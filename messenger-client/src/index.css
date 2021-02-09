@@ -31,3 +31,7 @@ code {
 button:focus{
   outline: none !important;
 }
+a{
+  text-decoration: none !important;
+  color: #000;
+}

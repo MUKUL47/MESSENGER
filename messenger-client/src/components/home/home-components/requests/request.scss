@@ -178,7 +178,10 @@
             width: 30px !important;
         }
     }
-    .accept-r-btn, .reject-r-btn{
+    .requestitem-actions{
+        button{
+            border-radius: 100px !important;
+        }
         span{
             display: none;
         }

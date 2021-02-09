@@ -7,6 +7,7 @@ import ProfileRenderer from './profile.render';
 import { useSelector, useDispatch } from 'react-redux';
 import { IUserStore } from '../../interfaces/redux';
 import actions from '../../redux/actions';
+import BermudaTriangle from '../../shared/localstorage.service';
 export default function Profile() {
     const userStore : IUserStore = useSelector((state : any) => state.userService)
     const dispatch = useDispatch()
@@ -35,7 +36,7 @@ export default function Profile() {
     }
     const getProfile = async () => {
         document.title = 'Messenger - Profile';
-        if (localStorage.length === 0) {
+        if (BermudaTriangle.isFree()) {
             history.push(Routes.login);
         }
         else if (!userStore.name) {

@@ -21,6 +21,8 @@ export const socketEvents = [
     'gotConversations',
     'gotMessage',
     'typing'];
+const numbers = '0123456789';
+const alphabets = 'abcdefghijklmnopqrstuvwxyz';
 export default class Utils {
     public static MAX_MESSAGE_LEN = 1187;
     public static validateEmailMobile(value: string): boolean {
@@ -32,6 +34,10 @@ export default class Utils {
     public static globalDefaultError = 'Unknown error occured'
     public static parseError = (e: any) => e?.response?.data ? (e?.response?.data?.message ? e?.response?.data?.message : Utils.globalDefaultError) : Utils.globalDefaultError
     public static getRandomNumber = (min: any, max: any) => { return Math.floor(Math.random() * (max - min) + min) };
+    public static generateKey(len?:number) : string{
+    const mix = numbers + alphabets + alphabets.toUpperCase()
+        return Array(len || 12).fill(1).map(() => mix.charAt(Utils.getRandomNumber(0, mix.length))).join('')
+    }
     public static convertBaseToBlob = (b64Data: string, mimeType: string) => {
         const byteCharacters = atob(b64Data);
         const byteNumbers = new Array(byteCharacters.length);

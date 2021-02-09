@@ -11,6 +11,7 @@ import API from '../../utils/server';
 import IApiResponse from '../../interfaces/data-models';
 import Otp from '../../shared/components/otp/otp';
 import { AxiosRequestConfig } from 'axios';
+import BermudaTriangle from '../../shared/localstorage.service';
 export default function Login() {
     const history = useHistory()
     const dispatch  = useDispatch() 
@@ -33,8 +34,8 @@ export default function Login() {
         }
     }
     const setStorage = (token : string, refreshToken : string) : void => {
-        localStorage.setItem('token', token)
-        localStorage.setItem('refreshToken',refreshToken)
+        BermudaTriangle.setTriangle('token', token)
+        BermudaTriangle.setTriangle('refreshToken',refreshToken)
     }
     const submitOtp = async (otp : string) => {
         try{
@@ -60,7 +61,7 @@ export default function Login() {
     }
     useEffect(() => {
         document.title = 'Messenger';
-        if (localStorage.length === 0) {
+        if (BermudaTriangle.isFree()) {
             document.title = 'Messenger - Login';
             setLoginContext({ redirect: false })
         } else {

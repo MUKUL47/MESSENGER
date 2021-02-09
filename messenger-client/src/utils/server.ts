@@ -1,13 +1,14 @@
 import sR from './server-routes'
 import axios, { AxiosRequestConfig } from 'axios'
 import Utils, { toastMessage } from '../shared/utils';
+import BermudaTriangle from '../shared/localstorage.service';
 export default class API{
     public static nonSecretEndPoints = [sR.BASE + sR.LOGIN, sR.BASE + sR.REGISTER, sR.BASE + sR.LOGIN, sR.BASE + sR.AUTHORIZE]
     public static initApiInterceptor() {
         axios.interceptors.request.use(
             (config: any) => {
                 if (!this.nonSecretEndPoints.includes(config.url)) {
-                    const token = localStorage.getItem('token');
+                    const token = BermudaTriangle.getTriangle('token');
                     if (!token) {
                         toastMessage.next({ message: 'Session timed out', type: false, duration: 5000, logout: true });
                         return;
@@ -28,20 +29,20 @@ export default class API{
                 !pendingRequest._retry
             ) {
                 pendingRequest._retry = true;
-                axios.get(sR.BASE + sR.REFRESH + `?token=${localStorage.getItem('refreshToken')}`). 
+                axios.get(sR.BASE + sR.REFRESH + `?token=${BermudaTriangle.getTriangle('refreshToken')}`). 
                 then(response => {
                     if(response.status === 200 && response.data?.message){
-                        localStorage.setItem('refreshToken', response.data?.message?.refresh_token)
-                        localStorage.setItem('token', response.data?.message?.token)
+                        BermudaTriangle.setTriangle('refreshToken', response.data?.message?.refresh_token)
+                        BermudaTriangle.setTriangle('token', response.data?.message?.token)
                         // return axios(pendingRequest)
                         window.location.reload()
                     }else{
-                        localStorage.clear()
+                        BermudaTriangle.clearTriangle()
                         toastMessage.next({ message: 'Re-Login again', type: false, duration: 5000, logout: true });
                     }
                 }). 
                 catch(e => {
-                    localStorage.clear()
+                    BermudaTriangle.clearTriangle()
                     toastMessage.next({ message: 'Re-Login again', type: false, duration: 5000, logout: true });
                 })
             }

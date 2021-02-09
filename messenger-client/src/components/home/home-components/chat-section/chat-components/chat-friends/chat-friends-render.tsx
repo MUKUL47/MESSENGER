@@ -1,12 +1,19 @@
 import React from 'react'
 import './chat-friends.scss'
-///home/mukul/mukul/messenger/messenger-client/src/assets/emptyProfile.webp
 import defaultPic from '../../../../../../assets/emptyProfile.webp'
+import { ArrowBackIosIcon } from '../../../../../../shared/material-modules'
 export default function ChatFriendsRender() {
     return (
         <div className="ChatFriendsRender">
             <div className="search-friends">
-                <p>Search</p>
+                <div className="search-chat-bar">
+                    <p>Search</p>
+                    <div className="hide-friends">
+                        <ArrowBackIosIcon onClick={() => {
+                            window.document?.getElementById('chat-friends')?.classList?.remove('chat-render-showFriends')
+                        }}/>
+                    </div>
+                </div>
                 <input type="text" className="default-input" placeholder="Enter Friend Name..."/>
             </div>
             <div className="chat-friends-circle">

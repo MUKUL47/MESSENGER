@@ -1,8 +1,9 @@
 .chat-render{
     min-height: calc(100vh - 100px);
-    background: #d7eafa;
-    margin: 10px auto;
-    padding: 10px;
+    background: none;
+    border-radius: 5px;
+    margin: 5px auto;
+    padding: 10px 0;
     gap: 10px;
     display: flex;
 
@@ -10,6 +11,8 @@
         background-color: #FFF;
         padding: 10px;
         border-radius: 5px;
+        box-shadow: 1px 1px 4px 2px #00000070;
+        // box-shadow: 4px 6px 8px 1px #888;
 
         div{
             // height: 100%;
@@ -18,8 +21,48 @@
     .chat-render--chatfriends{
         flex: .3;
     }
+    .chat-render-showFriends{
+        transition: .4s;
+        transform: translateX(0px) !important;
+    }
 
     .chat-render--messagearea{
         flex: .7;
+    }
+    .chat-render--chatfriends-mob{
+        flex: .1;
+        background-color: #FFF;
+        border-radius: 0px 10px 10px 0px;
+        box-shadow: 3px 3px 4px 2px #00000070;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        margin: auto;
+        padding: 10px 0;
+        display: none;
+        cursor: pointer;
+    }
+    .hide-friends{
+        display: none;
+        cursor: pointer;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .chat-render--chatfriends{
+        position: absolute !important;
+        z-index: 5;
+        transform: translateX(-350px);
+        transition: .4s;
+    }
+    .chat-render--messagearea{
+        flex: 1 !important;
+    }
+    .chat-render--chatfriends-mob{
+        display: flex !important;
+    }
+    .hide-friends{
+        display: block !important;
     }
 }

@@ -41,7 +41,9 @@ import { Modal } from '@material-ui/core';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 export {
+    ArrowBackIosIcon,
     ThumbDownIcon,
     ThumbUpIcon,
     MeetingRoomIcon,

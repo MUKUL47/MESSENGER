@@ -1,0 +1,88 @@
+.message-area-render{
+    display: flex;
+    flex-direction: column;
+    grid-gap: 13px;
+
+    .message-profile{
+        box-shadow: 1px 1px 4px 2px #00000070;
+        flex: .125;
+        padding: 5px 15px;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        background-color: #88888857;
+        border-radius: 5px;
+
+        .selected-pro{
+            display: flex;
+            gap: 20px;
+            align-items: center;
+
+            .profile--pic{
+
+                img{
+                    border-radius: 100px;
+                }
+            }
+
+            .profile--name{
+                font-size: 1.5rem;
+                font-family: monospace;
+            }
+        }
+    }
+    .messages-area{
+        max-height: calc(100vh - 320px);
+        overflow: auto;
+        
+        div{
+            display: flex;
+            margin-bottom: 10px;
+
+            p{
+                max-width: 80%;
+                padding: 10px;
+                border : 1px solid rgba(0, 0, 0, 0.082);
+                border-radius: 5px;
+                background-color: #FFF;
+            }
+        }
+        .message-area-me{
+            justify-content: flex-end;
+        }
+    }
+    .send-message-area{
+        max-height: 70px;
+        display: flex;
+        height: 100%;
+        align-items: center;
+        gap: 10px;
+
+        .text-msg-inp{
+            flex: .8;
+            width: 100%;
+        }
+        button{
+            flex: .2 1;
+            border: 1px solid #77777787;
+            border-radius: 5px;
+            font-size: 20px;
+            height: 56px;
+            color: #FFF;
+            background-color: rgb(3, 3, 104);
+            transition: .5s;
+
+            &:hover {
+                transition: .5s;
+                background-color: #090979a8;
+                cursor: pointer;
+            }
+        }
+    }
+    .messages-area, .send-message-area{
+        box-shadow: 1px 1px 4px 2px #0000006b;
+        padding: 10px;
+        background-color: #88888857;
+        border-radius: 3.5px;
+    }
+}

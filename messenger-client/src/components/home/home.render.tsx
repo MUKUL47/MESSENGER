@@ -2,6 +2,7 @@ import React from 'react'
 import {
     Switch,
     Route,
+    BrowserRouter 
 } from "react-router-dom";
 import Routes from '../../utils/routes';
 import Chat from './home-components/chat-section/chat';
@@ -14,11 +15,12 @@ export default function HomeRender() {
             <div className="navbar">
                 <Navbar />
             </div>
-            <Switch>
+            <BrowserRouter>
                 <Route exact path={Routes.home} component=
                     {() =>
                         <div className="chatsection" >
-                            <Chat />
+                            <Request />
+                            {/* <Chat /> */}
                         </div>
                     }>
                 </Route>
@@ -29,7 +31,7 @@ export default function HomeRender() {
                         </div>
                     }>
                 </Route>
-            </Switch>
+            </BrowserRouter>
         </div>
     )
 }

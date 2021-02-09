@@ -5,7 +5,7 @@ export default class Routes {
     public static register = '/register';
     public static profile = '/profile';
     public static thridPartyLogin = '/thirdpartylogin';
-    public static search = Routes.home + '/search';
-    public static requests = Routes.home + '/requests';
+    public static search = '/search';
+    public static requests =  '/requests';
     public static default = '/';
 }

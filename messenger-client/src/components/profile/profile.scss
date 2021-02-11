@@ -1,24 +1,30 @@
 .profile-layout{
-    background: #39aeff;
+    background: #dfe9ff;
     min-height: 100vh;
-
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    
     #heading{
         text-align: center;
-        transform: translateY(10vh);
-        font-size: 30px;
+        // transform: translateY(10vh);
+        padding-bottom: 20px;
         font-weight: 600;
+        font-family: sans-serif;
+        font-size: 35px;
     }
 
     .profile{
-        margin: auto;
-        width: 40%;
+        width: 500px;
         text-align: center;
         background-color: #fff;
-        transform: translateY(12vh);
         border-radius: 7.5px;
 
         .profile-form{
             padding: 20px;
+            box-shadow: 0px 1px 5px 1px #888;
+            border-radius: 10px;
 
             .profile-img{
                 position: relative;
@@ -29,6 +35,8 @@
                     left: 100%;
                     font-weight: bold;
                     cursor: pointer;
+                    font-family: monospace;
+                    font-size: 18px;
                 }
 
                 img{
@@ -77,6 +85,6 @@
 
 @media only screen and (max-width: 610px) {
     .profile{
-        width: 80% !important;
+        width: 90% !important;
     }
 }

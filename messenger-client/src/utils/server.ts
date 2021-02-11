@@ -79,4 +79,11 @@ export default class API{
         })
     }
 
+    public static getNetwork(type : string, start : number = 0, count : number = 10) : Promise<any> {
+        return new Promise((resolve, reject)=>{
+            const url = sR.BASE+sR.SOCIAL.network+type+`?start=${start}&count=${count}`
+            axios.get(url).then((response: AxiosRequestConfig) => resolve(response)).catch(e => reject(Utils.parseError(e)))
+        })
+    }
+
 }

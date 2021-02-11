@@ -36,6 +36,7 @@ export default function Profile() {
     }
     const getProfile = async () => {
         document.title = 'Messenger - Profile';
+        console.log(userStore);
         if (BermudaTriangle.isFree()) {
             history.push(Routes.login);
         }
@@ -45,18 +46,16 @@ export default function Profile() {
                 const profileResponse: any = await API.getProfile();
                 const profile = profileResponse.data?.message;
                 setState({ loading: false })
+                let dispatchData = {}
                 if (profile.displayName) {
-                    const blob = null//`${profile.image_blob}` == 'null' ? null : profile.image_blob;
-                    const dispatchData = { name: profile.displayName, image: null }
-                    dispatch({ type : actions.STORE_USER, data : dispatchData })
-                    setState({ loading: false, name: profile.displayName, blob: blob, user: profile.identity })
+                    // const blob = null//`${profile.image_blob}` == 'null' ? null : profile.image_blob;
+                    dispatchData = { name: profile.displayName, image: null , identity : profile.identity }
                 } else {
-                    const dispatchData = { name: profile.displayName, id: profile.userId, identity : profile.identity }
-                    dispatch({ type : actions.STORE_USER, data : dispatchData })
-                    setState({ loading: false, name: profile.displayName, blob: null, user: profile.identity })
-                    // toastMessage.next({ type: false, message: 'Profile not set' })
+                    dispatchData = { name: profile.displayName, id: profile.userId, identity : profile.identity }
                 }
-            } catch (e) {
+                setState({ loading: false, name: profile.displayName, blob: null, user: profile.identity })
+                dispatch({ type : actions.STORE_USER, data : dispatchData})
+                } catch (e) {
                 setState({ loading: false })
                 toastMessage.next({ type: false, message: e })
             }

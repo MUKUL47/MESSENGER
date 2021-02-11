@@ -11,7 +11,7 @@ const routes =  {
     SOCIAL : {
         search : '/social/search',
         action : '/social/action/:type/:targetUser',
-        network : '/social/network/:type'
+        network : '/social/network/'
     },
     MESSAGE : '/messages',
     clientAccessDenied: 'Session expired login again'

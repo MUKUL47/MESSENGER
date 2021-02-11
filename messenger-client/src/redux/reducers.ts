@@ -1,7 +1,6 @@
 import { IAction } from "../interfaces/redux"
 import actions from "./actions"
 function userStore(store = {}, action : IAction){
-    console.log(store)
     if(actions.STORE_USER){
         return { ...store, ...action.data }
     }

@@ -184,15 +184,20 @@ export class Mysql{
             try{
                 if(actionType === 'send'){
                     const isInvalid  = await Mysql.queryPromise(`
-                    SELECT userId FROM social WHERE 
+                    SELECT userId, type FROM social WHERE 
                             userId='${id}' AND targetId='${targetUserId}' 
                             OR 
                             targetId='${id}' AND userId='${targetUserId}' 
                             AND type='FRIEND' OR type='PENDING'
                     `)
-                    // if(isInvalid[0]?.userId){
-                    //     return reject('Invalid operation(SEND) for this user')
-                    // }
+                    if(isInvalid[0]?.userId){
+                        if(isInvalid[0].type === 'FRIEND'){
+                            reject('This user is already your friend')
+                        }else{
+                            reject('Request already sent')
+                        }
+                        return
+                    }
                     await Mysql.queryPromise(`INSERT INTO social (userId, targetId, type, updatedAt) VALUES 
                     ('${id}', '${targetUserId}', 'PENDING', '${new Date().valueOf()}')`)
                     resolve(true)

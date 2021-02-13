@@ -9,7 +9,14 @@ import Chat from './home-components/chat-section/chat';
 import Navbar from './home-components/navbar/navbar';
 import Request from './home-components/requests/request';
 import './home.scss'
-export default function HomeRender() {
+import emptyProfile from '../../assets/empty-profile.svg'
+import { CircularProgress } from '@material-ui/core';
+export default function HomeRender(props : any) {
+    const {
+        profileReady,
+        isLoading
+    } = props;
+    //profileReady
     return (
         <div className="home-section">
             <div className="navbar">
@@ -23,7 +30,20 @@ export default function HomeRender() {
                     </Route>
                     <Route path={Routes.home}>
                         <div className="chatsection" >
-                            <Chat />
+                            {
+                                profileReady && !isLoading? 
+                                <Chat /> :
+                                <div className="empty-profile">
+                                    {
+                                        isLoading ?
+                                        <CircularProgress /> : 
+                                        <>
+                                            <img src={emptyProfile} alt=""/>
+                                            <p>Profile is Empty</p>
+                                        </>
+                                    }
+                                </div>
+                            }
                         </div>
                     </Route>
                 </Switch>

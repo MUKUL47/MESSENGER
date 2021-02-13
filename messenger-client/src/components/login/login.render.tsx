@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import namasteImg from '../../assets/namaste.png'
 import googleImg from '../../assets/google.png'
 import './login.scss'
-import { TextField, Button, CircularProgress } from '../../shared/material-modules';
+import { TextField, Button, CircularProgress, Switch } from '../../shared/material-modules';
 import Utils from '../../shared/utils';
 export default function LoginRender(props: any) {
     const { isLoading, authenticate } = props;
@@ -33,7 +33,13 @@ export default function LoginRender(props: any) {
                                 }}
                             />
                             <div className="login-toggle">
-                                <input type="checkbox" value={(loginType === 'Login') as any} onClick={() => setLoginType(loginType === 'Login' ? 'Register' : 'Login')}/>
+                                <Switch
+                                    checked={(loginType === 'Login') as any}
+                                    onClick={() => setLoginType(loginType === 'Login' ? 'Register' : 'Login')}
+                                    color="primary"
+                                    name="checkedB"
+                                    inputProps={{ 'aria-label': 'primary checkbox' }}
+                                />
                                 <p>{loginType === 'Login' ? 'Register' : 'Login'}</p>
                             </div>
                             <Button

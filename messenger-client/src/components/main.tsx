@@ -11,7 +11,7 @@ import Home from './home/home'
 import Login from './login/login'
 import './main.scss'
 import Profile from './profile/profile';
-import { ThirdPartyLogin } from './thridpartylogin/thridpartylogin';
+import ThirdPartyLogin from './thridpartylogin/thridpartylogin';
 import ToastMessage from '../shared/components/toast/toast';
 import BackdropLoader from '../shared/components/backdrop/backdrop';
 import { toastMessage } from '../shared/utils';

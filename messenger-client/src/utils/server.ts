@@ -10,7 +10,7 @@ export default class API{
                 if (!this.nonSecretEndPoints.includes(config.url)) {
                     const token = BermudaTriangle.getTriangle('token');
                     if (!token) {
-                        toastMessage.next({ message: 'Session timed out', type: false, duration: 5000, logout: true });
+                        toastMessage.next({ message: 'Re-Login again', type: false, duration: 5000, logout: true });
                         return;
                     }
                     config.headers = { ...config.headers, token: token, type: "WEB-MESSENGER" };
@@ -93,13 +93,20 @@ export default class API{
         })
     }
 
-    public static networkAction(type : string, targetId : string, isAcceptOrReject ?: { answer : 'accept' | 'reject' }) : Promise<any> {
+    public static networkAction(type : string, targetId : string, isAcceptOrReject ?: 'accept' | 'reject') : Promise<any> {
         let url = sR.BASE+sR.SOCIAL.action+`${type}/${targetId}`
-        if(isAcceptOrReject){
-            url += `&answer=${isAcceptOrReject.answer}`
+        if(type === 'respond'){
+            url += `?answer=${isAcceptOrReject}`
         }
         return new Promise((resolve, reject)=>{
             axios.get(url).then((response: AxiosRequestConfig) => resolve(response)).catch(e => reject(Utils.parseError(e)))
+        })
+    }
+
+    public static authorize(type : string, token : string) : Promise<any>{
+        return new Promise((resolve, reject)=>{
+            const headers = { loginType : type, token : token }
+            axios.get(sR.BASE+sR.AUTHORIZE, { headers : headers }).then((response: AxiosRequestConfig) => resolve(response)).catch(e => reject(Utils.parseError(e)))
         })
     }
 

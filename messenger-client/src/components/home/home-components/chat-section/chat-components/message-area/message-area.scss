@@ -91,3 +91,13 @@
         border-radius: 3.5px;
     }
 }
+.no-user-selected{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 250px);
+    img{
+        width: 200px;
+        height: 200px;
+    }
+}

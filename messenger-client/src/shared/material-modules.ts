@@ -37,12 +37,13 @@ import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
 import CloseIcon from '@material-ui/icons/Close';
 import ReplayIcon from '@material-ui/icons/Replay';
 import Backdrop from '@material-ui/core/Backdrop';
-import { Modal } from '@material-ui/core';
+import { Modal, Switch } from '@material-ui/core';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 export {
+    Switch,
     ArrowBackIosIcon,
     ThumbDownIcon,
     ThumbUpIcon,

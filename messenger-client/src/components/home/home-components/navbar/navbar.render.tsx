@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
+import BermudaTriangle from '../../../../shared/localstorage.service';
 import { HomeIcon, PersonIcon, SearchIcon, MeetingRoomIcon } from '../../../../shared/material-modules'
 import Routes from '../../../../utils/routes';
 import './navbar.scss'
 export default function NavbarRender() {
+    const history = useHistory()
     const [navbarContext, setNavbarContext] = useState<string>('')
     useEffect(() => {
         const path: string[] = window.location.pathname.split('/');
@@ -13,6 +15,10 @@ export default function NavbarRender() {
         const path: string[] = window.location.pathname.split('/');
         setNavbarContext(path[path.length - 1])
     },[navbarContext])
+    const logout = () => {
+        BermudaTriangle.clearTriangle();
+        history.push('/login')
+    }
     const onNavSelect = (type: string) : void => setNavbarContext(type)
     return (
         <div className="navbar">
@@ -31,7 +37,7 @@ export default function NavbarRender() {
                         Search
                     </span>
                 </Link>
-                <div className="nav--item">
+                <div className="nav--item" onClick={logout}>
                     <MeetingRoomIcon/>
                     <span>Logout</span>
                 </div>

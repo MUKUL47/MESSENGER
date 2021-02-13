@@ -1,6 +1,8 @@
+import { AxiosRequestConfig } from "axios";
+
 export default interface IApiResponse{
     statusCode : number,
-    message : Object | string,
+    message : any,
     timestamp : string,
     route : string
 }
@@ -9,14 +11,14 @@ export interface IFriend{
     name : string,
     image : any,
     Messages : IMessage[],
-    index : number;
 }
 export interface IMessage{
     id : string,
     ownerId : string,
     friendId : string,
     date : string,
-    message : string
+    message : string,
+    status : string
 }
 export interface IRequest{
     createdAt : string,
@@ -41,12 +43,32 @@ export interface IFriendRequestClass{
     pages : { count : number, start : number }
     addRequests : (user : IRequest | IRequest[]) => any
     resetRequests : () => any
+    searchedAlready : () => boolean;
+    setSearch : () => IRequestSent;
 }
 export interface IRequestSentClass{
     setStatus : (id : string, val : boolean, deleteLater ?:boolean) => IRequestSent
     searchToggle : (val : boolean) => IRequestSent
     combineAll : (functions : string[], args : any[]) => IRequestSent
     pages : { count : number, start : number }
-    resetRequests : () => any
-    addRequests : (user : IRequest | IRequest[]) => any
+    resetRequests : () => IRequestSent
+    addRequests : (user : IRequest | IRequest[]) => IRequestSent
+    searchedAlready : () => boolean;
+    setSearch : () => IRequestSent;
+}
+export interface FriendsClass{
+    getFriend : (id : string, all ?:boolean) => IFriend
+    getMessage : (friendId : string, messageId ?:string) => IMessage
+    getActiveFriend : () => IFriend
+
+    // setMessageStatus : (friendId : string, messageId : string, status : string) => IFriend[]
+    // setFriendActive : (id : string) => IFriend[]
+    // addFriends : (friends : IFriend[]) => IFriend[]
+    // addFriend : (friend : IFriend) => IFriend[]
+    // addMessage : (friendId : string, message :IMessage) => IFriend[]
+    // addMessages : (friendId : string, messages :IMessage[]) => IFriend[]
+    // combineAll : (functions : string[], args : any[]) => IRequestSent
+}
+export interface IResponse extends AxiosRequestConfig{
+    data : IApiResponse
 }

@@ -5,3 +5,8 @@ export default {
     SHOW_LOADER: 'SHOW_LOADER',
     STOP_LOADER : 'STOP_LOADER'
 }
+const MESSAGE_ACTIONS = {
+    ADD_FRIEND : 'ADD_FRIEND',
+    ADD_FRIENDS : 'ADD_FRIENDS'
+}
+export {MESSAGE_ACTIONS};

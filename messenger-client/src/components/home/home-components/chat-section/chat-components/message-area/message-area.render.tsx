@@ -2,8 +2,10 @@ import React from 'react'
 import defaultPic from '../../../../../../assets/emptyProfile.webp'
 import './message-area.scss'
 import { MoreVertIcon, TextField } from '../../../../../../shared/material-modules'
+import selectUser from '../../../../../../assets/select-user.svg'
 export default function MessageAreaRender() {
     return (
+        false ?
         <div className="message-area-render">
             <div className="message-profile">
                 <div className="selected-pro">
@@ -48,6 +50,10 @@ export default function MessageAreaRender() {
                 />
                 <button className="default-input">Send</button>
             </div>
+        </div>
+        : <div className="message-area-render no-user-selected">
+            <img src={selectUser} alt=""/>
+            <p>Select a Friend and Start Chatting!</p>
         </div>
     )
 }

@@ -1,13 +1,22 @@
 import { IAction } from "../interfaces/redux"
-import actions from "./actions"
+import Friend, { Message } from "../shared/services/messages.reducer"
+import actions, { MESSAGE_ACTIONS } from "./actions"
+const message = new Message()
 function userStore(store = {}, action : IAction){
     if(actions.STORE_USER){
         return { ...store, ...action.data }
     }
     return store
 }
-function messagesStore(store = [], action : IAction){
-    return store
+function messagesStore(friend = new Friend(), action : IAction){
+    const args = action.data;
+    if(action.type === MESSAGE_ACTIONS.ADD_FRIEND){
+        friend.addFriend(args)
+    }
+    else if(action.type === MESSAGE_ACTIONS.ADD_FRIENDS){
+        friend.addFriends(args)
+    }
+    return friend
 }
 function toastStore(store = {}, action : IAction){
     if(action.type === actions.TOAST_MESSAGE){

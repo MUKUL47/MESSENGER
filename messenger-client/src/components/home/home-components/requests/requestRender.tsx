@@ -3,6 +3,7 @@ import { SearchIcon, QueryBuilderIcon, SendIcon, CheckCircleOutlineIcon, CancelI
 import './request.scss'
 import emptyProfile from '../../../../assets/emptyProfile.webp'
 import noReqFoundPng from '../../../../assets/no-requests-found.png'
+import searchUsersFirst from '../../../../assets/search-users.png'
 import { IFriendRequest, IRequestSent, ISearchRequest } from '../../../../interfaces/data-models';
 export default function RequestRender(props : any) {
     const { 
@@ -106,7 +107,7 @@ function SentRequests(props : any){
 }
 
 function SearchRequests(props : any){
-    const { searchRequest, sendFriendRequest} = props;
+    const { searchRequest , sendFriendRequest } = props;
     const totalRequests = searchRequest.getRequests() || [];
     return(
         !searchRequest.isSearching() ?
@@ -140,13 +141,12 @@ function SearchRequests(props : any){
             :
             <div className="no-sent-req">
                 <div>
-                    <img src={noReqFoundPng} alt=""/>
+                    <img src={!searchRequest.searched ? searchUsersFirst : noReqFoundPng} alt=""/>
                 </div>
-                <p>No User found</p>
+                <p>{!searchRequest.searched ? 'Search a user by name' : 'No user found'}</p>
             </div> : 
             <div className="no-sent-req">
-            {/* Searching... */}
-            <CircularProgress />
+                <CircularProgress />
             </div>
     )
 }

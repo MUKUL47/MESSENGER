@@ -6,7 +6,6 @@ import SearchRequest from '../../../../shared/services/request.search'
 import { setGlobalToggleFunc, toastMessage } from '../../../../shared/utils'
 import API from '../../../../utils/server'
 import RequestRender from './requestRender'
-import { createJsxClosingElement } from 'typescript'
 export default function Request() {
     //sent requests
     const requestContextData = {
@@ -27,26 +26,34 @@ export default function Request() {
             // fetchRequest(tab)
         }
     }
-    function acceptFriendRequest(id : string){
-        setRequestContext({ friendRequest : friendRequestData.setApproveStatus(true, id) })
-        setTimeout(() => {
-            toastMessage.next({ type : true, message : `Request approved` })
-            setRequestContext({ friendRequest : friendRequestData.setApproveStatus(false, id, true) })
-        },2000)
-    }
-    function rejectFriendRequest(id : string){
+    async function acceptFriendRequest(id : string){
         setRequestContext({ friendRequest : friendRequestData.setRejectStatus(true, id) })
-        setTimeout(() => {
+        try{
+            await API.networkAction('respond', id, 'accept')
+            toastMessage.next({ type : true, message : `Request approved` })
+            setRequestContext({ friendRequest : friendRequestData.setRejectStatus(false, id, true) })
+        }catch(e){
+            toastMessage.next({ type : false, message : e })
+            setRequestContext({ friendRequest : friendRequestData.setRejectStatus(false, id) })
+        }
+    }
+    async function rejectFriendRequest(id : string){
+        setRequestContext({ friendRequest : friendRequestData.setRejectStatus(true, id) })
+        try{
+            await API.networkAction('remove', id)
             toastMessage.next({ type : true, message : `Request rejected` })
             setRequestContext({ friendRequest : friendRequestData.setRejectStatus(false, id, true) })
-        },2000)
+        }catch(e){
+            toastMessage.next({ type : false, message : e })
+            setRequestContext({ friendRequest : friendRequestData.setRejectStatus(false, id) })
+        }
     }
     async function sendFriendRequest(id : string){
         setRequestContext({ searchRequest : searchRequestData.setStatus(id, true) })
         try{
             await API.networkAction('send', id)
             toastMessage.next({ type : true, message : `Friend request sent` })
-            setRequestContext({ searchRequest : searchRequestData.setStatus(id, false, true) })
+            setRequestContext({ searchRequest : searchRequestData.setStatus(id, false) })
         }catch(e){
             toastMessage.next({ type : false, message : e })
             setRequestContext({ searchRequest : searchRequestData.setStatus(id, false) })
@@ -64,9 +71,10 @@ export default function Request() {
         }
     }
     async function searchUsers(user ?: string){
+        const isFirstTime = requestContextData.searchInput.trim().length === 0;
         const combines = {
-            func : ['searchToggle', user ? 'resetCount' : 'incrementCount'],
-            args : [[true],[]] 
+            func : ['searchToggle', user ? 'resetCount' : 'incrementCount', isFirstTime ? 'setSearch' : ''],
+            args : [[true],[],[]] 
         }
         setRequestContext({ searchRequest : searchRequestData.combineAll(combines.func, combines.args), isLoading : true })
         try{

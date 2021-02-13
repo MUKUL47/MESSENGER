@@ -3,6 +3,7 @@ export default class SearchRequest{
     private requests :ISearchRequest[]= []
     private searching : boolean = false;
     private pages = { start : 0, count : 10 }
+    private searched = false;
     //getters
     public getRequests(index ?: number){
         return index ? this.requests[index] : this.requests
@@ -17,7 +18,14 @@ export default class SearchRequest{
     public isSearching(){
         return this.searching;
     }
+    public searchedAlready(){
+        return this.searched
+    }
     //setters
+    public setSearch(){
+        this.searched = true;
+        return this
+    }
     public incrementCount(){
         this.pages.start += 10;
         this.pages.count += 10;

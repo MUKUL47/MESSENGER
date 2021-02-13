@@ -59,27 +59,29 @@ export default class RegisterLoginController extends Controller{
     public async authorize(req : Request, resp : Response){
         try{
             const { loginType, token } = req.headers as { loginType : string, token : string };
-            if(!loginType || !token){
+            console.error(`loginType authorize : ${loginType}, ${token}`)
+            if(!token){
                 return Controller.generateController(resp, errorCodesUtil.UNAUTHORIZED, errorProperties.UNAUTHORIZED, req.originalUrl)
             }
-            const identity = await this.thirdPartLogin(loginType, token)
+            const identity = await RegisterLoginController.thirdPartLogin(loginType, token)
             const hashedIdentity = crypto.SHA256(identity).toString();
             const userVerify =  await Mysql.getCurrentUser_register(identity, true);
             const authToken = AuthService.signIn(identity, true) as string;
             const refreshToken : string = generateKey(24);
             RedisInstance.setKey(`REFRESH-${refreshToken}`, `${refreshToken}-${new Date().valueOf()}-${identity}`)
             if(userVerify[0]?.userId){
-                return Controller.generateController(resp, errorCodesUtil.SUCCESS , { token : authToken, refresh_token : refreshToken }, request.originalUrl)
+                return Controller.generateController(resp, errorCodesUtil.SUCCESS , { token : authToken, refresh_token : refreshToken, identity, id :hashedIdentity }, request.originalUrl)
             }
             await Mysql.createOrUpdate_user(hashedIdentity, identity)
-            Controller.generateController(resp, errorCodesUtil.CREATED, { token : authToken, refresh_token : refreshToken }, request.originalUrl)
+            Controller.generateController(resp, errorCodesUtil.CREATED, { token : authToken, refresh_token : refreshToken, identity, id :hashedIdentity }, request.originalUrl)
         }catch(e){
+            console.error(`RegisterLoginController authorize : ${e}`)
             logger.error(`RegisterLoginController authorize : ${e}`)
             Controller.generateController(resp, errorCodesUtil.UNAUTHORIZED, errorProperties.UNAUTHORIZED, req.originalUrl)
         }
     }
 
-    private async thirdPartLogin(type : string, token : string) : Promise<any>{
+    private static async thirdPartLogin(type : string, token : string) : Promise<any>{
         return new Promise((resolve, reject) => {
             request(routes.GOOGLE, { headers: { Authorization: "Bearer " + token, "content-type": "application/x--www-form-urlencoded"}}, (err, response, body) => {
                 try{
@@ -89,6 +91,7 @@ export default class RegisterLoginController extends Controller{
                     }
                     resolve(JSON.parse(body.toString('utf-8'))['emailAddress'])
                 }catch(err){
+                    console.error(`RegisterLoginController thirdPartLogin : ${err}`)
                     logger.error(`RegisterLoginController thirdPartLogin : ${err}`)
                     reject(err)
                 }

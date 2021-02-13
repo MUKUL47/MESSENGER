@@ -26,14 +26,14 @@ export default class LoginRegister{
 
         this.serviceApp.get(
             routes.AUTHORIZE,
-            AuthService.authMiddleware,
-            registerLoginController.authenticate
+            // AuthService.authMiddleware,
+            registerLoginController.authorize
         )
 
         this.serviceApp.get(
             routes.LOGOUT,
             AuthService.authMiddleware,
-            registerLoginController.authorize
+            registerLoginController.logout
         )
 
         this.serviceApp.get(

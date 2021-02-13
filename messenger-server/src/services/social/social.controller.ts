@@ -30,7 +30,7 @@ export default class SocialController extends Controller{
             if(targetUser === superUser.userId){
                return Controller.generateController(resp, errorCodesUtil.BAD_REQUEST, 'Invalid action for this user', req.originalUrl)
             }
-            else if(type === 'respond' && !answer || typeof answer !== 'string' || answer.trim().length === 0){
+            else if(type === 'respond' && !answer){
                return Controller.generateController(resp, errorCodesUtil.BAD_REQUEST, 'Answer missing for the response action', req.originalUrl)
             }
             await Mysql.setAction(superUser.userId, targetUser, type, answer)

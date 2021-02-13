@@ -51,7 +51,7 @@ export default function Profile() {
                     // const blob = null//`${profile.image_blob}` == 'null' ? null : profile.image_blob;
                     dispatchData = { name: profile.displayName, image: null , identity : profile.identity }
                 } else {
-                    dispatchData = { name: profile.displayName, id: profile.userId, identity : profile.identity }
+                    dispatchData = { name: profile.displayName, id: profile.id, identity : profile.identity }
                 }
                 setState({ loading: false, name: profile.displayName, blob: null, user: profile.identity })
                 dispatch({ type : actions.STORE_USER, data : dispatchData})

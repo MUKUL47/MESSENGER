@@ -18,6 +18,15 @@ export default class SearchRequest{
         return this.searching;
     }
     //setters
+    public incrementCount(){
+        this.pages.start += 10;
+        this.pages.count += 10;
+        return this
+    }
+    public resetCount(){
+        this.pages = { start : 0, count : 10 }
+        return this
+    }
     public removeRequest(id : string){
         const reqIdx = this.requests.findIndex(r => r.id === id);
         if(reqIdx > -1){
@@ -39,15 +48,27 @@ export default class SearchRequest{
         return this;
     }
     public addRequest(request : ISearchRequest){
-        const req = this.getRequest(request.id)
-        if(req){
-            this.requests.splice(request.index, 1)
+        const reqIdx = this.requests.findIndex(r => r.id === request.id);
+        if(reqIdx > -1){
+            this.requests.splice(reqIdx, 1)
         }
-        this.requests.push({...request, index : this.requests.length })
+        this.requests.push({...request})
         return this;
     }
-    public addRequests(requests : ISearchRequest[]){
+    public addRequests(requests : ISearchRequest[], isFirst ?: boolean){
+        if(isFirst){
+            this.requests = requests
+            return this
+        }
         requests.forEach(req => this.addRequest(req))
         return this;
+    }
+    public resetRequests(){
+        this.requests = []
+        return this
+    }
+    public combineAll(func : any[], args : any[]){
+        func.forEach((f, i) => (this as any)[f]?.(...args[i]))
+        return this
     }
 }

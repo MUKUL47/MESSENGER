@@ -86,4 +86,21 @@ export default class API{
         })
     }
 
+    public static searchUsers(userName : string, start : number = 0, count : number = 10) : Promise<any>{
+        return new Promise((resolve, reject)=>{
+            const url = sR.BASE+sR.SOCIAL.search+`?name=${userName}&count=${count}&start=${start}`
+            axios.get(url).then((response: AxiosRequestConfig) => resolve(response)).catch(e => reject(Utils.parseError(e)))
+        })
+    }
+
+    public static networkAction(type : string, targetId : string, isAcceptOrReject ?: { answer : 'accept' | 'reject' }) : Promise<any> {
+        let url = sR.BASE+sR.SOCIAL.action+`${type}/${targetId}`
+        if(isAcceptOrReject){
+            url += `&answer=${isAcceptOrReject.answer}`
+        }
+        return new Promise((resolve, reject)=>{
+            axios.get(url).then((response: AxiosRequestConfig) => resolve(response)).catch(e => reject(Utils.parseError(e)))
+        })
+    }
+
 }

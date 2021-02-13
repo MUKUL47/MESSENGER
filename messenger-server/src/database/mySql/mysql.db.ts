@@ -142,7 +142,7 @@ export class Mysql{
     public static getProfile(id : string | string[]) : Promise<any>{
         return new Promise((resolve, reject) => {
             const custom = typeof id === 'object' ? id.map(i => `userId='${i}'`).join(' OR ') : `userId='${id}'`
-            connection.query(`SELECT userId as userId, name as displayName FROM profile WHERE ${custom}`, 
+            connection.query(`SELECT userId as id, name as displayName FROM profile WHERE ${custom}`, 
             (err : MysqlError, results : any[]) => {
                 if(err){
                     reject(err.message)
@@ -190,9 +190,9 @@ export class Mysql{
                             targetId='${id}' AND userId='${targetUserId}' 
                             AND type='FRIEND' OR type='PENDING'
                     `)
-                    if(isInvalid[0]?.userId){
-                        return reject('Invalid operation(SEND) for this user')
-                    }
+                    // if(isInvalid[0]?.userId){
+                    //     return reject('Invalid operation(SEND) for this user')
+                    // }
                     await Mysql.queryPromise(`INSERT INTO social (userId, targetId, type, updatedAt) VALUES 
                     ('${id}', '${targetUserId}', 'PENDING', '${new Date().valueOf()}')`)
                     resolve(true)

@@ -18,11 +18,12 @@ export interface IMessage{
     date : string,
     message : string
 }
-interface IRequest{
+export interface IRequest{
+    createdAt : string,
     id : string,
-    name : string,
+    displayName : string,
+    identity : string,
     image ?:any;
-    index : number;
 }
 export interface IRequestSent extends IRequest{
     isRevoking : boolean,
@@ -37,8 +38,15 @@ export interface ISearchRequest extends IRequest{
 export interface IFriendRequestClass{
     setApproveStatus : (status : boolean, id : string, deleteLater ?:boolean) => IFriendRequest
     setRejectStatus : (status : boolean, id : string, deleteLater ?:boolean) => IFriendRequest
+    pages : { count : number, start : number }
+    addRequests : (user : IRequest | IRequest[]) => any
+    resetRequests : () => any
 }
 export interface IRequestSentClass{
     setStatus : (id : string, val : boolean, deleteLater ?:boolean) => IRequestSent
     searchToggle : (val : boolean) => IRequestSent
+    combineAll : (functions : string[], args : any[]) => IRequestSent
+    pages : { count : number, start : number }
+    resetRequests : () => any
+    addRequests : (user : IRequest | IRequest[]) => any
 }

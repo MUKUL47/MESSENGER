@@ -30,12 +30,16 @@ export default class SentRequest{
         }
         return this;
     }
+    public resetRequests(){
+        this.requests = []
+        return this
+    }
     public addRequest(request : IRequestSent){
-        const req = this.getRequest(request.id)
-        if(req){
-            this.requests.splice(request.index, 1)
+        const reqIdx = this.requests.findIndex(r => r.id === request.id);
+        if(reqIdx > -1){
+            this.requests.splice(reqIdx, 1)
         }
-        this.requests.push({...request, index : this.requests.length })
+        this.requests.push(request)
         return this;
     }
     public addRequests(requests : IRequestSent[]){

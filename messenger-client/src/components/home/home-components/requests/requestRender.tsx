@@ -1,27 +1,21 @@
 import React, { useState } from 'react'
-import { SearchIcon, QueryBuilderIcon, Pagination, SendIcon, CheckCircleOutlineIcon, CancelIcon, TextField, CircularProgress } from '../../../../shared/material-modules'
+import { SearchIcon, QueryBuilderIcon, SendIcon, CheckCircleOutlineIcon, CancelIcon, TextField, CircularProgress } from '../../../../shared/material-modules'
 import './request.scss'
 import emptyProfile from '../../../../assets/emptyProfile.webp'
+import noReqFoundPng from '../../../../assets/no-requests-found.png'
 import { IFriendRequest, IRequestSent, ISearchRequest } from '../../../../interfaces/data-models';
 export default function RequestRender(props : any) {
     const { 
         tab, 
         isLoading, 
-        sentRequest, 
         changeNav, 
-        sentFriendRequest, 
-        friendRequest, 
-        acceptFriendRequest, 
-        rejectFriendRequest,
-        searchRequest,
-        sendFriendRequest,
         searchUsers
     } = props;
     const [searchInp, setSearchInp] = useState<string>('')
     function onSearchKeyDown(e : any){
         if (e.key === 'Enter' && searchInp.trim().length > 0) {
             searchUsers(searchInp)
-            setSearchInp('')
+            // setSearchInp('')
         }
     }
     return (
@@ -57,7 +51,8 @@ export default function RequestRender(props : any) {
                             <SearchRequests {...props}/>
                         </> :  
                         tab === 'requests' ? <PendingRequests {...props}/> : null 
-                    : <p className="_loading">Loading...</p>
+                    : <p className="_loading">
+                    <CircularProgress /></p>
                 }
             </div>
         </div>
@@ -65,7 +60,7 @@ export default function RequestRender(props : any) {
 }
 
 function SentRequests(props : any){
-    const { sentRequest, sentFriendRequest } = props;
+    const { sentRequest, cancelFriendRequest } = props;
     const totalRequests = sentRequest.getRequests() || [];
     return(
                 totalRequests.length > 0 ?
@@ -75,15 +70,15 @@ function SentRequests(props : any){
                         <div className="sentrequests-item">
                             <div className="request-profile">
                                 <div className="requestitem-profile">
-                                    <img src={emptyProfile} />
+                                    <img src={emptyProfile} alt={request.displayName}/>
                                 </div>
                                 <div className="requestitem-profilename">
-                                    {request.name}
+                                    {request.displayName}
                                 </div>
                             </div>
                             <div className="requestitem-actions">
                                 <button disabled={request.isRevoking} 
-                                        onClick={() => sentFriendRequest(request.id)}
+                                        onClick={() => cancelFriendRequest(request.id)}
                                 >
                                     {
                                         !request.isRevoking ?
@@ -102,7 +97,10 @@ function SentRequests(props : any){
         </div>
             :
             <div className="no-sent-req">
-            No Sent Request found
+                <div>
+                    <img src={noReqFoundPng} alt=""/>
+                </div>
+                <p>No Sent Request found</p>
             </div>
     )
 }
@@ -123,7 +121,7 @@ function SearchRequests(props : any){
                                 <img src={emptyProfile} />
                             </div>
                             <div className="requestitem-profilename">
-                                {user.name}
+                                {user.displayName}
                             </div>
                         </div>
                         <div className="requestitem-actions">
@@ -141,10 +139,14 @@ function SearchRequests(props : any){
         </div>
             :
             <div className="no-sent-req">
-            No User Found
+                <div>
+                    <img src={noReqFoundPng} alt=""/>
+                </div>
+                <p>No User found</p>
             </div> : 
             <div className="no-sent-req">
-            Searching...
+            {/* Searching... */}
+            <CircularProgress />
             </div>
     )
 }
@@ -164,7 +166,7 @@ function PendingRequests(props : any){
                                 <img src={emptyProfile} />
                             </div>
                             <div className="requestitem-profilename">
-                                {request.name}
+                                {request.displayName}
                             </div>
                         </div>
                         <div className="requestitem-actions">
@@ -190,7 +192,10 @@ function PendingRequests(props : any){
         </div>
         :
         <div className="no-sent-req">
-        No Friend Request found
-        </div>
+                <div>
+                    <img src={noReqFoundPng} alt=""/>
+                </div>
+                <p>No Friend Request found</p>
+            </div>
     )
 }

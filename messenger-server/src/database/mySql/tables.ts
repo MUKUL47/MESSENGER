@@ -32,7 +32,7 @@ class MYSQL_TABLE {
     ${MYSQL_TABLE.CTINE}
     social (
         userId VARCHAR(64),
-        targetId VARCHAR(64),
+        targetId VARCHAR(64) PRIMARY KEY,
         type VARCHAR(22),
         updatedAt VARCHAR(24),
         FOREIGN KEY(userId) REFERENCES users(id) ON DELETE SET NULL

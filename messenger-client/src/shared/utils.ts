@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 export const eventEmitter = new Subject<{ event: string, params: any }>();
 export const toggleLoader = new Subject<boolean>();
 export const toastMessage = new Subject<{ type: boolean, message: String, duration?: Number, logout?: boolean }>();
+export const logoutService = new Subject();
 export const setGlobalToggleFunc = (toggle: any, data: any) => {
     const currentKeys = Object.keys(toggle);
     Object.keys(data).forEach(key => {

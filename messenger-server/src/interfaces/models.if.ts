@@ -38,3 +38,7 @@ export interface IMessage{
     createdAt : string
     message : string
 }
+export interface IRedisData{
+    token : string,
+    args ?: any
+}

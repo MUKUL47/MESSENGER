@@ -13,6 +13,10 @@
         background-color: #88888857;
         border-radius: 5px;
 
+        .remove-friend-btn{
+            cursor: pointer;
+        }
+
         .selected-pro{
             display: flex;
             gap: 20px;
@@ -32,7 +36,7 @@
         }
     }
     .messages-area{
-        max-height: calc(100vh - 320px);
+        min-height: calc(100vh - 320px);
         overflow: auto;
         
         div{
@@ -54,6 +58,19 @@
         }
         .message-area-me{
             justify-content: flex-end;
+        }
+
+        .no-messages-f{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 20px;
+            flex-direction: column;
+            img{
+                width: 200px;
+                height: 200px;
+            }
         }
     }
     .send-message-area{

@@ -1,5 +1,6 @@
 import React, { createRef, useState } from 'react'
 import ChatFriends from './chat-components/chat-friends/chat-friends'
+import MessageArea from './chat-components/message-area/message-area'
 import MessageAreaRender from './chat-components/message-area/message-area.render'
 import './chat.scss'
 export default function ChatRender() {
@@ -19,7 +20,7 @@ export default function ChatRender() {
                 <div>S</div>
             </div>
             <div className="chat-render--messagearea">
-                <MessageAreaRender/>
+                <MessageArea/>
             </div>
         </div>
     )

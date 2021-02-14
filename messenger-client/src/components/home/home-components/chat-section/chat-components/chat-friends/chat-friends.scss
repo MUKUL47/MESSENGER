@@ -53,6 +53,12 @@
             }
         }
 
+        .f-c-selected{
+            transition: .35s;
+            background-color: #001a77ef;
+            box-shadow: 1px 1px 4px 3px #888;
+        }
+
         .loading-friends{
             display: flex;
             justify-content: center;

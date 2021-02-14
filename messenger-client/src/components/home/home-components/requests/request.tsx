@@ -70,7 +70,7 @@ export default function Request() {
             toastMessage.next({ type : false, message : e })
         }
     }
-    async function searchUsers(user ?: string){
+    async function searchUsers(user ?: string, isNew ?: boolean){
         const isFirstTime = requestContextData.searchInput.trim().length === 0;
         const combines = {
             func : ['searchToggle', user ? 'resetCount' : 'incrementCount', isFirstTime ? 'setSearch' : ''],
@@ -83,6 +83,10 @@ export default function Request() {
             const c : any = {
                 f : ['searchToggle'],
                 a : [[false]]
+            }
+            if(isFirstTime){
+                c.f.push('resetRequests')
+                c.a.push([])
             }
             if(response?.data?.message.length > 0){
                 c.f.push('addRequests')

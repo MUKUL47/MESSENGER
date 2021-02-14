@@ -8,7 +8,7 @@ import API from '../../../../../../utils/server';
 import ChatFriendsRender from './chat-friends-render'
 export default function ChatFriends() {
     const dispatch = useDispatch()
-    const { friends, activeFriend } = useSelector((s : any) => s['messagesService']) 
+    const { friends, activeFriendId } = useSelector((s : any) => s['messagesService']) 
     const contextData = {
         isLoading : false
     }
@@ -34,12 +34,21 @@ export default function ChatFriends() {
             toastMessage.next({ message : e, type : false })
         }
     }
+    function setActiveFriend(friendId : string){
+        if(activeFriendId === friendId) return
+        dispatch({ type : MESSAGE_ACTIONS.SET_FRIEND_ACTIVE, data : { id : friendId }})
+    }
     useEffect(() => {
         if(friends.length === 0){
             fetchFriends()
         }
     },[])
     return (
-        <ChatFriendsRender {...chatContext} activeFriend={activeFriend} friends={friends}/>
+        <ChatFriendsRender 
+            {...chatContext} 
+            activeFriend={activeFriendId} 
+            friends={friends}
+            setActiveFriend={setActiveFriend}
+        />
     )
 }

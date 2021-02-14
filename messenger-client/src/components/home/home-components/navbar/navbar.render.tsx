@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import BermudaTriangle from '../../../../shared/localstorage.service';
 import { HomeIcon, PersonIcon, SearchIcon, MeetingRoomIcon } from '../../../../shared/material-modules'
+import { logoutService } from '../../../../shared/utils';
 import Routes from '../../../../utils/routes';
 import './navbar.scss'
 export default function NavbarRender() {
@@ -15,10 +16,7 @@ export default function NavbarRender() {
         const path: string[] = window.location.pathname.split('/');
         setNavbarContext(path[path.length - 1])
     },[navbarContext])
-    const logout = () => {
-        BermudaTriangle.clearTriangle();
-        history.push('/login')
-    }
+    const logout = () => logoutService.next()
     const onNavSelect = (type: string) : void => setNavbarContext(type)
     return (
         <div className="navbar">

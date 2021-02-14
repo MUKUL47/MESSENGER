@@ -15,7 +15,7 @@ export default function RequestRender(props : any) {
     const [searchInp, setSearchInp] = useState<string>('')
     function onSearchKeyDown(e : any){
         if (e.key === 'Enter' && searchInp.trim().length > 0) {
-            searchUsers(searchInp)
+            searchUsers(searchInp, true)
             // setSearchInp('')
         }
     }

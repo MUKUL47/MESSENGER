@@ -199,7 +199,11 @@ export class Mysql{
                         return
                     }
                     await Mysql.queryPromise(`INSERT INTO social (userId, targetId, type, updatedAt) VALUES 
-                    ('${id}', '${targetUserId}', 'PENDING', '${new Date().valueOf()}')`)
+                    ('${id}', '${targetUserId}', 'PENDING', '${new Date().valueOf()}')
+                    ON 
+                        DUPLICATE KEY UPDATE updatedAt='${new Date().valueOf()}'
+                    
+                    `)
                     resolve(true)
                     return
                 }
@@ -243,7 +247,7 @@ export class Mysql{
                 }
                 else if(type === 'friend'){
                     correctRequest = true
-                    q = `SELECT userId, targetId, updatedAt FROM social WHERE targetId='${id}' OR userId='${id}' AND type='FRIEND'`
+                    q = `SELECT userId, targetId, updatedAt FROM social WHERE ( targetId='${id}' OR userId='${id}' ) AND type='FRIEND'`
                 }
                 if(correctRequest){
                     const network = await Mysql.queryPromise(`${q} ORDER BY updatedAt DESC LIMIT ${count || 10} OFFSET ${start || 0}`)

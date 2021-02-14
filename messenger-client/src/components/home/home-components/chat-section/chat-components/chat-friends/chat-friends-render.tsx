@@ -6,7 +6,9 @@ import { ArrowBackIosIcon, CircularProgress } from '../../../../../../shared/mat
 export default function ChatFriendsRender(props : any) {
     const {
         isLoading,
-        friends
+        friends,
+        setActiveFriend,
+        activeFriend
     } = props;
     return (
         <div className="ChatFriendsRender">
@@ -24,7 +26,7 @@ export default function ChatFriendsRender(props : any) {
             <div className="chat-friends-circle">
                 {
                     friends.map((f : any) => {
-                        return <div className="friend-circle">
+                        return <div className={f.id === activeFriend ? 'friend-circle f-c-selected' : 'friend-circle'} key={f.id} onClick={() => setActiveFriend(f.id)}>
                         <div className="friend-image">
                             <img className="d_ps" src={defaultPic} alt="Mukul"/>
                         </div>

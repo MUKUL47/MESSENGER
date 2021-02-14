@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useEffect, useReducer } from 'react'
 import defaultPic from '../../../../../../assets/emptyProfile.webp'
 import './message-area.scss'
-import { MoreVertIcon, TextField } from '../../../../../../shared/material-modules'
+import { Menu, MenuItem, MoreVertIcon, TextField } from '../../../../../../shared/material-modules'
 import selectUser from '../../../../../../assets/select-user.svg'
-export default function MessageAreaRender() {
+import noMessages from '../../../../../../assets/no-messages.svg'
+import { setGlobalToggleFunc } from '../../../../../../shared/utils'
+
+export default function MessageAreaRender(props : any) {
+    const {
+        isLoading,
+        friends,
+        activeFriend,
+        selectedFriend,
+        removeFriend,
+        onRemoveFriend
+    } = props;
+    const renderContextData = {
+        menuActive : false
+    }
+    const [messageRenderContext, setMessageRenderContext] = useReducer(setGlobalToggleFunc, renderContextData)
+    useEffect(() => {
+        setMessageRenderContext({menuActive : false})
+    },[activeFriend])
     return (
-        false ?
+        activeFriend && selectedFriend['name']?
         <div className="message-area-render">
             <div className="message-profile">
                 <div className="selected-pro">
@@ -13,30 +31,41 @@ export default function MessageAreaRender() {
                         <img src={defaultPic} className="d_ps" />
                     </div>
                     <div className="profile--name">
-                        Mukul
+                        {selectedFriend['name']}
                     </div>
                 </div>
-                <MoreVertIcon/>
+                <MoreVertIcon 
+                    className="remove-friend-btn" 
+                    onClick={(e) => setMessageRenderContext({ menuActive : e.currentTarget })}
+                />
+                <Menu
+                    anchorEl={messageRenderContext.menuActive}
+                    open={messageRenderContext.menuActive ? true : false}
+                    onClose={() => setMessageRenderContext({ menuActive : false })}
+                >
+                    <MenuItem onClick={() => onRemoveFriend(selectedFriend['id'])}>{ removeFriend[selectedFriend['id']] ? 'Removing...' : 'Remove' }</MenuItem>
+                </Menu>
             </div>
             <div className="messages-area">
                 {
-                    Array(20).fill(1).map(v => {
-                        return <>
-                        <div className={ Math.floor(Math.random()*100) % 2 === 0 ? 'message-area-friend' : 'message-area-me' }>
-                            <p>
-                                Lorem ipsum dolor, sit amet consectetur adipisicing
-                                Lorem ipsum dolor, sit amet consectetur adipisicing
-                                Lorem ipsum dolor, sit amet consectetur adipisicing
-                                Lorem ipsum dolor, sit amet consectetur adipisicing
-                            </p>
-                        </div>
-                        {/* <div className="message-area-friend">
-                            <p>
-                                Lorem ipsum dolor, sit amet consectetur adipisicing
-                            </p>
-                        </div> */}
+                    selectedFriend.Messages.length > 0 ?
+                       <>
+                            <div className='message-area-me'>
+                                <p>
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing
+                                </p>
+                            </div>
+                            <div className="message-area-friend">
+                                <p>
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing
+                                </p>
+                            </div>
                         </>
-                    })
+                    :
+                    <div className="no-messages-f">
+                        <img src={noMessages} />
+                        <div>Oops no conversations found!</div>
+                    </div>
                 }
             </div>
             <div className="send-message-area">

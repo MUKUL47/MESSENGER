@@ -14,10 +14,11 @@ import Profile from './profile/profile';
 import ThirdPartyLogin from './thridpartylogin/thridpartylogin';
 import ToastMessage from '../shared/components/toast/toast';
 import BackdropLoader from '../shared/components/backdrop/backdrop';
-import { toastMessage } from '../shared/utils';
+import { logoutService, toastMessage } from '../shared/utils';
 import { useDispatch } from 'react-redux';
-import actions from '../redux/actions';
+import actions, { MESSAGE_ACTIONS } from '../redux/actions';
 import API from '../utils/server';
+import BermudaTriangle from '../shared/localstorage.service';
 
 export default function Main() {
     const defaultRedirect = () => <Redirect to={Routes.login} />;
@@ -33,6 +34,12 @@ export default function Main() {
                 setTimeout(() => window.location.href = Routes.default, 2000)
             }
             dispatch({ type : actions.TOAST_MESSAGE, data : { message : data.message, type : data.type } })
+        })
+        logoutService.subscribe(() => {
+            dispatch({ type : actions.RESET_USER })
+            dispatch({ type : MESSAGE_ACTIONS.RESET_FRIENDS })
+            BermudaTriangle.clearTriangle();
+            window.location.href='/login'
         })
         setIntercept(true)
         dispatch({ type : actions.STOP_LOADER })

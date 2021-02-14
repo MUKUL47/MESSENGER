@@ -1,6 +1,6 @@
 import { MongoDB } from '../../database/mongoDb/mongo.db';
 import RedisInstance from '../../database/redis/redis.db';
-import { ISocket, IsendMessage, ISuperUser } from '../../interfaces/models.if';
+import { ISocket, IsendMessage, ISuperUser, IRedisData } from '../../interfaces/models.if';
 import errorProperties from '../../properties/error.properties';
 import { Controller, SocketController } from '../../utils/controllers.util';
 import errorCodesUtil from '../../utils/error-codes.util';
@@ -11,7 +11,8 @@ const events = MessageEvents.default;
 export default class MessageController extends SocketController{
     private socket : ISocket
     private identifiers = {
-        status : 'STATUS-'
+        status : 'STATUS-',
+        select : '-SELECTED'
     }
     constructor(socket : ISocket){
         super()
@@ -24,12 +25,30 @@ export default class MessageController extends SocketController{
         this.socket.on(events.OFFLINE, this.goOffline)
         this.socket.on(events.GET_STATUS, this.getStatus)
         this.socket.on(events.SEND_MESSAGE, this.sendMessage)
+        this.socket.on(events.ON_FRIEND_SELECT, this.onFriendSelect)
+        this.socket.on(events.IS_TYPING, this.isTyping)
+    }
+    private async isTyping(response : IRedisData){
+        try{
+            const targetId = await RedisInstance.getKey(this.identifiers.status+this.socket.id)
+            if(targetId){
+                this.socket.to(targetId).emit(events.TYPED)
+            }
+        }catch(e){
+            this.catchError(e)
+        }
+    }
+    private onFriendSelect(selectedFriendId : string){
+        RedisInstance.setKey(this.socket.id+this.identifiers.select, selectedFriendId)
     }
     private goOnline(){
         RedisInstance.setKey(this.identifiers.status+this.socket.id, this.socket.id)
     }
     private goOffline(){
-        RedisInstance.remove([this.identifiers.status+this.socket.id])
+        RedisInstance.remove([
+            this.identifiers.status+this.socket.id, 
+            this.socket.id+this.identifiers.select
+        ])
     }
     private async getStatus(id : string){
         try{

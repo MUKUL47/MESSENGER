@@ -1,6 +1,6 @@
 import sR from './server-routes'
 import axios, { AxiosRequestConfig } from 'axios'
-import Utils, { toastMessage } from '../shared/utils';
+import Utils, { logoutService, toastMessage } from '../shared/utils';
 import BermudaTriangle from '../shared/localstorage.service';
 export default class API{
     public static nonSecretEndPoints = [sR.BASE + sR.LOGIN, sR.BASE + sR.REGISTER, sR.BASE + sR.LOGIN, sR.BASE + sR.AUTHORIZE]
@@ -10,6 +10,7 @@ export default class API{
                 if (!this.nonSecretEndPoints.includes(config.url)) {
                     const token = BermudaTriangle.getTriangle('token');
                     if (!token) {
+                        logoutService.next()
                         toastMessage.next({ message: 'Re-Login again', type: false, duration: 5000, logout: true });
                         return;
                     }
@@ -37,12 +38,12 @@ export default class API{
                         // return axios(pendingRequest)
                         window.location.reload()
                     }else{
-                        BermudaTriangle.clearTriangle()
+                        logoutService.next()
                         toastMessage.next({ message: 'Re-Login again', type: false, duration: 5000, logout: true });
                     }
                 }). 
                 catch(e => {
-                    BermudaTriangle.clearTriangle()
+                    logoutService.next()
                     toastMessage.next({ message: 'Re-Login again', type: false, duration: 5000, logout: true });
                 })
             }

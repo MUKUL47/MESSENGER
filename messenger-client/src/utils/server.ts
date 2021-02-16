@@ -22,7 +22,7 @@ export default class API{
             },
             (error) => Promise.reject({ type: "intercept", message: sR.clientAccessDenied })
         );
-        axios.interceptors.response.use((null as any), (error : any) => {
+        axios.interceptors.response.use(r => r, (error : any) => {
             const pendingRequest = error.config;
             if (
                 error?.response?.status === 401 &&
@@ -30,25 +30,25 @@ export default class API{
                 !pendingRequest._retry
             ) {
                 pendingRequest._retry = true;
-                axios.get(sR.BASE + sR.REFRESH + `?token=${BermudaTriangle.getTriangle('refreshToken')}`). 
+                return axios.get(sR.BASE + sR.REFRESH + `?token=${BermudaTriangle.getTriangle('refreshToken')}`). 
                 then(response => {
                     if(response.status === 200 && response.data?.message){
                         BermudaTriangle.setTriangle('refreshToken', response.data?.message?.refresh_token)
                         BermudaTriangle.setTriangle('token', response.data?.message?.token)
-                        // return axios(pendingRequest)
-                        window.location.reload()
+                        return axios(pendingRequest)
                     }else{
-                        logoutService.next()
-                        toastMessage.next({ message: 'Re-Login again', type: false, duration: 5000, logout: true });
+                        API.logout()
                     }
                 }). 
-                catch(e => {
-                    logoutService.next()
-                    toastMessage.next({ message: 'Re-Login again', type: false, duration: 5000, logout: true });
-                })
+                catch(e => API.logout())
+                
             }
             return Promise.reject(error);
         });
+    }
+    private static logout(){
+        logoutService.next()
+        toastMessage.next({ message: 'Re-Login again', type: false, duration: 5000, logout: true });
     }
     public static login(identity : string, isOtp : boolean, otp ?:string) : Promise<any> {
         return new Promise((resolve, reject) => {

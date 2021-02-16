@@ -1,5 +1,5 @@
 import { MongoDB } from '../../database/mongoDb/mongo.db';
-import RedisInstance from '../../database/redis/redis.db';
+import RedisInstance, { redisClient } from '../../database/redis/redis.db';
 import { ISocket, IsendMessage, ISuperUser, IRedisData } from '../../interfaces/models.if';
 import errorProperties from '../../properties/error.properties';
 import { Controller, SocketController } from '../../utils/controllers.util';
@@ -11,8 +11,9 @@ const events = MessageEvents.default;
 export default class MessageController extends SocketController{
     private socket : ISocket
     private identifiers = {
-        status : 'STATUS-',
-        select : '-SELECTED'
+        id : 'id-', //socket id
+        select : 'select-', //friendId
+        socket : 'socket-' //userId
     }
     constructor(socket : ISocket){
         super()
@@ -20,47 +21,73 @@ export default class MessageController extends SocketController{
         this.initializeListeners()
     }
     private initializeListeners(){
-        this.socket.on(events.DISCONNECT, this.disconnect)
-        this.socket.on(events.ONLINE, this.goOnline)
-        this.socket.on(events.OFFLINE, this.goOffline)
-        this.socket.on(events.GET_STATUS, this.getStatus)
-        this.socket.on(events.SEND_MESSAGE, this.sendMessage)
-        this.socket.on(events.ON_FRIEND_SELECT, this.onFriendSelect)
-        this.socket.on(events.IS_TYPING, this.isTyping)
+        this.socket.on(events.DISCONNECT, this.disconnect.bind(this))
+        this.socket.on(events.ONLINE, this.goOnline.bind(this))
+        this.socket.on(events.OFFLINE, this.goOffline.bind(this))
+        this.socket.on(events.SEND_MESSAGE, this.sendMessage.bind(this))
+        this.socket.on(events.ON_FRIEND_SELECT, this.onFriendSelect.bind(this))
+        this.socket.on(events.IS_TYPING, this.isTyping.bind(this))
     }
     private async isTyping(response : IRedisData){
         try{
-            const targetId = await RedisInstance.getKey(this.identifiers.status+this.socket.id)
-            if(targetId){
-                this.socket.to(targetId).emit(events.TYPED)
+            const { id, friendId } = response.args
+            const isFriendOnlineSocketId = await RedisInstance.getKey(this.identifiers.id+friendId) //friend socket IFF online
+            if(isFriendOnlineSocketId){
+                const isPairedWithMe = await RedisInstance.getKey(this.identifiers.select+friendId)
+                if(isPairedWithMe === id){
+                    this.socket.to(isFriendOnlineSocketId).emit(events.TYPED, { friendId : id })//send event to friend telling that paired user is typing
+                }
             }
         }catch(e){
             this.catchError(e)
         }
     }
-    private onFriendSelect(selectedFriendId : string){
-        RedisInstance.setKey(this.socket.id+this.identifiers.select, selectedFriendId)
-    }
-    private goOnline(){
-        RedisInstance.setKey(this.identifiers.status+this.socket.id, this.socket.id)
-    }
-    private goOffline(){
-        RedisInstance.remove([
-            this.identifiers.status+this.socket.id, 
-            this.socket.id+this.identifiers.select
-        ])
-    }
-    private async getStatus(id : string){
+    private async onFriendSelect(response : IRedisData){
         try{
-            const status = await RedisInstance.getKey(this.identifiers.status+id)
-            this.socket.to(this.socket.id).emit(events.GOT_STATUS, status)
+            const { id, friendId } = response.args
+            RedisInstance.setKey(this.identifiers.select+id, friendId)
+            const isFriendOnlineSocketId = await RedisInstance.getKey(this.identifiers.id+friendId) //friend socket IFF online
+            if(isFriendOnlineSocketId){
+                this.socket.emit(events.GOT_STATUS, { friendId : friendId, status : true}) //send event to inital sender that user is online
+                const isPairedWithMe = await RedisInstance.getKey(this.identifiers.select+friendId)
+                if(isPairedWithMe === id){
+                    this.socket.to(isFriendOnlineSocketId).emit(events.GOT_STATUS, { friendId : id, status : true })//send event to friend telling that paired user is online
+                }
+            }
+        }catch(e){
+            this.catchError(e)
+        }     
+    }
+    private async goOnline(response : IRedisData){
+        try{
+            const { id } = response.args
+            RedisInstance.setKey(this.identifiers.socket+this.socket.id, id)
+            RedisInstance.setKey(this.identifiers.id+id, this.socket.id)
         }catch(e){
             this.catchError(e)
         }
     }
-    private async disconnect(){
+    private disconnect(){
         try{
             this.goOffline();
+        }catch(e){
+            this.catchError(e)
+        }
+    }
+    private async goOffline(){
+        try{
+            const userId = await RedisInstance.getKey(this.identifiers.socket+this.socket.id)
+            if(userId){
+                const selectedFriendId = await RedisInstance.getKey(this.identifiers.select+userId)
+                if(selectedFriendId){
+                    const selectedFriendSocket = await RedisInstance.getKey(this.identifiers.id+selectedFriendId)
+                    if(selectedFriendSocket){
+                        this.socket.to(selectedFriendSocket).emit(events.GOT_STATUS, { friendId : userId, status : false })
+                    }
+                }
+                RedisInstance.remove([this.identifiers.id+userId, this.identifiers.select+userId])
+            }
+            RedisInstance.remove([this.identifiers.socket+this.socket.id])
         }catch(e){
             this.catchError(e)
         }

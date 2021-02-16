@@ -11,17 +11,17 @@ export const setGlobalToggleFunc = (toggle: any, data: any) => {
     })
     return { ...toggle, ...data }
 }
-export const socketEvents = [
-    'offline',
-    'isOnline',
-    'currentActiveFriends',
-    'refreshedFriendList',
-    'onNotify',
-    'logout',
-    'sentMessage',
-    'gotConversations',
-    'gotMessage',
-    'typing'];
+export const socketEvents = ['GOT_STATUS', 'GOT_MESSAGE', 'SENT_MESSAGE', 'TYPED'];
+export const outGoingEvents = {
+    OFFLINE : "OFFLINE",
+    ONLINE : "ONLINE",
+    SEND_MESSAGE : "SEND_MESSAGE",
+    TYPE : "TYPE",
+    IS_TYPING : "IS_TYPING",
+    CONNECTION : "connect",
+    DISCONNECT : "disconnect",
+    ON_FRIEND_SELECT : 'ON_FRIEND_SELECT'
+}
 const numbers = '0123456789';
 const alphabets = 'abcdefghijklmnopqrstuvwxyz';
 export default class Utils {

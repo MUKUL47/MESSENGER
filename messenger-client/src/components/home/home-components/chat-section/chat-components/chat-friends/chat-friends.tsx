@@ -1,14 +1,17 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useContext, useEffect, useReducer } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { IResponse } from '../../../../../../interfaces/data-models';
 import { MESSAGE_ACTIONS } from '../../../../../../redux/actions';
 import Friend, { _Friend } from '../../../../../../shared/services/messages.reducer';
-import { setGlobalToggleFunc, toastMessage } from '../../../../../../shared/utils';
+import { eventEmitter, outGoingEvents, setGlobalToggleFunc, toastMessage } from '../../../../../../shared/utils';
 import API from '../../../../../../utils/server';
+import { SocketContext } from '../../../../socket.context';
 import ChatFriendsRender from './chat-friends-render'
 export default function ChatFriends() {
+    const socketContext = useContext(SocketContext)
     const dispatch = useDispatch()
     const { friends, activeFriendId } = useSelector((s : any) => s['messagesService']) 
+    const { id } = useSelector((s : any) => s['userService']) 
     const contextData = {
         isLoading : false
     }
@@ -37,11 +40,18 @@ export default function ChatFriends() {
     function setActiveFriend(friendId : string){
         if(activeFriendId === friendId) return
         dispatch({ type : MESSAGE_ACTIONS.SET_FRIEND_ACTIVE, data : { id : friendId }})
+        socketContext.emit(outGoingEvents.ON_FRIEND_SELECT, {args : { id : id, friendId : friendId }})
     }
     useEffect(() => {
         if(friends.length === 0){
             fetchFriends()
         }
+        socketContext.emit(outGoingEvents.ONLINE, {args : { id : id }})
+        eventEmitter.subscribe({
+            next : r => {
+                console.log(r)
+            }
+        })
     },[])
     return (
         <ChatFriendsRender 

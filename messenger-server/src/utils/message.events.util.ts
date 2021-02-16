@@ -6,13 +6,12 @@ export default {
     TYPED : 'TYPED',
 
     //INCOMING EVENTS
-    GET_STATUS : "GET_STATUS",
     OFFLINE : "OFFLINE",
     ONLINE : "ONLINE",
     SEND_MESSAGE : "SEND_MESSAGE",
     TYPE : "TYPE",
     IS_TYPING : "IS_TYPING",
-    CONNECTION : "CONNECTION",
-    DISCONNECT : "DISCONNECT",
+    CONNECTION : "connect",
+    DISCONNECT : "disconnect",
     ON_FRIEND_SELECT : 'ON_FRIEND_SELECT'
 }

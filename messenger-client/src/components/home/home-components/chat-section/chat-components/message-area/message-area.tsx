@@ -9,7 +9,6 @@ import MessageAreaRender from './message-area.render'
 export default function MessageArea() {
     const dispatch = useDispatch()
     const socketContext = useContext(SocketContext)
-    debugger
     const { friends, activeFriendId } = useSelector((s : any) => s['messagesService']) 
     const contextData = {
         isLoading : false,

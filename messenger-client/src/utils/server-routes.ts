@@ -1,5 +1,5 @@
 const routes =  {
-    BASE : 'http://localhost:8080',
+    BASE : 'http://localhost:8081',
     LOGIN : '/login',
     REGISTER : '/register',
     LOGOUT : '/logout',

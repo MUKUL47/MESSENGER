@@ -103,6 +103,7 @@ export default function Request() {
         try{
             if(requestContext.tab === 'sent'){
                 const networkResp = await API.getNetwork('sent', sentRequestData.pages.start, sentRequestData.pages.count)
+                console.log('networkResp-',networkResp)
                 const ids = networkResp?.data?.message || [];
                 if(ids.length > 0){
                     const profiles = (await API.getProfile(ids.map((i : any) => i.id)))?.data?.message || []

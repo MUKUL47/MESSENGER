@@ -116,7 +116,6 @@ export default class RegisterLoginController extends Controller{
             const { token } = request.query as { token : string }
             if(!token) return invalidToken()
             const refreshToken : string = await RedisInstance.getKey(`REFRESH-${token}`)
-            console.log('refreshToken ',refreshToken)
             if(!refreshToken || refreshToken.split('-')[0] != token || !isRefreshValid(refreshToken.split('-')[1])) return invalidToken()
             RedisInstance.remove([`REFRESH-${token}`])
             const identity = refreshToken.split('-')[2];

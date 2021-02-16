@@ -8,10 +8,15 @@ export default function SocketContextData(props: any) {
     const [event, setEvent] = useState<any>(null);
     useEffect(() => {
         const socketEvent = (io as any)(serverRoutes.BASE);
-        socketEvent.on('connect',() => console.log('CONNECTED'))
-        socketEvents.forEach((event: string) => socketEvent.on(event, (params: any) => eventEmitter.next({ event: event, params: params }))) //listener
         const sendEvent = (key: string, data: any) => socketEvent.emit(key, data) //sender
-        setEvent(sendEvent);
+        socketEvent.on('connect',() => {
+            console.log(socketEvent.id)
+            setEvent(sendEvent)
+        })
+        socketEvents.forEach((event: string) => socketEvent.on(event, (params: any) => {
+            console.log(params)
+            eventEmitter.next({ event: event, params: params })
+        })) //listener
     }, [])
     return (
         <SocketContext.Provider value={event}>

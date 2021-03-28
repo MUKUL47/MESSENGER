@@ -3,7 +3,7 @@ import Friend, { Message } from "../shared/services/messages.reducer"
 import actions, { MESSAGE_ACTIONS } from "./actions"
 // const message = new Message()
 function userStore(store = {}, action : IAction){
-    if(actions.STORE_USER){
+    if(actions.STORE_USER=== action.type){
         return { ...store, ...action.data }
     }
     else if(actions.RESET_USER === action.type){

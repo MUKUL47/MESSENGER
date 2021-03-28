@@ -2,7 +2,7 @@ import React, {useEffect, useReducer, useContext} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { IMessage } from '../../../../../../interfaces/data-models'
 import { MESSAGE_ACTIONS } from '../../../../../../redux/actions'
-import { setGlobalToggleFunc, toastMessage } from '../../../../../../shared/utils'
+import { eventEmitter, outGoingEvents, setGlobalToggleFunc, toastMessage } from '../../../../../../shared/utils'
 import API from '../../../../../../utils/server'
 import { SocketContext } from '../../../../socket.context'
 import MessageAreaRender from './message-area.render'
@@ -10,7 +10,8 @@ import MessageAreaRender from './message-area.render'
 export default function MessageArea() {
     const dispatch = useDispatch()
     const socketContext = useContext(SocketContext)
-    const { friends, activeFriendId, selectedFriend, addedMessage } = useSelector((s : any) => s['messagesService']) 
+    const { friends, activeFriendId, selectedFriend, addedMessage, id } = useSelector((s : any) => { return {...s['messagesService'], ...s['userService']}}) 
+    console.log('----',id, activeFriendId)
     const contextData = {
         isLoading : false,
         selectedFriend : {},
@@ -57,6 +58,7 @@ export default function MessageArea() {
             ownerId: '1',
             status : 'true'
         }
+        socketContext.emit(outGoingEvents.SEND_MESSAGE, { message , userId : id, targetId : msg.friendId, id : Math.random()})
         dispatch({ type : MESSAGE_ACTIONS.ADD_MESSAGE, data : { id : msg.friendId, message : msg } })
     }
     return (

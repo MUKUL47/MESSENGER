@@ -93,7 +93,7 @@ export default class MessageController extends SocketController{
         }
     }
     private async sendMessage(params : IsendMessage){
-        try{
+        try {
             await MongoDB.sendMessage(params.userId, params.targetId, params.message)
             const targetSocketId = await RedisInstance.getKey(params.targetId, true) 
             this.socket.to(targetSocketId).emit(events.GOT_MESSAGE, this.sendEvent(events.GOT_MESSAGE, params)) 

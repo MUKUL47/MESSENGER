@@ -8,7 +8,7 @@ const messageChunk = new mongoose.Schema({
     messages: [{
         author: String,
         createdAt: Date,
-        content: String //actual message
+        message: String //actual message
     }]
 })
 export class MongoDB{
@@ -57,7 +57,7 @@ export class MongoDB{
         })
     }
 
-    public static getMessages(userId : string, targetId : string): Promise<any>{
+    public static getMessages(userId: string, targetId: string): Promise<any>{
         return new Promise((resolve, reject) => {
             MongoClient.findOne(
                 { participant : 

@@ -7,7 +7,7 @@ export default class BermudaTriangle{
         localStorage.setItem(k, v)
     }
     public static clearTriangle(){
-        localStorage.clear()
+          localStorage.clear()
     }
     public static isFree(){
         return localStorage.length === 0

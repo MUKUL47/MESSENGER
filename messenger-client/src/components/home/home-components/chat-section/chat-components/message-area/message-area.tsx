@@ -1,5 +1,6 @@
 import React, {useEffect, useReducer, useContext} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { IMessage } from '../../../../../../interfaces/data-models'
 import { MESSAGE_ACTIONS } from '../../../../../../redux/actions'
 import { setGlobalToggleFunc, toastMessage } from '../../../../../../shared/utils'
 import API from '../../../../../../utils/server'
@@ -9,7 +10,7 @@ import MessageAreaRender from './message-area.render'
 export default function MessageArea() {
     const dispatch = useDispatch()
     const socketContext = useContext(SocketContext)
-    const { friends, activeFriendId } = useSelector((s : any) => s['messagesService']) 
+    const { friends, activeFriendId, selectedFriend, addedMessage } = useSelector((s : any) => s['messagesService']) 
     const contextData = {
         isLoading : false,
         selectedFriend : {},
@@ -18,9 +19,13 @@ export default function MessageArea() {
     const [messageContext, setMessageContext] = useReducer(setGlobalToggleFunc, contextData)
     useEffect(() => {
         if(activeFriendId){
-            const f = friends.find((f:any)=> f.id === activeFriendId)
+            const f = friends.find((f: any) => f.id === activeFriendId)
+            console.log(f)
             if(f){
-                setMessageContext({ selectedFriend : f })
+                setMessageContext({ selectedFriend: f })
+                const { cancel, promise } = API.getMessages(f.id);
+                promise.then(console.log).catch(console.error)
+                // cancel()
             }
         }
     }, [activeFriendId, friends])
@@ -42,12 +47,27 @@ export default function MessageArea() {
             }
         }
     }
+
+    async function sendMessage(message: string) {
+        const msg : IMessage ={
+            date: new Date().valueOf().toString(),
+            friendId: activeFriendId,
+            id: '123',
+            message: message,
+            ownerId: '1',
+            status : 'true'
+        }
+        dispatch({ type : MESSAGE_ACTIONS.ADD_MESSAGE, data : { id : msg.friendId, message : msg } })
+    }
     return (
         <MessageAreaRender 
             {...messageContext} 
             friends={friends} 
             activeFriend ={activeFriendId}
             onRemoveFriend={onRemoveFriend}
+            sendMessage={sendMessage}
+            friend={selectedFriend}
+            addedMessage={addedMessage}
         />
     )
 }

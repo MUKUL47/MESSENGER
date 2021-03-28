@@ -15,24 +15,24 @@ export default function Home() {
         isLoading : true
     }
     const [homeContext, setHomeContext] = useReducer(setGlobalToggleFunc, contextData)
-    async function fetchProfile(){
-        try{
-            const profileResponse : IResponse = await API.getProfile()
-            const profile = profileResponse?.data?.message || {}
-            const dispatchData = { name : `${profile.displayName || ''}`, id : profile.id, identity : profile.identity }
-            dispatch({ type : actions.STORE_USER, data : dispatchData })
-            setHomeContext({ profileReady : `${dispatchData.name}`.trim().length > 0 ? true : false, isLoading : false })
-        }catch(e){
-            setHomeContext({ profileReady : false, isLoading : true })
-            toastMessage.next({ message : e, type : false })
-        }
-    }
+    // async function fetchProfile(){
+    //     try{
+    //         const profileResponse : IResponse = await API.getProfile()
+    //         const profile = profileResponse?.data?.message || {}
+    //         const dispatchData = { name : `${profile.displayName || ''}`, id : profile.id, identity : profile.identity }
+    //         dispatch({ type : actions.STORE_USER, data : dispatchData })
+    //         setHomeContext({ profileReady : `${dispatchData.name}`.trim().length > 0 ? true : false, isLoading : false })
+    //     }catch(e){
+    //         setHomeContext({ profileReady : false, isLoading : true })
+    //         toastMessage.next({ message : e, type : false })
+    //     }
+    // }
     useEffect(() => {
         const profileName = userService?.name || '';
-        if(!userService?.name){
-            fetchProfile()
-            return
-        }
+        // if(!userService?.name){
+        //     fetchProfile()
+        //     return
+        // }
         setHomeContext({ profileReady : `${profileName}`.trim().length > 0, isLoading : false })
         
     },[])

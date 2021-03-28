@@ -9,10 +9,10 @@ import { IUserStore } from '../../interfaces/redux';
 import actions from '../../redux/actions';
 import BermudaTriangle from '../../shared/localstorage.service';
 export default function Profile() {
-    const userStore : IUserStore = useSelector((state : any) => state.userService)
+    const userStore: IUserStore = useSelector((state: any) => state.userService)
     const dispatch = useDispatch()
     const history = useHistory();
-    const stateData = { loading: true, name: '', blob: null, user: userStore.id , profileTouched: {} };
+    const stateData = { loading: false, name: userStore.name, blob: null, user: userStore.identity, profileTouched: {} };
     const [state, setState] = useReducer(setGlobalToggleFunc, stateData);
     const updateProfile = async () => {
         try {
@@ -63,6 +63,6 @@ export default function Profile() {
             setState({ loading: false, name: userStore.name, blob: userStore.image, user: userStore.identity })
         }
     }
-    useEffect(() => { getProfile(); }, [])
+    // useEffect(() => { getProfile(); }, [])
     return (<ProfileRenderer {...state} updateProfile={updateProfile} setForm={setState} />)
 }

@@ -18,6 +18,7 @@ function messagesStore(friend = new Friend(), action : IAction){
     }
     else if(action.type === MESSAGE_ACTIONS.ADD_FRIENDS){
         const args = action.data;
+        console.log(args)
         friend.addFriends(args)
     }
     else if(action.type === MESSAGE_ACTIONS.RESET_FRIENDS){
@@ -32,6 +33,11 @@ function messagesStore(friend = new Friend(), action : IAction){
         if(friend.removeFriend(id)){
             friend.setFriendActive('')
         }
+    }
+    else if (action.type === MESSAGE_ACTIONS.ADD_MESSAGE) {
+        const id = action?.data?.id
+        const args = action.data.message;
+        friend.addMessage(id, args);
     }
     return friend
 }

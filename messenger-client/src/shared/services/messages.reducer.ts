@@ -2,7 +2,9 @@ import { IFriend, IMessage } from "../../interfaces/data-models";
 
 export default class Friend{
     private friends : IFriend[] = [];
-    private activeFriendId : any = null
+    private activeFriendId: any = null
+    private selectedFriend: IFriend = {} as any;
+    private addedMessage = -1;
     //getters
     public getFriend(id : string, all ?:boolean){
         if(all) return this.friends;
@@ -24,6 +26,10 @@ export default class Friend{
         return this.activeFriendId;
     }
 
+    public getSelectedFriend() {
+        return this.selectedFriend;
+    }
+
     //setters
     public setMessageStatus(friendId : string, messageId : string, status : string){
         const message = this.getMessage(friendId, messageId) as IMessage
@@ -34,6 +40,7 @@ export default class Friend{
     }
     public setFriendActive(id : string){
         this.activeFriendId = id;
+        this.selectedFriend = this.getFriend(id, false) as IFriend;
         return this;
     }
     public addFriends(friends : IFriend[]){
@@ -56,6 +63,7 @@ export default class Friend{
         const friend = this.getFriend(friendId) as IFriend
         if(friend){
             friend.Messages.push(message)
+            this.addedMessage = new Date().valueOf()
         }
         return this
     }

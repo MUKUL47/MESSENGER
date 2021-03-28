@@ -1,10 +1,11 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect, useMemo, useReducer } from 'react'
 import defaultPic from '../../../../../../assets/emptyProfile.webp'
 import './message-area.scss'
 import { Menu, MenuItem, MoreVertIcon, TextField } from '../../../../../../shared/material-modules'
 import selectUser from '../../../../../../assets/select-user.svg'
 import noMessages from '../../../../../../assets/no-messages.svg'
 import { setGlobalToggleFunc } from '../../../../../../shared/utils'
+import { IMessage } from '../../../../../../interfaces/data-models'
 
 export default function MessageAreaRender(props : any) {
     const {
@@ -13,15 +14,30 @@ export default function MessageAreaRender(props : any) {
         activeFriend,
         selectedFriend,
         removeFriend,
-        onRemoveFriend
+        onRemoveFriend,
+        sendMessage,
+        friend,
+        addedMessage
     } = props;
     const renderContextData = {
-        menuActive : false
+        menuActive: false,
+        value: ''
     }
-    const [messageRenderContext, setMessageRenderContext] = useReducer(setGlobalToggleFunc, renderContextData)
+    const [messageRenderContext, setMessageRenderContext] = useReducer(setGlobalToggleFunc, renderContextData);
+    const messages = useMemo(() => {
+        return getMessages(friend.Messages, activeFriend)
+     }, [friend, addedMessage])
     useEffect(() => {
         setMessageRenderContext({menuActive : false})
-    },[activeFriend])
+    }, [activeFriend])
+    const message = () => {
+        const v = messageRenderContext.value.trim();
+        if (v.length > 0) {
+            sendMessage(v)
+            setMessageRenderContext({value : ''})
+        }
+        
+    }
     return (
         activeFriend && selectedFriend['name']?
         <div className="message-area-render">
@@ -49,18 +65,7 @@ export default function MessageAreaRender(props : any) {
             <div className="messages-area">
                 {
                     selectedFriend.Messages.length > 0 ?
-                       <>
-                            <div className='message-area-me'>
-                                <p>
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing
-                                </p>
-                            </div>
-                            <div className="message-area-friend">
-                                <p>
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing
-                                </p>
-                            </div>
-                        </>
+                      messages
                     :
                     <div className="no-messages-f">
                         <img src={noMessages} />
@@ -76,8 +81,10 @@ export default function MessageAreaRender(props : any) {
                     multiline
                     placeholder="Type a message"
                     className="text-msg-inp"
+                    value={messageRenderContext.value}
+                    onChange={(e) => setMessageRenderContext({value : e.target.value})}    
                 />
-                <button className="default-input">Send</button>
+                <button className="default-input" onClick={() => message()}>Send</button>
             </div>
         </div>
         : <div className="message-area-render no-user-selected">
@@ -85,4 +92,13 @@ export default function MessageAreaRender(props : any) {
             <p>Select a Friend and Start Chatting!</p>
         </div>
     )
+}
+
+function getMessages(messages: IMessage[] = [], activeFriendId: string) {
+    console.log(messages)
+    return messages.map((message, i) => {
+        return <div className={message.ownerId === activeFriendId ? 'message-area-me' : 'message-area-friend'} key={i}>
+            <p dangerouslySetInnerHTML={{__html : message.message}}></p>
+        </div>
+    })
 }

@@ -46,7 +46,7 @@ export default function ChatFriends() {
         if(friends.length === 0){
             fetchFriends()
         }
-        socketContext.emit(outGoingEvents.ONLINE, {args : { id : id }})
+        // socketContext.emit(outGoingEvents.ONLINE, {args : { id : id }})
         eventEmitter.subscribe({
             next : r => {
                 console.log(r)

@@ -126,9 +126,9 @@ export default function Request() {
             setRequestContext({ isLoading : false })
         }
     }
-    useEffect(() => {
-        fetchRequest()
-    }, [])
+    // useEffect(() => {
+    //     fetchRequest()
+    // }, [])
     useEffect(() => {
         if(requestContext.tab === 'sent' || requestContext.tab === 'requests'){
             fetchRequest()

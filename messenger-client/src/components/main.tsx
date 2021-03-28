@@ -19,6 +19,7 @@ import { useDispatch } from 'react-redux';
 import actions, { MESSAGE_ACTIONS } from '../redux/actions';
 import API from '../utils/server';
 import BermudaTriangle from '../shared/localstorage.service';
+import ProtectedRoute from '../shared/components/protected-route/protected-route';
 
 export default function Main() {
     const defaultRedirect = () => <Redirect to={Routes.login} />;
@@ -54,8 +55,8 @@ export default function Main() {
                     <BrowserRouter>
                         <Switch>
                             <Route path={Routes.login} component={Login}></Route>
-                            <Route path={Routes.home} component={Home}></Route>
-                            <Route path={Routes.profile} component={Profile}></Route>
+                            <ProtectedRoute path={Routes.home} component={Home}></ProtectedRoute>
+                            <ProtectedRoute path={Routes.profile} component={Profile}></ProtectedRoute>
                             <Route path={Routes.thridPartyLogin} component={ThirdPartyLogin}></Route>
                             <Route path={Routes.notFound} component={defaultRedirect}></Route>
                             <Route path={Routes.default} component={defaultRedirect}></Route>

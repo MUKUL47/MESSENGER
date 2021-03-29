@@ -36,7 +36,7 @@
         }
     }
     .messages-area{
-        min-height: calc(100vh - 320px);
+        height: calc(100vh - 320px);
         overflow: auto;
         
         div{
@@ -44,7 +44,8 @@
             margin-bottom: 10px;
 
             p{
-                max-width: 80%;
+                word-break: break-all;
+                max-width: 50%;
                 padding: 10px;
                 border : 1px solid rgba(0, 0, 0, 0.082);
                 border-radius: 5px;

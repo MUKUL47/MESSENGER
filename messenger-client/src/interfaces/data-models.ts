@@ -10,7 +10,8 @@ export interface IFriend{
     id : string,
     name : string,
     image : any,
-    Messages : IMessage[],
+    Messages: IMessage[],
+    init?: boolean;
 }
 export interface IMessage{
     id : string,

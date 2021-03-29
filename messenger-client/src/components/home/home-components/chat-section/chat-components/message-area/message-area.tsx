@@ -11,7 +11,6 @@ export default function MessageArea() {
     const dispatch = useDispatch()
     const socketContext = useContext(SocketContext)
     const { friends, activeFriendId, selectedFriend, addedMessage, id } = useSelector((s : any) => { return {...s['messagesService'], ...s['userService']}}) 
-    console.log('----',id, activeFriendId)
     const contextData = {
         isLoading : false,
         selectedFriend : {},
@@ -21,11 +20,15 @@ export default function MessageArea() {
     useEffect(() => {
         if(activeFriendId){
             const f = friends.find((f: any) => f.id === activeFriendId)
-            console.log(f)
             if(f){
                 setMessageContext({ selectedFriend: f })
-                const { cancel, promise } = API.getMessages(f.id);
-                promise.then(console.log).catch(console.error)
+                if (!f.init) {
+                    const { cancel, promise } = API.getMessages(f.id);
+                    promise.then(response => {
+                        const messages = response?.data?.message?.messages || [];
+                        dispatch({ type : MESSAGE_ACTIONS.INITALIZE_MESSAGES, data : { id : f.id, messages : messages } })
+                    })
+                }
                 // cancel()
             }
         }
@@ -59,7 +62,7 @@ export default function MessageArea() {
             status : 'true'
         }
         socketContext.emit(outGoingEvents.SEND_MESSAGE, { message , userId : id, targetId : msg.friendId, id : Math.random()})
-        dispatch({ type : MESSAGE_ACTIONS.ADD_MESSAGE, data : { id : msg.friendId, message : msg } })
+        // dispatch({ type : MESSAGE_ACTIONS.ADD_MESSAGE, data : { id : msg.friendId, message : msg } })
     }
     return (
         <MessageAreaRender 

@@ -39,6 +39,11 @@ function messagesStore(friend = new Friend(), action : IAction){
         const args = action.data.message;
         friend.addMessage(id, args);
     }
+    else if (action.type === MESSAGE_ACTIONS.INITALIZE_MESSAGES) {
+        const id = action?.data?.id
+        const args = action.data.messages;
+        friend.initMessages(id, args);
+    }
     return friend
 }
 function toastStore(store = {}, action : IAction){

@@ -60,9 +60,8 @@ export default class MessageController extends SocketController{
     }
     private async goOnline(response : IRedisData){
         try{
-            const { id } = response.args
-            RedisInstance.setKey(this.identifiers.socket+this.socket.id, id)
-            RedisInstance.setKey(this.identifiers.id+id, this.socket.id)
+            RedisInstance.setKey(this.identifiers.socket+this.socket.id, `${response.args}`)
+            RedisInstance.setKey(this.identifiers.id+response.args, this.socket.id)
         }catch(e){
             this.catchError(e)
         }
@@ -95,9 +94,9 @@ export default class MessageController extends SocketController{
     private async sendMessage(params : IsendMessage){
         try {
             await MongoDB.sendMessage(params.userId, params.targetId, params.message)
-            const targetSocketId = await RedisInstance.getKey(params.targetId, true) 
+            const targetSocketId = await RedisInstance.getKey(this.identifiers.id+params.targetId, true)
             this.socket.to(targetSocketId).emit(events.GOT_MESSAGE, this.sendEvent(events.GOT_MESSAGE, params)) 
-            this.socket.to(this.socket.id).emit(events.SENT_MESSAGE, this.sendEvent(events.SENT_MESSAGE, params)) 
+            this.socket.emit(events.SENT_MESSAGE, this.sendEvent(events.SENT_MESSAGE, params)) 
         }catch(e){
             this.socket.to(this.socket.id).emit(events.SENT_MESSAGE, this.sendEvent(events.SENT_MESSAGE, params, true))
             this.catchError(e)

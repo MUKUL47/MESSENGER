@@ -67,6 +67,15 @@ export default class Friend{
         }
         return this
     }
+    public initMessages(friendId: string, messages: IMessage[]) {
+        const friend = this.getFriend(friendId) as IFriend
+        if(friend){
+            friend.Messages = messages;
+            this.addedMessage = new Date().valueOf()
+            friend.init = messages.length > 0;
+        }
+        return this
+    }
     public addMessages(friendId : string, messages :IMessage[]){
         messages.forEach((message : IMessage) => this.addMessage(friendId, message))
         return this

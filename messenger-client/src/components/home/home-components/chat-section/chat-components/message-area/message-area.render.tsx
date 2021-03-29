@@ -25,7 +25,7 @@ export default function MessageAreaRender(props : any) {
     }
     const [messageRenderContext, setMessageRenderContext] = useReducer(setGlobalToggleFunc, renderContextData);
     const messages = useMemo(() => {
-        return getMessages(friend.Messages, activeFriend)
+        return getMessages(friend.Messages || [], activeFriend)
      }, [friend, addedMessage])
     useEffect(() => {
         setMessageRenderContext({menuActive : false})
@@ -94,10 +94,10 @@ export default function MessageAreaRender(props : any) {
     )
 }
 
-function getMessages(messages: IMessage[] = [], activeFriendId: string) {
+function getMessages(messages: any[] = [], activeFriendId: string) {
     console.log(messages)
     return messages.map((message, i) => {
-        return <div className={message.ownerId === activeFriendId ? 'message-area-me' : 'message-area-friend'} key={i}>
+        return <div className={message.author === activeFriendId || message.targetId === activeFriendId ? 'message-area-me' : 'message-area-friend'} key={i}>
             <p dangerouslySetInnerHTML={{__html : message.message}}></p>
         </div>
     })

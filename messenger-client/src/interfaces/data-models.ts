@@ -12,6 +12,8 @@ export interface IFriend{
     image : any,
     Messages: IMessage[],
     init?: boolean;
+    count ?:number;
+    status : boolean;
 }
 export interface IMessage{
     id : string,

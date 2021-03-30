@@ -48,7 +48,7 @@ export default class Server{
     }
 
     private initalizeMiddlewares(){
-        this.application.use(cors({ origin : '*/*' }))
+        this.application.use(cors({ origin : '*' }))
         this.application.use(bodyparser.urlencoded({ extended : true }))
         this.application.use(bodyparser.json())
         this.application.use(this.appendBarrier.bind(this))

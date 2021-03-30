@@ -15,14 +15,6 @@ export default function Initalizer(props : any) {
         try {
             const profileResponse: any = await API.getProfile();
             const profile = profileResponse.data?.message;
-            // let dispatchData = {}
-            // if (profile.displayName) {
-            //     // const blob = null//`${profile.image_blob}` == 'null' ? null : profile.image_blob;
-            //     dispatchData = { name: profile.displayName, image: null , identity : profile.identity }
-            // } else {
-            //     dispatchData = { name: profile.displayName, id: profile.id, identity : profile.identity }
-            // }
-            // debugger
             dispatch({ type : actions.STORE_USER, data : {...profile, name : profile.displayName}})
             history.push(path, { skipAuth : true });
         } catch (e) {

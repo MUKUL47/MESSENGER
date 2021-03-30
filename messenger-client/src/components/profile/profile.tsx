@@ -36,7 +36,6 @@ export default function Profile() {
     }
     const getProfile = async () => {
         document.title = 'Messenger - Profile';
-        console.log(userStore);
         if (BermudaTriangle.isFree()) {
             history.push(Routes.login);
         }

@@ -57,22 +57,42 @@ export class MongoDB{
         })
     }
 
-    public static getMessages(userId: string, targetId: string): Promise<any>{
+    public static getMessages(userId: string, targetId: string, msgLimit ?:number): Promise<any>{
         return new Promise((resolve, reject) => {
-            MongoClient.findOne(
+            const limit = !msgLimit ? {} :  { messages : { $slice :  msgLimit*-1 }}  
+            MongoClient.find(
                 { participant : 
                     { $in : 
                         [   `${userId}-${targetId}`, 
                             `${targetId}-${userId}`
                         ] 
-                    } 
-                },(err : mongoose.NativeError, resp : any) => {
-                    if(err?.message){
-                        return reject(err.message)
                     }
-                    resolve(resp)
-                }
-            )
+                },limit
+            ).exec().then(resolve).catch(reject)
+            // MongoClient.aggregate([
+            //     {
+            //         $match : {
+            //             participant : 
+            //                 { $in : 
+            //                     [   `${userId}-${targetId}`, 
+            //                         `${targetId}-${userId}`
+            //                     ] 
+            //                 }
+            //         },
+            //     },
+            //     {
+            //         $group: {
+            //             $messages : {
+            //                 slNo: {$sum: 1}
+            //             }
+            //         }
+            //     }, 
+            //     {
+            //         $sort : {
+            //             slNo : -1
+            //         }
+            //     }
+            // ]).exec().then(resolve).catch(reject)
         })
     }
 }

@@ -28,14 +28,14 @@ export default class MessageController extends SocketController{
         this.socket.on(events.ON_FRIEND_SELECT, this.onFriendSelect.bind(this))
         this.socket.on(events.IS_TYPING, this.isTyping.bind(this))
     }
-    private async isTyping(response : IRedisData){
+    private async isTyping(response : any){
         try{
-            const { id, friendId } = response.args
+            const { id, friendId } = response
             const isFriendOnlineSocketId = await RedisInstance.getKey(this.identifiers.id+friendId) //friend socket IFF online
             if(isFriendOnlineSocketId){
-                const isPairedWithMe = await RedisInstance.getKey(this.identifiers.select+friendId)
+            const isPairedWithMe = await RedisInstance.getKey(this.identifiers.select+friendId)
                 if(isPairedWithMe === id){
-                    this.socket.to(isFriendOnlineSocketId).emit(events.TYPED, { friendId : id })//send event to friend telling that paired user is typing
+                    this.socket.to(isFriendOnlineSocketId).emit(events.TYPED, { friendId : id, timestamp : new Date().valueOf() })//send event to friend telling that paired user is typing
                 }
             }
         }catch(e){
@@ -68,20 +68,22 @@ export default class MessageController extends SocketController{
     }
     private disconnect(){
         try{
-            this.goOffline();
+            this.goOffline(true);
         }catch(e){
             this.catchError(e)
         }
     }
-    private async goOffline(){
+    private async goOffline(sendEvent ? :boolean){
         try{
             const userId = await RedisInstance.getKey(this.identifiers.socket+this.socket.id)
             if(userId){
-                const selectedFriendId = await RedisInstance.getKey(this.identifiers.select+userId)
-                if(selectedFriendId){
-                    const selectedFriendSocket = await RedisInstance.getKey(this.identifiers.id+selectedFriendId)
-                    if(selectedFriendSocket){
-                        this.socket.to(selectedFriendSocket).emit(events.GOT_STATUS, { friendId : userId, status : false })
+                if(sendEvent){
+                    const selectedFriendId = await RedisInstance.getKey(this.identifiers.select+userId)
+                    if(selectedFriendId){
+                        const selectedFriendSocket = await RedisInstance.getKey(this.identifiers.id+selectedFriendId)
+                        if(selectedFriendSocket){
+                            this.socket.to(selectedFriendSocket).emit(events.GOT_STATUS, { friendId : userId, status : false })
+                        }
                     }
                 }
                 RedisInstance.remove([this.identifiers.id+userId, this.identifiers.select+userId])
@@ -114,7 +116,8 @@ export class MessageServiceController extends Controller{
         try{
             const superUser = req['superUser'] as ISuperUser;
             const { targetId } = req.query as { targetId : string }
-            Controller.generateController(res, errorCodesUtil.SUCCESS, (await MongoDB.getMessages(superUser.userId, targetId)) || [], req.originalUrl)
+            const resp =  (await MongoDB.getMessages(superUser.userId, targetId))
+            Controller.generateController(res, errorCodesUtil.SUCCESS, (resp || [])[0] || [], req.originalUrl)
         }catch(e){
             Controller.generateController(res, errorCodesUtil.UNKNOWN, errorProperties.UNKNOWN_ERROR, req.originalUrl)
             logger.error(`MessageServiceController getMessages : ${e}`)

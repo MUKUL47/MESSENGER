@@ -27,7 +27,6 @@ export default function Login() {
             const response : IApiResponse = await (type === 'Login' ? API.login : API.register)(identity, false)
             dispatch({ type : actions.TOAST_MESSAGE, data : { type : true, message : `OTP sent to ${identity}` } })
             setLoginContext({ isLoading : false, otpReady : true })
-            console.log(response)
         }catch(e){
             setLoginContext({ isLoading : false })
             dispatch({ type : actions.TOAST_MESSAGE, data : { type : false, message : e } })

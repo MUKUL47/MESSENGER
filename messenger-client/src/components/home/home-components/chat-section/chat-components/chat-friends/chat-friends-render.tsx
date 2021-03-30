@@ -8,7 +8,8 @@ export default function ChatFriendsRender(props : any) {
         isLoading,
         friends,
         setActiveFriend,
-        activeFriend
+        activeFriend,
+        selectedFriend
     } = props;
     return (
         <div className="ChatFriendsRender">

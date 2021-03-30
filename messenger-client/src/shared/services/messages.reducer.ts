@@ -5,6 +5,7 @@ export default class Friend{
     private activeFriendId: any = null
     private selectedFriend: IFriend = {} as any;
     private addedMessage = -1;
+    private messageRandom = false;
     //getters
     public getFriend(id : string, all ?:boolean){
         if(all) return this.friends;
@@ -48,12 +49,15 @@ export default class Friend{
         return this
     }
     public addFriend(friend : IFriend){
+        friend.count = 0;
         this.friends.push(friend)
         return this
     }
     public removeFriend(id : string){
         const idx = this.friends.findIndex(f => f.id === id)
         if(idx > -1){
+            this.selectedFriend = {} as any;
+            this.activeFriendId = null;
             this.friends.splice(idx, 1) 
             return true
         }
@@ -63,16 +67,27 @@ export default class Friend{
         const friend = this.getFriend(friendId) as IFriend
         if(friend){
             friend.Messages.push(message)
+            this.messageRandom = false
             this.addedMessage = new Date().valueOf()
+            friend.count  = (friend.count || 0) +1;
         }
         return this
     }
-    public initMessages(friendId: string, messages: IMessage[]) {
+    public initMessages(friendId: string, messages: IMessage[], count :number) {
         const friend = this.getFriend(friendId) as IFriend
         if(friend){
             friend.Messages = messages;
             this.addedMessage = new Date().valueOf()
+            friend.count = count;
             friend.init = messages.length > 0;
+            this.messageRandom = true
+        }
+        return this
+    }
+    public updateStatus(id : string, status : boolean){
+        const friend = this.getFriend(id) as IFriend
+        if(friend){
+            friend.status = status;
         }
         return this
     }
@@ -91,7 +106,8 @@ export class _Friend{
             Messages : [],
             id : id,
             name : name,
-            image : image
+            image : image,
+            status : false
         }
     }
 }

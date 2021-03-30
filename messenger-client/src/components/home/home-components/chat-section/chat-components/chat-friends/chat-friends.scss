@@ -34,7 +34,7 @@
             grid-gap: 10px;
             gap: 10px;
             padding: 5px;
-            background-color: #001a77bd;
+            background-color: #001a777d;
             color: #FFF;
             border-radius: 3.5px;
             cursor: pointer;
@@ -48,14 +48,14 @@
 
             &:hover{
                 transition: .35s;
-                background-color: #001a77ef;
+                background-color: #001a7794;
                 box-shadow: 1px 1px 4px 3px #888;
             }
         }
 
         .f-c-selected{
             transition: .35s;
-            background-color: #001a77ef;
+            background-color: #001a77ef !important;
             box-shadow: 1px 1px 4px 3px #888;
         }
 

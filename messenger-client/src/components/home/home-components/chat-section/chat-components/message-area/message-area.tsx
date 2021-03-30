@@ -9,19 +9,20 @@ import MessageAreaRender from './message-area.render'
 
 export default function MessageArea() {
     const dispatch = useDispatch()
-    const socketContext = useContext(SocketContext)
-    const { friends, activeFriendId, selectedFriend, addedMessage, id } = useSelector((s : any) => { return {...s['messagesService'], ...s['userService']}}) 
+    const { event, error } = useContext(SocketContext)
+    const { friends, activeFriendId, selectedFriend, addedMessage, id, messageRandom } = useSelector((s : any) => { return {...s['messagesService'], ...s['userService']}}) 
     const contextData = {
         isLoading : false,
         selectedFriend : {},
-        removeFriend : {}
+        removeFriend : {},
+        newFriendSelected : false
     }
     const [messageContext, setMessageContext] = useReducer(setGlobalToggleFunc, contextData)
     useEffect(() => {
         if(activeFriendId){
             const f = friends.find((f: any) => f.id === activeFriendId)
             if(f){
-                setMessageContext({ selectedFriend: f })
+                setMessageContext({ selectedFriend: f, newFriendSelected : true })
                 if (!f.init) {
                     const { cancel, promise } = API.getMessages(f.id);
                     promise.then(response => {
@@ -52,6 +53,14 @@ export default function MessageArea() {
         }
     }
 
+    async function fetchMessages(){
+        try{
+            
+        }catch(e){
+            toastMessage.next({ type : false, message : 'Failed to load conversations' })
+        }
+    }
+
     async function sendMessage(message: string) {
         const msg : IMessage ={
             date: new Date().valueOf().toString(),
@@ -61,8 +70,13 @@ export default function MessageArea() {
             ownerId: '1',
             status : 'true'
         }
-        socketContext.emit(outGoingEvents.SEND_MESSAGE, { message , userId : id, targetId : msg.friendId, id : Math.random()})
+        setMessageContext({newFriendSelected : false })
+        event.emit(outGoingEvents.SEND_MESSAGE, { message , userId : id, targetId : msg.friendId, id : Math.random()})
         // dispatch({ type : MESSAGE_ACTIONS.ADD_MESSAGE, data : { id : msg.friendId, message : msg } })
+    }
+
+    function typed(){
+        event.emit(outGoingEvents.IS_TYPING, { id : id, friendId : selectedFriend.id})
     }
     return (
         <MessageAreaRender 
@@ -71,8 +85,10 @@ export default function MessageArea() {
             activeFriend ={activeFriendId}
             onRemoveFriend={onRemoveFriend}
             sendMessage={sendMessage}
+            userTyped={typed}
             friend={selectedFriend}
             addedMessage={addedMessage}
+            messageRandom={messageRandom}
         />
     )
 }

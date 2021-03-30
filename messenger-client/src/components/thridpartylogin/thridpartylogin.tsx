@@ -46,7 +46,6 @@ export default function ThirdPartyLogin() {
             }
         }
         catch(e){
-            console.log(e)
             history.push({ pathname: '/login'})
         }
     }

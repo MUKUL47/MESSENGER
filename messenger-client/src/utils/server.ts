@@ -111,10 +111,10 @@ export default class API{
         })
     }
 
-    public static getMessages(targetId: string): { cancel: any, promise: Promise<any> } {
+    public static getMessages(targetId: string, count ?:number): { cancel: any, promise: Promise<any> } {
         const CancelToken = axios.CancelToken;
         let cancel;
-        const promise = axios.get(sR.BASE + sR.MESSAGE + "?targetId=" + targetId, { cancelToken: new CancelToken(function executor(c) { cancel = c; }) })
+        const promise = axios.get(sR.BASE + sR.MESSAGE + `?targetId=${targetId}${count ?`&count=${count}` : ''}`, { cancelToken: new CancelToken(function executor(c) { cancel = c; }) })
         return { promise, cancel }
     }
 }

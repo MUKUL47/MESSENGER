@@ -66,9 +66,9 @@ function SentRequests(props : any){
     return(
                 totalRequests.length > 0 ?
                 <div className="request-content--SentRequests">
-            {totalRequests.map((request : IRequestSent) => {
+            {totalRequests.map((request : IRequestSent, i : number) => {
                 return (
-                        <div className="sentrequests-item">
+                        <div className="sentrequests-item" key ={i}>
                             <div className="request-profile">
                                 <div className="requestitem-profile">
                                     <img src={emptyProfile} alt={request.displayName}/>
@@ -114,9 +114,9 @@ function SearchRequests(props : any){
         totalRequests.length > 0 ?
         <div className="request-content--SentRequests request-content--SentRequests-min">
            {
-               totalRequests.map((user : ISearchRequest) => {
+               totalRequests.map((user : ISearchRequest, i : number) => {
                    return (
-                        <div className="sentrequests-item">
+                        <div className="sentrequests-item" key={i}>
                         <div className="request-profile">
                             <div className="requestitem-profile">
                                 <img src={emptyProfile} />
@@ -158,9 +158,9 @@ function PendingRequests(props : any){
         totalRequests.length > 0 ?
         <div className="request-content--SentRequests">
            {
-               totalRequests.map((request : IFriendRequest)  => {
+               totalRequests.map((request : IFriendRequest, i : number)  => {
                    return (
-                        <div className="sentrequests-item">
+                        <div className="sentrequests-item" key={i}>
                         <div className="request-profile">
                             <div className="requestitem-profile">
                                 <img src={emptyProfile} />
@@ -192,10 +192,10 @@ function PendingRequests(props : any){
         </div>
         :
         <div className="no-sent-req">
-                <div>
-                    <img src={noReqFoundPng} alt=""/>
-                </div>
-                <p>No Friend Request found</p>
+            <div>
+                <img src={noReqFoundPng} alt=""/>
             </div>
+            <p>No Friend Request found</p>
+        </div>
     )
 }

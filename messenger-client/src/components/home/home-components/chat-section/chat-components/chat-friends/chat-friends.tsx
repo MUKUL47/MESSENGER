@@ -8,10 +8,9 @@ import API from '../../../../../../utils/server';
 import { SocketContext } from '../../../../socket.context';
 import ChatFriendsRender from './chat-friends-render'
 export default function ChatFriends() {
-    const socketContext = useContext(SocketContext)
+    const {event, error} = useContext(SocketContext)
     const dispatch = useDispatch()
-    const { friends, activeFriendId } = useSelector((s : any) => s['messagesService']) 
-    const { id } = useSelector((s : any) => s['userService']) 
+    const { friends, activeFriendId, selectedFriend, id } = useSelector((s : any) => { return {...s['messagesService'], ...s['userService']}}) 
     const contextData = {
         isLoading : false
     }
@@ -38,9 +37,11 @@ export default function ChatFriends() {
         }
     }
     function setActiveFriend(friendId : string){
-        if(activeFriendId === friendId) return
+        // if(!selectedFriend?.status){
+        event.emit(outGoingEvents.ON_FRIEND_SELECT, {args : { id : id, friendId : friendId }})
+        // }
+        if(friendId === activeFriendId) return
         dispatch({ type : MESSAGE_ACTIONS.SET_FRIEND_ACTIVE, data : { id : friendId }})
-        socketContext.emit(outGoingEvents.ON_FRIEND_SELECT, {args : { id : id, friendId : friendId }})
     }
     useEffect(() => {
         if(friends.length === 0){
@@ -53,6 +54,7 @@ export default function ChatFriends() {
             activeFriend={activeFriendId} 
             friends={friends}
             setActiveFriend={setActiveFriend}
+            selectedFriend={selectedFriend}
         />
     )
 }

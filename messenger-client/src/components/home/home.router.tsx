@@ -13,13 +13,12 @@ import './home.scss'
 import { CircularProgress } from '@material-ui/core';
 import emptyProfile from '../../assets/empty-profile.svg'
 export default function HomRouter(props : any) {
-    const socketContext = useContext(SocketContext)
+    const {event, error} = useContext(SocketContext)
     const {
         profileReady,
         isLoading
     } = props;
     return (
-        socketContext ?
         <>
             <div className="navbar">
                 <Navbar />
@@ -31,6 +30,8 @@ export default function HomRouter(props : any) {
                     </div>
                 </Route>
                 <Route path={Routes.home}>
+               {event ?
+
                     <div className="chatsection" >
                         {
                             profileReady && !isLoading? 
@@ -46,10 +47,10 @@ export default function HomRouter(props : any) {
                                 }
                             </div>
                         }
-                    </div>
+                    </div> : <div className="loading-context"><CircularProgress /></div>}
                 </Route>
             </Switch>
         </>
-        : <div className="loading-context"><CircularProgress /></div>
+        
     )
 }

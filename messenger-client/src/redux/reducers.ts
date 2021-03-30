@@ -1,6 +1,6 @@
 import { IAction } from "../interfaces/redux"
 import Friend, { Message } from "../shared/services/messages.reducer"
-import actions, { MESSAGE_ACTIONS } from "./actions"
+import actions, { MESSAGE_ACTIONS, TYPING_ACTIONS } from "./actions"
 // const message = new Message()
 function userStore(store = {}, action : IAction){
     if(actions.STORE_USER=== action.type){
@@ -18,7 +18,6 @@ function messagesStore(friend = new Friend(), action : IAction){
     }
     else if(action.type === MESSAGE_ACTIONS.ADD_FRIENDS){
         const args = action.data;
-        console.log(args)
         friend.addFriends(args)
     }
     else if(action.type === MESSAGE_ACTIONS.RESET_FRIENDS){
@@ -40,9 +39,12 @@ function messagesStore(friend = new Friend(), action : IAction){
         friend.addMessage(id, args);
     }
     else if (action.type === MESSAGE_ACTIONS.INITALIZE_MESSAGES) {
-        const id = action?.data?.id
-        const args = action.data.messages;
-        friend.initMessages(id, args);
+        const { id, messages, count } = action.data;
+        friend.initMessages(id, messages, count);
+    }
+    else if (action.type === MESSAGE_ACTIONS.UPDATE_STATUS) {
+        const { id, status } = action.data;
+        friend.updateStatus(id,status);
     }
     return friend
 }
@@ -62,4 +64,12 @@ function loaderStore(store = {}, action : IAction){
     return store
 }
 
-export { userStore, messagesStore, toastStore, loaderStore }
+function typingStore(store = {}, action : IAction){
+    if(action.type === TYPING_ACTIONS.TYPED){
+        const { id } = action.data;
+        return { id : id, timestamp : new Date().valueOf() }
+    }
+    return store
+}
+
+export { userStore, messagesStore, toastStore, loaderStore, typingStore }

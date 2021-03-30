@@ -1,3 +1,0 @@
-[2021-01-31 01:10:12.329] [sharedprocess] [info] main {"machineId":"a99ca8b0023dd3da857bb4b36a77d6ef67bc9a96e1908f8b7ea9b2c16ef4297e","windowId":2}
-[2021-01-31 01:10:12.392] [sharedprocess] [error] [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/home/mukul/mukul/messenger/~/.vscode-root/User/snippets'
-[2021-01-31 01:10:52.343] [sharedprocess] [info] Starting to clean up unused language packs.

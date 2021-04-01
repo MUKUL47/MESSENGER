@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useReducer } from 'react'
 import defaultPic from '../../../../../../assets/emptyProfile.webp'
 import './message-area.scss'
-import { Menu, MenuItem, MoreVertIcon, TextField } from '../../../../../../shared/material-modules'
+import { Menu, MenuItem, MoreVertIcon, TextField, Tooltip } from '../../../../../../shared/material-modules'
 import selectUser from '../../../../../../assets/select-user.svg'
 import noMessages from '../../../../../../assets/no-messages.svg'
 import { setGlobalToggleFunc } from '../../../../../../shared/utils'
@@ -80,8 +80,9 @@ export default function MessageAreaRender(props : any) {
                     <div className="profile--name">
                         {selectedFriend['name']}
                     </div>
-                    <div className={`friendstatus_${friend.status }`}>
-                    </div>
+                    <Tooltip title={friend.status ? 'Online' : 'Offline'} arrow>
+                        <div className={`friendstatus_${friend.status }`}></div>
+                    </Tooltip>
                     {
                         messageRenderContext.isTyping ? <div className="is-typing">Typing...</div> : null
                     }

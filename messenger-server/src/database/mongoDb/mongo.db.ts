@@ -50,10 +50,22 @@ export class MongoDB{
                         const message = new Message(userId, ts, actualMessage)
                         const messageChunk = new MessageChunk(ts, ts, `${userId}-${targetId}`, [message])
                         await MongoClient.create(messageChunk)
+                        resolve(true)
                     })
             }catch(e){
                 reject(e)
             }
+        })
+    }
+
+    public static removeMessages(userId : string, targetId: string) : Promise<any> {
+        return new Promise((resolve, reject) => {
+            MongoClient.deleteOne({  participant : 
+                { $in : 
+                    [   `${userId}-${targetId}`, 
+                        `${targetId}-${userId}`
+                    ] 
+                } }).exec().then(resolve).catch(reject)
         })
     }
 

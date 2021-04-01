@@ -31,11 +31,11 @@ class MYSQL_TABLE {
     static social = `
     ${MYSQL_TABLE.CTINE}
     social (
+        id VARCHAR(129) PRIMARY KEY,
         userId VARCHAR(64),
-        targetId VARCHAR(64) PRIMARY KEY,
+        targetId VARCHAR(64),
         type VARCHAR(22),
-        updatedAt VARCHAR(24),
-        FOREIGN KEY(userId) REFERENCES users(id) ON DELETE SET NULL
+        updatedAt VARCHAR(24)
     )
     `
 

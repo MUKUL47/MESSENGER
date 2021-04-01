@@ -9,6 +9,7 @@ import responseProperties from '../../properties/response.properties';
 import AuthService from '../../middlewares/auth.middleware';
 import logger from '../../utils/logger.util';
 import { ISuperUser } from '../../interfaces/models.if';
+import { MongoDB } from '../../database/mongoDb/mongo.db';
 export default class SocialController extends Controller{
     public static async search(req : Request, resp : Response){
         try{
@@ -34,6 +35,9 @@ export default class SocialController extends Controller{
                return Controller.generateController(resp, errorCodesUtil.BAD_REQUEST, 'Answer missing for the response action', req.originalUrl)
             }
             await Mysql.setAction(superUser.userId, targetUser, type, answer)
+            if(type === 'remove'){
+                await MongoDB.removeMessages(superUser.userId, targetUser)
+            }
             Controller.generateController(resp, errorCodesUtil.SUCCESS, 'Action successful', req.originalUrl)
         }catch(e){
             logger.error(`SocialController action : ${e}`)

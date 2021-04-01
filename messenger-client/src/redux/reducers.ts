@@ -1,6 +1,6 @@
 import { IAction } from "../interfaces/redux"
 import Friend, { Message } from "../shared/services/messages.reducer"
-import actions, { MESSAGE_ACTIONS, TYPING_ACTIONS } from "./actions"
+import actions, { MESSAGE_ACTIONS, REQUEST_ACTIONS, TYPING_ACTIONS } from "./actions"
 // const message = new Message()
 function userStore(store = {}, action : IAction){
     if(actions.STORE_USER=== action.type){
@@ -67,9 +67,21 @@ function loaderStore(store = {}, action : IAction){
 function typingStore(store = {}, action : IAction){
     if(action.type === TYPING_ACTIONS.TYPED){
         const { id } = action.data;
-        return { id : id, timestamp : new Date().valueOf() }
+        return { ...store, id : id, timestamp : new Date().valueOf() }
     }
     return store
 }
 
-export { userStore, messagesStore, toastStore, loaderStore, typingStore }
+function requestsStore(store = {ids : []}, action : IAction){
+    if(action.type === REQUEST_ACTIONS.SET_REFRESH_FRIEND){
+        if(action.data.id){
+            (store.ids as any).push(action.data.id);
+        }else{
+            store.ids = [];
+        }
+        return { ...store }
+    }
+    return store
+}
+
+export { userStore, messagesStore, toastStore, loaderStore, typingStore, requestsStore }

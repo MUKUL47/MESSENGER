@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect, useMemo, useReducer } from 'react'
 import { IFriendRequestClass, IRequestSentClass, IRequest } from '../../../../interfaces/data-models'
 import FriendRequest from '../../../../shared/services/request.incoming'
 import SentRequest from '../../../../shared/services/request.sent'
@@ -6,16 +6,22 @@ import SearchRequest from '../../../../shared/services/request.search'
 import { setGlobalToggleFunc, toastMessage } from '../../../../shared/utils'
 import API from '../../../../utils/server'
 import RequestRender from './requestRender'
+import { useDispatch } from 'react-redux'
+import { REQUEST_ACTIONS } from '../../../../redux/actions'
 export default function Request() {
     //sent requests
-    const requestContextData = {
-        tab : 'sent',
-        isLoading : false,
-        sentRequest : new SentRequest(),
-        friendRequest : new FriendRequest(),
-        searchRequest : new SearchRequest(),
-        searchInput : ''
-    }
+    const dispatch = useDispatch();
+    const requestContextData = useMemo(() => {
+       return {
+            tab : 'sent',
+            isLoading : false,
+            sentRequest : new SentRequest(),
+            friendRequest : new FriendRequest(),
+            searchRequest : new SearchRequest(),
+            searchInput : '',
+            requestsApproved : false
+        }
+    },[])
     const [requestContext, setRequestContext] = useReducer(setGlobalToggleFunc, requestContextData)
     const friendRequestData = requestContext.friendRequest as IFriendRequestClass ;
     const sentRequestData = requestContext.sentRequest as IRequestSentClass ;
@@ -31,7 +37,8 @@ export default function Request() {
         try{
             await API.networkAction('respond', id, 'accept')
             toastMessage.next({ type : true, message : `Request approved` })
-            setRequestContext({ friendRequest : friendRequestData.setRejectStatus(false, id, true) })
+            setRequestContext({ friendRequest : friendRequestData.setRejectStatus(false, id, true), requestsApproved : true })
+            dispatch({ type : REQUEST_ACTIONS.SET_REFRESH_FRIEND, data : { id : id } })
         }catch(e){
             toastMessage.next({ type : false, message : e })
             setRequestContext({ friendRequest : friendRequestData.setRejectStatus(false, id) })
@@ -132,6 +139,7 @@ export default function Request() {
         if(requestContext.tab === 'sent' || requestContext.tab === 'requests'){
             fetchRequest()
         }
+        dispatch({ type : REQUEST_ACTIONS.SET_REFRESH_FRIEND, data : { value : false } })
     }, [requestContext.tab])
     return (
         <RequestRender 

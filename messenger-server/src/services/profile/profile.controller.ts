@@ -14,7 +14,10 @@ export default class ProfileController extends Controller{
         try{
             const superUser = req['superUser'] as ISuperUser;
             const { displayName, imageUrl } = req.body;
-            await Mysql.updateProfile(superUser.userId, displayName)
+            const {message} = await Mysql.updateProfile(superUser.userId, displayName);
+            if(message){
+                return Controller.generateController(resp, errorCodesUtil.BAD_REQUEST, message, req.originalUrl)
+            }
             Controller.generateController(resp, errorCodesUtil.SUCCESS, responseProperties.PROFILE_UPDATED, req.originalUrl)
         }catch(e){
             logger.error(`ProfileController updateProfile : ${e}`)

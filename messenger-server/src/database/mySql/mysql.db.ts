@@ -123,8 +123,13 @@ export class Mysql{
     }
 
     public static updateProfile(id : string, displayName : string, profileImageUrl ?:string) :  Promise<any>{
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             const ts : number = new Date().valueOf();
+            const [{ count }] = await Mysql.queryPromise(`SELECT COUNT(name) as count from profile WHERE name='${displayName}' AND userId <> '${id}'`)
+            if(count > 0){
+                resolve({ message : 'This name already is taken' });
+                return
+            }
             connection.query(`INSERT INTO profile (userId, name, image_url) 
                 VALUES ('${id}', '${displayName}', '${profileImageUrl || null}') 
             ON 
@@ -183,23 +188,17 @@ export class Mysql{
         return new Promise(async (resolve, reject) => {
             try{
                 if(actionType === 'send'){
-                    const isInvalid  = await Mysql.queryPromise(`
-                    SELECT userId, type FROM social WHERE 
-                            userId='${id}' AND targetId='${targetUserId}' 
-                            OR 
-                            targetId='${id}' AND userId='${targetUserId}' 
-                            AND type='FRIEND' OR type='PENDING'
-                    `)
-                    if(isInvalid[0]?.userId){
-                        if(isInvalid[0].type === 'FRIEND'){
+                    const user  = await Mysql.queryPromise(`select type, targetId, userId from social where id='${id}-${targetUserId}' or id='${targetUserId}-${id}'`);
+                    if(user[0]?.userId){
+                        if(user[0].type === 'FRIEND'){
                             reject('This user is already your friend')
                         }else{
                             reject('Request already sent')
                         }
                         return
                     }
-                    await Mysql.queryPromise(`INSERT INTO social (userId, targetId, type, updatedAt) VALUES 
-                    ('${id}', '${targetUserId}', 'PENDING', '${new Date().valueOf()}')
+                    await Mysql.queryPromise(`INSERT INTO social (id, userId, targetId, type, updatedAt) VALUES 
+                    ('${id}-${targetUserId}', '${id}', '${targetUserId}', 'PENDING', '${new Date().valueOf()}')
                     ON 
                         DUPLICATE KEY UPDATE updatedAt='${new Date().valueOf()}'
                     
@@ -215,8 +214,8 @@ export class Mysql{
                 if(actionType === 'respond'){
                     const isInvalid  = await Mysql.queryPromise(`SELECT userId FROM social WHERE userId='${targetUserId}' AND targetId='${id}' AND type='PENDING'`)
                     if(isInvalid[0]?.userId){
-                        await Mysql.queryPromise(`INSERT INTO social (userId, targetId, type, updatedAt) 
-                        VALUES ('${targetUserId}', '${id}', 'FRIEND', '${new Date().valueOf()}')
+                        await Mysql.queryPromise(`INSERT INTO social (id, userId, targetId, type, updatedAt) 
+                        VALUES ('${targetUserId}-${id}', '${targetUserId}', '${id}', 'FRIEND', '${new Date().valueOf()}')
                         ON 
                             DUPLICATE KEY UPDATE type='FRIEND', updatedAt='${new Date().valueOf()}'
                         

@@ -10,7 +10,8 @@ import ChatFriendsRender from './chat-friends-render'
 export default function ChatFriends() {
     const {event, error} = useContext(SocketContext)
     const dispatch = useDispatch()
-    const { friends, activeFriendId, selectedFriend, id } = useSelector((s : any) => { return {...s['messagesService'], ...s['userService']}}) 
+    const { friends, activeFriendId, selectedFriend, id } = useSelector((s : any) => { return {...s['messagesService'], ...s['userService']}}) ;
+    const { ids } = useSelector((s : any) => s['requestService']) //refresh friendlist in background
     const contextData = {
         isLoading : false
     }
@@ -36,6 +37,18 @@ export default function ChatFriends() {
             toastMessage.next({ message : e, type : false })
         }
     }
+
+    async function fetchFriendsBehind(ids : string[]){
+        try{
+            const profiles : IResponse = await API.getProfile(ids)
+            const profileResp = profiles.data?.message || []
+            const users = profileResp.map((profile : any) => new _Friend().createFriend(profile.id, profile.displayName))
+            if(users.length > 0){
+                dispatch({ type : MESSAGE_ACTIONS.ADD_FRIENDS, data : users })
+            }
+        }catch(e){
+        }
+    }
     function setActiveFriend(friendId : string){
         // if(!selectedFriend?.status){
         event.emit(outGoingEvents.ON_FRIEND_SELECT, {args : { id : id, friendId : friendId }})
@@ -46,6 +59,9 @@ export default function ChatFriends() {
     useEffect(() => {
         if(friends.length === 0){
             fetchFriends()
+        }
+        else if(ids && ids.length > 0){
+            fetchFriendsBehind(ids)
         }
     },[])
     return (

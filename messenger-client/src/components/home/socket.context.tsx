@@ -13,7 +13,6 @@ export default function SocketContextData(props: any) {
     useEffect(() => {
         const socketEvent = (io as any)(serverRoutes.BASE);
         socketEvent.on('connect',() => {
-            console.log('SOCKET_CONTEXT-',socketEvent.id)
             setSocket({event : socketEvent, error : false})
             socketEvent.emit(outGoingEvents.ONLINE, { args : id })
         })

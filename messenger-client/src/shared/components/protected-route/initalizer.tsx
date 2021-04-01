@@ -15,7 +15,7 @@ export default function Initalizer(props : any) {
         try {
             const profileResponse: any = await API.getProfile();
             const profile = profileResponse.data?.message;
-            dispatch({ type : actions.STORE_USER, data : {...profile, name : profile.displayName}})
+            dispatch({ type : actions.STORE_USER, data : {...profile, name : profile.displayName, id : profile.userId}})
             history.push(path, { skipAuth : true });
         } catch (e) {
             BermudaTriangle.clearTriangle();

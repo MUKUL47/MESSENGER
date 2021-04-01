@@ -42,6 +42,10 @@
 5.6) redis-server
 
 6) npm install
+7) sudo service mysql start
+8) sudo service mongod start
+9) sudo service redis start
+10) **npm start**
 ```
 
 #### MODE = PROD

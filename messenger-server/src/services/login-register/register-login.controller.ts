@@ -22,14 +22,8 @@ export default class RegisterLoginController extends Controller{
                 return Controller.generateController(resp, errorCodesUtil.BAD_REQUEST, errorProperties.INVALID_IDENTIY(identity), request.originalUrl)
             }
             const userVerify =  await Mysql.getCurrentUser_register(identity, isLogin);
-            if(!isLogin && userVerify[0]?.userId){
-                return Controller.generateController(resp, errorCodesUtil.BAD_REQUEST, errorProperties.USER_EXIST, request.originalUrl)
-            }
-            else if(isLogin && !userVerify[0]?.userId){
-                return Controller.generateController(resp, errorCodesUtil.BAD_REQUEST, errorProperties.USER_NOT_FOUND, request.originalUrl)
-            }
             if(!otp){
-                const otp : string = '123456'//process.env.MODE === 'PROD' ? generateOtp() : '123456'
+                const otp : string = process.env.MODE === 'PROD' ? generateOtp() : '123456'
                 await Mysql.updateOrAddVerification(identity, otp, isLogin ? 'LOGIN' : 'REGISTER')
                 Controller.generateController(resp, errorCodesUtil.SUCCESS, responseProperties.SENT_OTP(identity), request.originalUrl)
                 return
@@ -42,7 +36,7 @@ export default class RegisterLoginController extends Controller{
                         const token = AuthService.signIn(identity, true) as string;
                         const refreshToken : string = generateKey(24);
                         RedisInstance.setKey(`REFRESH-${refreshToken}`, `${refreshToken}-${new Date().valueOf()}-${identity}`)
-                        Controller.generateController(resp, isLogin ? errorCodesUtil.SUCCESS : errorCodesUtil.CREATED, { token : token, refresh_token : refreshToken, id : hashedIdentity }, request.originalUrl)
+                        Controller.generateController(resp, userVerify[0]?.userId ? errorCodesUtil.SUCCESS : errorCodesUtil.CREATED, { token : token, refresh_token : refreshToken, id : hashedIdentity }, request.originalUrl)
                     }else{
                         Controller.generateController(resp, errorCodesUtil.FORBIDDEN, errorProperties.INVALID_OTP, request.originalUrl)
                     }
@@ -59,7 +53,6 @@ export default class RegisterLoginController extends Controller{
     public async authorize(req : Request, resp : Response){
         try{
             const { loginType, token } = req.headers as { loginType : string, token : string };
-            console.error(`loginType authorize : ${loginType}, ${token}`)
             if(!token){
                 return Controller.generateController(resp, errorCodesUtil.UNAUTHORIZED, errorProperties.UNAUTHORIZED, req.originalUrl)
             }
@@ -75,7 +68,6 @@ export default class RegisterLoginController extends Controller{
             await Mysql.createOrUpdate_user(hashedIdentity, identity)
             Controller.generateController(resp, errorCodesUtil.CREATED, { token : authToken, refresh_token : refreshToken, identity, id :hashedIdentity }, request.originalUrl)
         }catch(e){
-            console.error(`RegisterLoginController authorize : ${e}`)
             logger.error(`RegisterLoginController authorize : ${e}`)
             Controller.generateController(resp, errorCodesUtil.UNAUTHORIZED, errorProperties.UNAUTHORIZED, req.originalUrl)
         }

@@ -32,7 +32,7 @@ export default function LoginRender(props: any) {
                                     }
                                 }}
                             />
-                            <div className="login-toggle">
+                            {/* <div className="login-toggle">
                                 <Switch
                                     checked={(loginType === 'Login') as any}
                                     onClick={() => setLoginType(loginType === 'Login' ? 'Register' : 'Login')}
@@ -41,7 +41,7 @@ export default function LoginRender(props: any) {
                                     inputProps={{ 'aria-label': 'primary checkbox' }}
                                 />
                                 <p>{loginType === 'Login' ? 'Register' : 'Login'}</p>
-                            </div>
+                            </div> */}
                             <Button
                                 variant="contained"
                                 color="primary"
@@ -52,7 +52,7 @@ export default function LoginRender(props: any) {
                                 {
                                     isLoading ?
                                         <CircularProgress className="submit__loader" />
-                                        : loginType
+                                        : 'Login'
                                 }
                             </Button>
                             <div>

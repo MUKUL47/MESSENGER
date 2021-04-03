@@ -19,7 +19,7 @@ export interface IMessage{
     id : string,
     ownerId : string,
     friendId : string,
-    date : string,
+    createdAt : string,
     message : string,
     status : string
 }

@@ -4,7 +4,7 @@ export default class Friend{
     private friends : IFriend[] = [];
     private activeFriendId: any = null
     private selectedFriend: IFriend = {} as any;
-    private addedMessage = -1;
+    private addedMessage : any = {};
     private messageRandom = false;
     //getters
     public getFriend(id : string, all ?:boolean){
@@ -42,6 +42,10 @@ export default class Friend{
     public setFriendActive(id : string){
         this.activeFriendId = id;
         this.selectedFriend = this.getFriend(id, false) as IFriend;
+        if(this.addedMessage[id]){
+            delete this.addedMessage[id]
+            this.addedMessage = { ...this.addedMessage, id : Date().valueOf()}
+        }            
         return this;
     }
     public addFriends(friends : IFriend[]){
@@ -68,16 +72,23 @@ export default class Friend{
         if(friend){
             friend.Messages.push(message)
             this.messageRandom = false
-            this.addedMessage = new Date().valueOf()
             friend.count  = (friend.count || 0) +1;
+            if(this.selectedFriend.id !== friend.id){
+                const friendId = this.addedMessage[friend.id];
+                const newFriendId : any = {};
+                newFriendId[friend.id] = friendId > -1 ? this.addedMessage[friend.id] + 1 : 1
+                this.addedMessage = { ...this.addedMessage,  ...newFriendId, id : Date().valueOf()}
+            }else{
+                this.addedMessage = { ...this.addedMessage, id : Date().valueOf()}
+            }
         }
         return this
     }
     public initMessages(friendId: string, messages: IMessage[], count :number) {
         const friend = this.getFriend(friendId) as IFriend
         if(friend){
-            friend.Messages = messages;
-            this.addedMessage = new Date().valueOf()
+            friend.Messages = [...friend.Messages, ...messages];
+            this.addedMessage = { ...this.addedMessage, id : Date().valueOf()}
             friend.count = count;
             friend.init = messages.length > 0;
             this.messageRandom = true
@@ -117,7 +128,7 @@ export class Message{
             id : id,
             ownerId : ownerId,
             friendId : friendId,
-            date : date,
+            createdAt : date,
             message : message,
             status : status
         }

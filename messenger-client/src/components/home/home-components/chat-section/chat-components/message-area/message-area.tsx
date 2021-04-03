@@ -63,7 +63,7 @@ export default function MessageArea() {
 
     async function sendMessage(message: string) {
         const msg : IMessage ={
-            date: new Date().valueOf().toString(),
+            createdAt: new Date().valueOf().toString(),
             friendId: activeFriendId,
             id: '123',
             message: message,

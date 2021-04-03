@@ -43,7 +43,7 @@
 
     .chat-friends-circle{
         overflow: auto;
-        min-height: calc(100vh - 210px);
+        max-height: calc(100vh - 210px);
 
         .friend-circle{
             margin-bottom: 10px;
@@ -58,6 +58,8 @@
             cursor: pointer;
             transition: .35s;
             font-size: 1.234rem;
+            position: relative;
+            height: 4rem;
 
             img{
                 border-radius: 100%;
@@ -69,12 +71,43 @@
                 background-color: #001a7794;
                 box-shadow: 1px 1px 4px 3px #888;
             }
+
+            .new-messagecount{
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                padding: 2px 7px;
+                background: #000;
+                border-radius: 100px;
+                font-size: 15px;
+                font-weight: bold;
+            }
+        }
+        p:nth-child(1){
+            font-size: 1.45rem;
+        }
+        .friend-image{
+            display: flex;
+        }
+        .friend-name{
+            .friend__message{
+                font-size: .7rem;
+                max-width: 15vw;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                font-family: sans-serif;
+            }
+            .friend__message-active{
+                font-weight: bold;
+            }
         }
 
         .f-c-selected{
             transition: .35s;
             background-color: #001a77ef !important;
             box-shadow: 1px 1px 4px 3px #888;
+            padding: 5px 10px;
         }
 
         .loading-friends{

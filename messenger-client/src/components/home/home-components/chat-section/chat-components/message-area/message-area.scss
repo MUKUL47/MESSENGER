@@ -1,3 +1,15 @@
+
+.message-area-me{    
+    // justify-content: space-between;
+    justify-content: flex-end;
+}
+.message-date{
+    display: flex;
+    justify-content: center;
+    font-family: sans-serif !important;
+    font-size: 13px;
+    color: #6b6b6b;
+}
 .message-area-render{
     display: flex;
     flex-direction: column;
@@ -52,33 +64,36 @@
     .messages-area{
         height: calc(100vh - 320px);
         overflow: auto;
+
         
-        div{
-            display: flex;
-            margin-bottom: 10px;
-            align-items: center;
+        .message-chunk{
 
-            p{
-                word-break: break-all;
-                max-width: 50%;
-                padding: 10px;
-                border : 1px solid rgba(0, 0, 0, 0.082);
-                border-radius: 5px;
-                background-color: #FFF;
-                box-shadow: 1px 1px 5px 0px #888;
-
-                &:hover{
-                    box-shadow: 1px 1px 5px 2px #888;
+            div{
+                display: flex;
+                margin-bottom: 10px;
+                align-items: center;
+    
+                p{
+                    word-break: break-all;
+                    max-width: 50%;
+                    padding: 10px;
+                    border : 1px solid rgba(0, 0, 0, 0.082);
+                    border-radius: 5px;
+                    background-color: #FFF;
+                    box-shadow: 1px 1px 5px 0px rgba(136, 136, 136, 0.411);
+                    padding: 10px 25px;
+                    transition: .25s ease-in all;
+    
+                    &:hover{
+                        transition: .25s ease-in all;
+                        box-shadow: 1px 1px 5px 2px #888;
+                    }
                 }
             }
+            .message-area-friend{    
+            }
         }
-        .message-area-me{    
-            // justify-content: space-between;
-            justify-content: flex-end;
-        }
-        .message-area-friend{    
-        }
-
+    
         .no-messages-f{
             display: flex;
             align-items: center;

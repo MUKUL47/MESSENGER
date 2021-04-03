@@ -133,9 +133,34 @@ export default function MessageAreaRender(props : any) {
 }
 
 function getMessages(messages: any[] = [], activeFriendId: string) {
-    return messages.map((message, i) => {
-        return <div className={message.targetId && message.targetId === activeFriendId || !message.targetId && message.author !== activeFriendId ? 'message-area-me' : 'message-area-friend'} key={i}>
-            <p dangerouslySetInnerHTML={{__html : message.message}}></p>
+    return messages.map((message : any, i) => {
+        const d = message.createdAt;
+        const date = new Date(d);
+        const newDate = calculateDate(d);
+        const oldDate = i > 0 ? calculateDate(messages[i-1].createdAt) : '';
+        const condition = message.targetId && message.targetId === activeFriendId || !message.targetId && message.author !== activeFriendId;
+        return <div className="message-chunk"  key={i}>
+            {
+                newDate !== oldDate ?
+                <div className="message-date">
+                    {newDate}
+                </div> : null
+            }
+
+            <div className={condition ? 'message-area-me' : 'message-area-friend'} key={Math.random()} >
+                <Tooltip leaveDelay={0} title={`${condition ? 'Sent' : 'Received'} at ${date.getHours()}:${date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes()}`}  placement={condition ? 'left' : 'right'}>
+                        <p>{message.message}</p>
+                </Tooltip>
+            </div>
         </div>
     })
+}
+
+function calculateDate(iso : string) : string{
+    const past : number = new Date(iso).valueOf();
+    const now : any = new Date().valueOf()
+    const diff : number = (now-past)/1000;
+    if(diff < 81400) return 'Today'
+    else if(diff > 81400 && diff < 172800) return 'Yesterday'
+    return new Date(iso).toLocaleDateString()
 }

@@ -1,19 +1,27 @@
-import React, { createRef, useReducer } from 'react'
+import React, { createRef, useMemo, useReducer } from 'react'
 import './chat-friends.scss'
 import defaultPic from '../../../../../../assets/emptyProfile.webp'
 import noFriends from '../../../../../../assets/no-friends.svg'
 import { ArrowBackIosIcon, CircularProgress } from '../../../../../../shared/material-modules'
 import { setGlobalToggleFunc } from '../../../../../../shared/utils'
+import { IFriend } from '../../../../../../interfaces/data-models'
 export default function ChatFriendsRender(props : any) {
     const {
         isLoading,
         friends,
         setActiveFriend,
         activeFriend,
-        selectedFriend
+        selectedFriend,
+        addedMessage
     } = props;
     const searchRef : any = createRef()
     const [chatRenderContext, setChatRenderContext] = useReducer(setGlobalToggleFunc, { searchedFriends : '' })
+    const lastMessages = useMemo(() => {
+        return (friends || []).map((friend : IFriend) => {
+            const messages = friend?.Messages || [{ message : false }];
+            return {message : messages[messages.length - 1]?.message, newMessageCount : addedMessage[friend.id]};
+        })
+    },[addedMessage])
     return (
         <div className="ChatFriendsRender">
             <div className="search-friends">
@@ -38,16 +46,27 @@ export default function ChatFriendsRender(props : any) {
             </div>
             <div className="chat-friends-circle">
                 {
-                    friends.map((f : any) => {
+                    friends.map((f : any, i : number) => {
                         return chatRenderContext.searchedFriends.trim().length === 0 || f.name.toLowerCase().includes(chatRenderContext.searchedFriends.trim()) ?
                         <div className={f.id === activeFriend ? 'friend-circle f-c-selected' : 'friend-circle'} key={f.id} onClick={() => setActiveFriend(f.id)}>
-                        <div className="friend-image">
-                            <img className="d_ps" src={defaultPic} alt="Mukul"/>
-                        </div>
-                        <div className="friend-name">
-                            {f.name}
-                        </div>
-                        <div className="friend-status"></div>
+                            <div className="friend-image">
+                                <img className="d_ps" src={defaultPic} alt={f.name}/>
+                            </div>
+                            <div className="friend-name">
+                                <p>{f.name}</p>
+                                {
+                                    lastMessages[i]?.message ? 
+                                        <p className={`friend__message ${lastMessages[i]?.newMessageCount ? 'friend__message-active' : ''}`}>{lastMessages[i]?.message}</p> 
+                                    : null
+                                }
+                            </div>
+                            {
+                                lastMessages[i]?.newMessageCount ? 
+                                    <div className="new-messagecount">
+                                        {lastMessages[i]?.newMessageCount > 99 ? '99+' : lastMessages[i]?.newMessageCount}
+                                    </div> 
+                                : null
+                            }
                     </div> : null
                     })
                 }

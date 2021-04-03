@@ -10,7 +10,7 @@ import ChatFriendsRender from './chat-friends-render'
 export default function ChatFriends() {
     const {event, error} = useContext(SocketContext)
     const dispatch = useDispatch()
-    const { friends, activeFriendId, selectedFriend, id } = useSelector((s : any) => { return {...s['messagesService'], ...s['userService']}}) ;
+    const { friends, activeFriendId, selectedFriend, id, addedMessage } = useSelector((s : any) => { return {...s['messagesService'], ...s['userService']}}) ;
     const { ids } = useSelector((s : any) => s['requestService']) //refresh friendlist in background
     const contextData = {
         isLoading : false
@@ -71,6 +71,7 @@ export default function ChatFriends() {
             friends={friends}
             setActiveFriend={setActiveFriend}
             selectedFriend={selectedFriend}
+            addedMessage={addedMessage}
         />
     )
 }

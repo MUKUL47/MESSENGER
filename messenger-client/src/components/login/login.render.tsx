@@ -32,16 +32,6 @@ export default function LoginRender(props: any) {
                                     }
                                 }}
                             />
-                            {/* <div className="login-toggle">
-                                <Switch
-                                    checked={(loginType === 'Login') as any}
-                                    onClick={() => setLoginType(loginType === 'Login' ? 'Register' : 'Login')}
-                                    color="primary"
-                                    name="checkedB"
-                                    inputProps={{ 'aria-label': 'primary checkbox' }}
-                                />
-                                <p>{loginType === 'Login' ? 'Register' : 'Login'}</p>
-                            </div> */}
                             <Button
                                 variant="contained"
                                 color="primary"
